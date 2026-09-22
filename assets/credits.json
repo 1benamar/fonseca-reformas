@@ -97,5 +97,15 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/59209848@N08/5429083292",
     "source": "flickr"
+  },
+  "hero-video": {
+    "src": "assets/video/hero.mp4",
+    "title": "A man polishing the ceiling using a drywall sander",
+    "creator": "Pexels",
+    "source": "pexels",
+    "license": "pexels",
+    "license_url": "https://www.pexels.com/license/",
+    "foreign_landing_url": "https://www.pexels.com/video/a-man-polishing-the-ceiling-using-a-drywall-sanders-6473935/",
+    "note": "Vídeo de muestra de la portada. Licencia Pexels: uso libre, tambien comercial, sin atribucion obligatoria. Sustituir por metraje propio cuando lo haya."
   }
 }

@@ -84,12 +84,17 @@ PRODUCT.md         ficha del negocio que uso para disenar
 .impeccable/       notas y capturas del proceso de diseno
 
 
-VIDEO EN LA PORTADA (opcional)
-------------------------------
-La portada admite un video de fondo. Deja el archivo en assets/video/hero.mp4
-y se pone solo, sin tocar nada mas. Las condiciones (horizontal, menos de 5 MB,
-sin sonido, 8-15 segundos) estan en assets/video/LEEME.txt.
-Mientras no haya video se ve la fotografia, como ahora.
+VIDEO DE LA PORTADA
+-------------------
+La portada lleva un video en bucle: un operario lijando el techo de una obra.
+Es metraje de muestra de Pexels (uso libre, tambien comercial). Pesa 2,4 MB.
+
+Para cambiarlo por uno vuestro, sustituye assets/video/hero.mp4 por el nuevo
+archivo con el mismo nombre. Las condiciones estan en assets/video/LEEME.txt.
+Un video de obra vuestra vale mas que cualquier metraje de banco.
+
+Si algun dia prefieres quitar el video y dejar solo la fotografia, borra el
+archivo assets/video/hero.mp4 y la web vuelve sola a la foto.
 
 
 DETALLES DE LA WEB
