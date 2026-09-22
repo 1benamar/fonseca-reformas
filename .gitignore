@@ -1,0 +1,12 @@
+# Copia que se publica como artifact, se regenera desde index.html
+.artifact/
+
+# Notas y capturas del proceso de diseño (pesan mucho y no hacen falta en la web)
+.impeccable/
+
+# Configuración local del entorno
+.claude/
+
+# Sistema
+Thumbs.db
+.DS_Store

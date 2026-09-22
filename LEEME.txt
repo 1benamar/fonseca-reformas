@@ -1,0 +1,100 @@
+REFORMAS F.S FONSECA - WEB (version nueva)
+==========================================
+
+Web estatica: HTML, CSS y JavaScript. Sin npm, sin compilar, sin base de datos.
+Se sube tal cual a Hostinger o a cualquier hosting.
+
+
+ANTES DE PUBLICARLA
+-------------------
+
+1) DATOS DE CONTACTO  ->  lib/manifest.js  (YA PUESTOS)
+   Estan los reales de tu ficha de Google: telefono 613 76 64 76 y el mismo
+   numero para WhatsApp. Si algun dia cambian, se editan solo ahi y se
+   actualizan a la vez cabecera, portada, menu, contacto, pie y boton flotante.
+   El formulario no usa correo: al enviarlo abre WhatsApp con el mensaje escrito.
+
+2) LAS FOTOS  ->  assets/img/
+   Las 9 fotos son de muestra, con licencia Creative Commons, y por eso hay una
+   linea de creditos al final del pie. Cuando tengas fotos de obras vuestras:
+     - guardalas con el mismo nombre (hero, arquitectura, salon, bano, cocina,
+       obra, pintura, suelo, dormitorio) y no hay que tocar nada mas;
+     - borra del index.html el parrafo <p class="footer__credits">...</p>.
+   Recomendado: 1600 px de ancho y menos de 300 KB por foto.
+   La foto de portada (hero.jpg) se muestra en blanco y negro a proposito. Si
+   prefieres verla en color, busca en styles.css la linea que empieza por
+   ".hero__plate img" y quita "grayscale(1)".
+
+3) EL DOMINIO
+   He quitado la etiqueta "canonical" del index.html porque el dominio aun no
+   esta confirmado. Cuando lo tengas, dimelo y la pongo (ayuda en Google).
+
+4) REVISA LO QUE PROMETE LA WEB
+   Hay frases que describen vuestra forma de trabajar: presupuesto por escrito
+   y detallado, una sola persona al frente de la obra, la casa recogida cada
+   dia y repasos antes de cerrar. Estan escritas a partir de lo que hablamos;
+   leelas y dime si alguna no se ajusta a como trabajais.
+   No hay ningun precio publicado, a proposito.
+
+
+CUANDO ESTE ONLINE: PONLA EN TU FICHA DE GOOGLE
+-----------------------------------------------
+Tu ficha de Google dice ahora mismo "Anadir sitio web". En cuanto subas la web,
+entra en tu perfil de empresa y pega ahi la direccion: es gratis y hace que
+quien te busque llegue a la web en vez de quedarse en la ficha.
+
+
+SUBIRLA A HOSTINGER
+-------------------
+1. hPanel -> Administrador de archivos.
+2. Abre public_html y vacia lo que haya dentro.
+3. Arrastra TODO el contenido de esta carpeta, incluido el archivo .htaccess
+   (es el que evita que el navegador se quede con la version antigua).
+4. No hace falta subir: tools/  ni  .impeccable/  ni  .claude/  ni PRODUCT.md
+   ni LEEME.txt
+
+Sirve igual para Netlify o cualquier hosting estatico.
+
+
+VERLA EN LOCAL
+--------------
+    node tools/serve.js 8850
+y abre http://localhost:8850
+
+
+CUANDO HAGAS CAMBIOS
+--------------------
+En index.html, los enlaces a styles.css, main.js y lib/manifest.js llevan
+?v=20260922 al final. Cambia esa fecha por la del dia que subas los cambios y
+asi quien ya haya entrado antes vera la version nueva.
+
+
+QUE HAY EN CADA ARCHIVO
+-----------------------
+index.html         la pagina entera
+styles.css         todos los estilos
+main.js            menu, apariciones al hacer scroll, carrusel, formulario
+lib/manifest.js    TUS DATOS de contacto
+assets/img/        las fotos
+assets/logo.svg    el logo en archivo suelto (furgoneta, facturas, carteles)
+assets/credits.json  autoria de las fotos de muestra
+.htaccess          cache y compresion del servidor
+tools/serve.js     servidor local, solo para verla en tu ordenador
+PRODUCT.md         ficha del negocio que uso para disenar
+.impeccable/       notas y capturas del proceso de diseno
+
+
+DETALLES DE LA WEB
+------------------
+- La web tiene modo claro y modo oscuro: se adapta sola a como tenga puesto el
+  movil o el ordenador cada visitante. Si prefieres que sea siempre clara,
+  dimelo y quito el bloque "MODO OSCURO" del final de styles.css.
+- La portada y el fondo de las opiniones van en blanco y negro a proposito; las
+  fotos de servicios van en color.
+- El formulario no envia solo: abre el correo del visitante con el mensaje ya
+  escrito. Si quieres envio automatico hay que conectarlo a un servicio como
+  Formspree; se hace en diez minutos.
+- Los botones "Pedir presupuesto" y "Pedir precio" bajan al formulario y ya
+  dejan marcado el tipo de obra.
+- La web funciona aunque el visitante tenga el JavaScript desactivado: se ven
+  todos los textos y fotos, solo se pierden las animaciones.

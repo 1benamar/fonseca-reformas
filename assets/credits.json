@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "src": "assets/img/hero.jpg",
+    "title": "Living Room",
+    "creator": "Jeremy Levine Design",
+    "creator_url": "https://www.flickr.com/photos/25186605@N04",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/25186605@N04/3239281135",
+    "source": "flickr"
+  },
+  "bano": {
+    "src": "assets/img/bano.jpg",
+    "title": "P1010061.JPG",
+    "creator": "andrechinn",
+    "creator_url": "https://www.flickr.com/photos/16167252@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/16167252@N00/27840061",
+    "source": "flickr"
+  },
+  "cocina": {
+    "src": "assets/img/cocina.jpg",
+    "title": "View from Kitchen",
+    "creator": "Jeremy Levine Design",
+    "creator_url": "https://www.flickr.com/photos/25186605@N04",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/25186605@N04/3843763538",
+    "source": "flickr"
+  },
+  "obra": {
+    "src": "assets/img/obra.jpg",
+    "title": "Unfinished Counter",
+    "creator": "tukanuk",
+    "creator_url": "https://www.flickr.com/photos/10863444@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/10863444@N00/3779390192",
+    "source": "flickr"
+  },
+  "suelo": {
+    "src": "assets/img/suelo.jpg",
+    "title": "I used a pencil to help with the joining - ben the board to lock the joint together",
+    "creator": "Gavin Tapp",
+    "creator_url": "https://www.flickr.com/photos/92795775@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/92795775@N00/6633981491",
+    "source": "flickr"
+  },
+  "pintura": {
+    "src": "assets/img/pintura.jpg",
+    "title": "Freshly painted green room",
+    "creator": "Foto Miki Digital",
+    "creator_url": "https://www.flickr.com/photos/96511847@N04",
+    "license": "pdm",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/96511847@N04/9200925065",
+    "source": "flickr"
+  },
+  "salon": {
+    "src": "assets/img/salon.jpg",
+    "title": "Living Room with Bamboo Garden",
+    "creator": "Jeremy Levine Design",
+    "creator_url": "https://www.flickr.com/photos/25186605@N04",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/25186605@N04/3640922830",
+    "source": "flickr"
+  },
+  "dormitorio": {
+    "src": "assets/img/dormitorio.jpg",
+    "title": "interior photo",
+    "creator": "Gnilenkov Aleksey",
+    "creator_url": "https://www.flickr.com/photos/39415470@N02",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/39415470@N02/7333802196",
+    "source": "flickr"
+  },
+  "arquitectura": {
+    "src": "assets/img/arquitectura.jpg",
+    "title": "Plage Colección My Wall",
+    "creator": "Plage Vinilos y Decoración",
+    "creator_url": "https://www.flickr.com/photos/59209848@N08",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/59209848@N08/5429083292",
+    "source": "flickr"
+  }
+}

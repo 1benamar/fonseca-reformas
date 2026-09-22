@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 120" width="340" height="120" role="img" aria-label="Reformas F.S Fonseca">
+  <g fill="none" stroke="#1b2126" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M170 14 L188 47 H152 Z"/>
+    <path d="M160 37.5 H180"/>
+  </g>
+  <circle cx="170" cy="37.5" r="3.2" fill="#4f6573"/>
+  <text x="170" y="82" text-anchor="middle" font-family="Noto Serif Display, Georgia, serif" font-size="38" font-weight="600" letter-spacing="6" fill="#1b2126">FONSECA</text>
+  <text x="170" y="100" text-anchor="middle" font-family="Jost, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="2.4" fill="#4a5359">REFORMAS E INSTALACIONES</text>
+</svg>
