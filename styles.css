@@ -472,10 +472,10 @@ strong { font-weight: 500; color: var(--ink); }
 /* ---------- REFORMAS COMPLETAS ------------------------------ */
 .packs { padding-block: var(--sec); background: var(--mist); }
 .packs__head { max-width: 44rem; margin-bottom: clamp(2.6rem, 5vw, 3.8rem); }
-.packs__grid { display: grid; gap: 1.5rem; align-items: stretch; }
+.packs__grid { display: grid; gap: 1.5rem; align-items: start; }
 .packs__col { display: grid; gap: 1.5rem; align-content: start; }
-.pack__d { margin-top: .9rem; color: var(--invert-mut); max-width: 44ch; }
-.pack.pack--lead { background: var(--invert-bg); color: var(--invert-mut); justify-content: center; }
+.pack__d { margin-top: .8rem; color: inherit; opacity: .78; max-width: 42ch; }
+.pack.pack--lead { background: var(--invert-bg); color: var(--invert-mut); }
 .pack.pack--lead .ticks { margin-bottom: 0; }
 .pack.pack--lead .pack__t { color: var(--invert-fg); }
 .pack.pack--lead .ticks li { color: var(--invert-mut); }
@@ -485,8 +485,14 @@ strong { font-weight: 500; color: var(--ink); }
   padding: clamp(2rem, 3.4vw, 2.8rem);
   background: var(--paper);
   box-shadow: var(--shadow);
+  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
 }
-.pack__t { font-size: 1.6rem; }
+@media (hover: hover) and (pointer: fine) {
+  .pack:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+}
+.pack__t { font-size: 1.55rem; }
+.pack--lead .pack__t { font-size: clamp(1.75rem, 2.4vw, 2.05rem); text-wrap: nowrap; }
+.pack--lead .pack__d { padding-bottom: 1.5rem; border-bottom: 1px solid currentColor; }
 .pack .btn { margin-top: 2rem; align-self: flex-start; }
 .pack .ticks { margin-bottom: auto; }
 
@@ -676,6 +682,20 @@ strong { font-weight: 500; color: var(--ink); }
 
 @media (min-width: 1280px) {
   .hdr__tel { display: inline; }
+
+  .pack.pack--lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    grid-template-areas: "titulo lista" "texto lista" "boton lista";
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(2.2rem, 3.4vw, 3.4rem);
+    align-content: start;
+  }
+  .pack--lead .pack__t { grid-area: titulo; }
+  .pack--lead .pack__d { grid-area: texto; }
+  .pack--lead .ticks   { grid-area: lista; margin-top: .4rem; }
+  .pack--lead .ticks--two { grid-template-columns: 1fr; }
+  .pack--lead .btn     { grid-area: boton; align-self: start; margin-top: 2.2rem; }
 }
 
 /* ---------- FRANJA DE CONFIANZA ------------------------------ */
