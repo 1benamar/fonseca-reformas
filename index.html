@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
 
 <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20260923c">
+<link rel="stylesheet" href="styles.css?v=20260923d">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23ffffff'/%3E%3Cpath d='M24 8 L41 39 H7 Z' fill='none' stroke='%231b2126' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M14 30 H34' stroke='%231b2126' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='30' r='3.4' fill='%234f6573'/%3E%3C/svg%3E">
 
@@ -97,6 +97,11 @@
 <section class="hero" id="hero" aria-labelledby="hero-t">
   <div class="hero__plate" data-hero-plate>
     <img src="assets/img/hero.jpg" alt="Salón reformado con techo de madera, grandes ventanales y carpintería a medida" width="1024" height="683" fetchpriority="high" loading="eager">
+    <!-- El vídeo se carga solo si existe el archivo y el visitante no ha pedido
+         menos movimiento ni tiene el ahorro de datos activado. Si falta, se
+         queda la foto de arriba. Ver assets/video/LEEME.txt -->
+    <video class="hero__video" data-hero-video data-src="assets/video/hero.mp4"
+           muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
   </div>
 
   <div class="wrap hero__in">
@@ -479,7 +484,7 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.6 6.6 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.4c0 1.7 1.2 3.3 1.4 3.5a11 11 0 004.2 3.7c1.5.6 2.1.7 2.9.5.5-.1 1.4-.6 1.6-1.2s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-<script defer src="lib/manifest.js?v=20260923c"></script>
-<script defer src="main.js?v=20260923c"></script>
+<script defer src="lib/manifest.js?v=20260923d"></script>
+<script defer src="main.js?v=20260923d"></script>
 </body>
 </html>

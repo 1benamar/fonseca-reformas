@@ -84,6 +84,14 @@ PRODUCT.md         ficha del negocio que uso para disenar
 .impeccable/       notas y capturas del proceso de diseno
 
 
+VIDEO EN LA PORTADA (opcional)
+------------------------------
+La portada admite un video de fondo. Deja el archivo en assets/video/hero.mp4
+y se pone solo, sin tocar nada mas. Las condiciones (horizontal, menos de 5 MB,
+sin sonido, 8-15 segundos) estan en assets/video/LEEME.txt.
+Mientras no haya video se ve la fotografia, como ahora.
+
+
 DETALLES DE LA WEB
 ------------------
 - La web tiene modo claro y modo oscuro: se adapta sola a como tenga puesto el

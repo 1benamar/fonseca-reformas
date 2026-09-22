@@ -299,10 +299,18 @@ strong { font-weight: 500; color: var(--ink); }
   overflow: hidden;
 }
 .hero__plate { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-.hero__plate img {
+.hero__plate img,
+.hero__video {
   width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%;
   filter: grayscale(1) contrast(1.06) brightness(.94);
 }
+/* El vídeo entra por encima de la foto y solo cuando ya está reproduciéndose */
+.hero__video {
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 1.1s var(--ease-out);
+}
+.hero__video.is-playing { opacity: 1; }
 .hero__plate::after {
   content: ""; position: absolute; inset: 0;
   background:
@@ -774,7 +782,7 @@ strong { font-weight: 500; color: var(--ink); }
     --shadow-lg: 0 32px 70px -30px rgba(0, 0, 0, .8), 0 4px 14px rgba(0, 0, 0, .4);
     color-scheme: dark;
   }
-  .hero__plate img { filter: grayscale(1) contrast(1.02) brightness(.8); }
+  .hero__plate img, .hero__video { filter: grayscale(1) contrast(1.02) brightness(.8); }
   .voice__plate img { filter: grayscale(1) brightness(.62); }
   .voice__card { background: var(--paper); }
   .foot__bot { border-top-color: var(--line-2); }

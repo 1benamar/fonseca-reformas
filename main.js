@@ -187,6 +187,41 @@
   }
 
   /* ---------------------------------------------------------------------------
+     Vídeo de portada. Es opcional: si el archivo no existe, si el visitante
+     pidió menos movimiento o si lleva el ahorro de datos puesto, la portada se
+     queda con la fotografía y no se descarga nada.
+  --------------------------------------------------------------------------- */
+  function initHeroVideo() {
+    var video = $("[data-hero-video]");
+    if (!video) return;
+
+    var con = navigator.connection || {};
+    if (reduced || con.saveData) return;
+
+    var src = video.getAttribute("data-src");
+    if (!src) return;
+
+    video.addEventListener("playing", function () {
+      video.classList.add("is-playing");
+    }, { once: true });
+
+    // Si el archivo no está, no pasa nada: la foto ya se está viendo.
+    video.addEventListener("error", function () {
+      video.remove();
+    }, { once: true });
+
+    // Se carga después de que la página esté lista, para no competir con la
+    // fotografía de portada, que es lo que el visitante ve primero.
+    var arrancar = function () {
+      video.src = src;
+      var intento = video.play();
+      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    };
+    if (document.readyState === "complete") arrancar();
+    else window.addEventListener("load", arrancar, { once: true });
+  }
+
+  /* ---------------------------------------------------------------------------
      Carrusel de servicios: flechas, teclado y regla de progreso
   --------------------------------------------------------------------------- */
   function initCarousel() {
@@ -316,6 +351,7 @@
     safe(initNavSpy, "navSpy");
     safe(initReveals, "reveals");
     safe(initScrollState, "scrollState");
+    safe(initHeroVideo, "heroVideo");
     safe(initCarousel, "carousel");
     safe(initPrefill, "prefill");
     safe(initForm, "form");
