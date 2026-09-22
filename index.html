@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
 
 <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20260923b">
+<link rel="stylesheet" href="styles.css?v=20260923c">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23ffffff'/%3E%3Cpath d='M24 8 L41 39 H7 Z' fill='none' stroke='%231b2126' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M14 30 H34' stroke='%231b2126' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='30' r='3.4' fill='%234f6573'/%3E%3C/svg%3E">
 
@@ -57,7 +57,7 @@
       <ul class="nav__list">
         <li><a class="nav__a" href="#empresa">La empresa</a></li>
         <li><a class="nav__a" href="#servicios">Servicios</a></li>
-        <li><a class="nav__a" href="#reformas">Reformas completas</a></li>
+        <li><a class="nav__a" href="#reformas">Qué incluye</a></li>
         <li><a class="nav__a" href="#proceso">Cómo trabajamos</a></li>
         <li><a class="nav__a" href="#contacto">Contacto</a></li>
       </ul>
@@ -78,7 +78,7 @@
     <ul class="menu__list">
       <li><a class="menu__a" href="#empresa">La empresa</a></li>
       <li><a class="menu__a" href="#servicios">Servicios</a></li>
-      <li><a class="menu__a" href="#reformas">Reformas completas</a></li>
+      <li><a class="menu__a" href="#reformas">Qué incluye</a></li>
       <li><a class="menu__a" href="#proceso">Cómo trabajamos</a></li>
       <li><a class="menu__a" href="#contacto">Contacto</a></li>
     </ul>
@@ -274,51 +274,64 @@
   </div>
 </section>
 
-<!-- ============================ REFORMAS COMPLETAS ================== -->
-<section class="packs" id="reformas" aria-labelledby="packs-t">
+<!-- ============================ LO QUE VA SIEMPRE INCLUIDO ========== -->
+<section class="always" id="reformas" aria-labelledby="always-t">
   <div class="wrap">
-    <div class="packs__head">
-      <h2 class="h2" id="packs-t" data-reveal="mask">Reformas completas, bien definidas</h2>
-      <p class="lede" data-reveal="up" data-d="1">Las tres obras que más nos piden. Cada presupuesto se hace a medida tras la visita, pero esto es lo que incluye como punto de partida.</p>
+    <div class="always__head">
+      <h2 class="h2" id="always-t" data-reveal="mask">Da igual el tamaño de la obra</h2>
+      <p class="lede" data-reveal="up" data-d="1">Un baño y una casa entera se preparan con el mismo cuidado. Esto entra siempre en el presupuesto: ni se cobra aparte ni hay que pedirlo.</p>
     </div>
 
-    <div class="packs__grid">
-      <article class="pack pack--lead" data-reveal="up">
-        <h3 class="pack__t">Vivienda integral</h3>
-        <p class="pack__d">La casa entera, de la distribución al último repaso de pintura.</p>
-        <ul class="ticks ticks--two">
-          <li>Nueva distribución si hace falta</li>
-          <li>Electricidad y fontanería completas</li>
-          <li>Pladur, techos y aislamiento</li>
-          <li>Suelos, puertas y carpintería</li>
-          <li>Alicatados y sanitarios</li>
-          <li>Pintura y limpieza final de obra</li>
-        </ul>
-        <a class="btn btn--paper" href="#contacto" data-prefill="Reforma integral">Pedir precio</a>
-      </article>
+    <div class="panel" data-reveal="up">
+      <ul class="panel__list">
+        <li>
+          <h3>La casa, protegida</h3>
+          <p>Cubrimos suelos, muebles y accesos antes de mover nada, también en viviendas habitadas.</p>
+        </li>
+        <li>
+          <h3>Los escombros, fuera</h3>
+          <p>Contenedor, carga y retirada incluidos. No se quedan en su terraza esperando.</p>
+        </li>
+        <li>
+          <h3>Permisos resueltos</h3>
+          <p>Le decimos cuáles hacen falta y, si lo prefiere, los tramitamos nosotros.</p>
+        </li>
+        <li>
+          <h3>Un calendario, no una promesa</h3>
+          <p>Sabe qué semana entra cada gremio y cuándo recupera la casa.</p>
+        </li>
+        <li>
+          <h3>Limpieza de verdad</h3>
+          <p>Se entrega limpia y recogida, no barrida por encima el último día.</p>
+        </li>
+        <li>
+          <h3>Repasos antes de cerrar</h3>
+          <p>Revisamos la obra con usted y corregimos lo que no convenza.</p>
+        </li>
+      </ul>
 
-      <div class="packs__col">
-        <article class="pack" data-reveal="up" data-d="1">
-          <h3 class="pack__t">Baño completo</h3>
-          <ul class="ticks">
-            <li>Derribo y retirada de escombros</li>
-            <li>Fontanería y desagües nuevos</li>
-            <li>Impermeabilización de la ducha</li>
-            <li>Alicatado, sanitarios y mampara</li>
-          </ul>
-          <a class="btn btn--line" href="#contacto" data-prefill="Baño">Pedir precio</a>
-        </article>
-        <article class="pack" data-reveal="up" data-d="2">
-          <h3 class="pack__t">Cocina</h3>
-          <ul class="ticks">
-            <li>Tomas de agua, desagüe y gas</li>
-            <li>Electricidad y enchufes al día</li>
-            <li>Revestimientos y suelo</li>
-            <li>Montaje con su proveedor de muebles</li>
-          </ul>
-          <a class="btn btn--line" href="#contacto" data-prefill="Cocina">Pedir precio</a>
-        </article>
-      </div>
+      <aside class="panel__side">
+        <p class="panel__q">¿Por dónde quiere empezar?</p>
+        <div class="picks">
+          <a class="pick" href="#contacto" data-prefill="Baño">
+            <span>Un baño</span>
+            <svg class="pick__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a class="pick" href="#contacto" data-prefill="Cocina">
+            <span>Una cocina</span>
+            <svg class="pick__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a class="pick" href="#contacto" data-prefill="Reforma integral">
+            <span>La casa entera</span>
+            <svg class="pick__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a class="pick" href="#contacto" data-prefill="Otra cosa">
+            <span>Otra cosa</span>
+            <svg class="pick__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <p class="panel__note">Le llamamos, vamos a verlo y le pasamos el presupuesto por escrito.</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -446,7 +459,7 @@
       <nav class="foot__nav" aria-label="Enlaces del pie">
         <a href="#empresa">La empresa</a>
         <a href="#servicios">Servicios</a>
-        <a href="#reformas">Reformas completas</a>
+        <a href="#reformas">Qué incluye</a>
         <a href="#proceso">Cómo trabajamos</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -466,7 +479,7 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.6 6.6 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.4c0 1.7 1.2 3.3 1.4 3.5a11 11 0 004.2 3.7c1.5.6 2.1.7 2.9.5.5-.1 1.4-.6 1.6-1.2s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-<script defer src="lib/manifest.js?v=20260923b"></script>
-<script defer src="main.js?v=20260923b"></script>
+<script defer src="lib/manifest.js?v=20260923c"></script>
+<script defer src="main.js?v=20260923c"></script>
 </body>
 </html>

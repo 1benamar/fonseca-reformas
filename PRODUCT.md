@@ -31,7 +31,7 @@ The sales conversation happens offline: visit to measure, written quote with ite
 - Services confirmed from the company's public habitissimo listing: bathroom renovation, whole-home renovation, house construction / new build, air conditioning, plasterboard (pladur / yeso laminado), masonry (albañilería), painting and decoration.
 - Service provinces: Barcelona and Girona. Base: Mediterrany, 08490 Tordera.
 - The contact form has no backend; it opens WhatsApp with the message pre-written.
-- **Prices:** decision delegated to Claude by the user. No prices or price ranges are published, because the owner has not validated any figures. Package-style blocks show scope only, with a "pedir precio" call to action.
+- **Prices:** decision delegated to Claude by the user. No prices or price ranges are published, because the owner has not validated any figures. Instead of package blocks, the page states what every job includes (protection, debris removal, permits, schedule, final cleaning, snagging) and offers a picker of job types that jumps to the contact form.
 - Phone and WhatsApp are the real ones (613 76 64 76). No email address exists, so the contact form opens WhatsApp with the message pre-written instead of a mail client. The domain is not confirmed, so no canonical URL is published.
 
 ## Brand Commitments
