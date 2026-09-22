@@ -290,6 +290,55 @@ strong { font-weight: 500; color: var(--ink); }
    6. SECCIONES
    ============================================================= */
 
+
+/* ---------- PANTALLA DE CARGA -------------------------------- */
+.splash {
+  position: fixed; inset: 0; z-index: 3000;
+  display: grid; place-items: center;
+  background: var(--paper);
+  animation: splashOut .8s 3.4s var(--ease-io) both;
+}
+.splash__in { display: grid; justify-items: center; gap: .55rem; padding-inline: var(--gutter); }
+.splash__mark { width: 46px; height: 42px; overflow: visible; }
+.splash__st { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.splash__dot { fill: var(--slate-deep); }
+.splash__name {
+  font-family: var(--serif); font-weight: 600;
+  font-size: 1.7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink); padding-left: .18em;
+}
+.splash__sub {
+  font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); padding-left: .2em;
+}
+.splash__bar { display: block; width: 116px; height: 1px; margin-top: 1.1rem; background: var(--line-2); overflow: hidden; }
+.splash__bar i { display: block; width: 100%; height: 100%; background: var(--slate-deep); transform: scaleX(0); transform-origin: left; animation: splashBar 2.6s var(--ease-out) forwards; }
+.splash__in > * { animation: splashIn .7s var(--ease-out) both; }
+.splash__in > *:nth-child(2) { animation-delay: .08s; }
+.splash__in > *:nth-child(3) { animation-delay: .14s; }
+.splash__in > *:nth-child(4) { animation-delay: .2s; }
+
+/* El JavaScript la retira antes, en cuanto la página está lista */
+.splash.is-done { animation: none; transform: translateY(-100%); opacity: 0; transition: transform .75s var(--ease-io), opacity .75s var(--ease-io); pointer-events: none; }
+
+@keyframes splashIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes splashBar { from { transform: scaleX(0); } 70% { transform: scaleX(.82); } to { transform: scaleX(1); } }
+@keyframes splashOut { to { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
+
+/* La portada espera detrás del telón y arranca cuando este se levanta */
+.js .hero__plate,
+.js .hero__plate img,
+.js .hero__t .ln > span,
+.js .hero__p,
+.js .hero__cta,
+.js .hdr__card { animation-play-state: paused; }
+.js.is-revealed .hero__plate,
+.js.is-revealed .hero__plate img,
+.js.is-revealed .hero__t .ln > span,
+.js.is-revealed .hero__p,
+.js.is-revealed .hero__cta,
+.js.is-revealed .hdr__card { animation-play-state: running; }
+
 /* ---------- PORTADA ----------------------------------------- */
 .hero {
   position: relative; isolation: isolate;
@@ -739,6 +788,10 @@ strong { font-weight: 500; color: var(--ink); }
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .splash { animation: splashFade .5s 1.6s ease both; }
+  .splash.is-done { transform: none; transition: opacity .4s ease; }
+  .splash__in > *, .splash__bar i { animation: none; }
+  @keyframes splashFade { to { opacity: 0; visibility: hidden; } }
   .hero__plate { animation: fadeIn .8s ease both; }
   .hero__plate img { animation: none; }
   .hero__t .ln > span { animation: fadeIn .8s .2s ease both; }

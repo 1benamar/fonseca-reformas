@@ -84,6 +84,15 @@ PRODUCT.md         ficha del negocio que uso para disenar
 .impeccable/       notas y capturas del proceso de diseno
 
 
+PANTALLA DE CARGA
+-----------------
+Cada vez que se abre o se recarga la web aparece una pantalla con el logo
+mientras carga, y se levanta como un telon cuando esta lista. Dura entre medio
+segundo y dos segundos y medio como maximo, nunca mas.
+Si algun dia quieres quitarla, borra el bloque <div class="splash"> del
+index.html y la web arranca directa.
+
+
 VIDEO DE LA PORTADA
 -------------------
 La portada lleva un video en bucle: un operario lijando el techo de una obra.

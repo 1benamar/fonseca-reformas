@@ -21,6 +21,38 @@
   }
 
   /* ---------------------------------------------------------------------------
+     Pantalla de carga. Se retira cuando la página está lista, con un mínimo de
+     600 ms para que no pegue un salto, y como muy tarde a los 2,6 s. El CSS
+     tiene su propia salida por si este script no llega a ejecutarse.
+  --------------------------------------------------------------------------- */
+  function initSplash() {
+    var splash = $("#splash");
+    if (!splash) { root.classList.add("is-revealed"); return; }
+
+    var inicio = Date.now();
+    var hecho = false;
+
+    function retirar() {
+      if (hecho) return;
+      hecho = true;
+      splash.classList.add("is-done");
+      root.classList.add("is-revealed");
+      setTimeout(function () { if (splash.parentNode) splash.remove(); }, 900);
+    }
+
+    function cuandoToque() {
+      var espera = Math.max(0, 600 - (Date.now() - inicio));
+      setTimeout(retirar, espera);
+    }
+
+    if (document.readyState === "complete") cuandoToque();
+    else window.addEventListener("load", cuandoToque, { once: true });
+
+    // Tope: pase lo que pase, a los 2,6 s la web se ve.
+    setTimeout(retirar, 2600);
+  }
+
+  /* ---------------------------------------------------------------------------
      Datos de contacto: una sola fuente (lib/manifest.js)
   --------------------------------------------------------------------------- */
   function initContact() {
@@ -346,6 +378,7 @@
   }
 
   function boot() {
+    safe(initSplash, "splash");
     safe(initContact, "contact");
     safe(initMenu, "menu");
     safe(initNavSpy, "navSpy");
