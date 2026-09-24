@@ -223,6 +223,36 @@
      pidió menos movimiento o si lleva el ahorro de datos puesto, la portada se
      queda con la fotografía y no se descarga nada.
   --------------------------------------------------------------------------- */
+  function initHeroVideo() {
+    var video = $("[data-hero-video]");
+    if (!video) return;
+
+    var con = navigator.connection || {};
+    if (reduced || con.saveData) return;
+
+    var src = video.getAttribute("data-src");
+    if (!src) return;
+
+    video.addEventListener("playing", function () {
+      video.classList.add("is-playing");
+    }, { once: true });
+
+    // Si el archivo no está, no pasa nada: la foto ya se está viendo.
+    video.addEventListener("error", function () {
+      video.remove();
+    }, { once: true });
+
+    // Se carga después de que la página esté lista, para no competir con la
+    // fotografía de portada, que es lo que el visitante ve primero.
+    var arrancar = function () {
+      video.src = src;
+      var intento = video.play();
+      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    };
+    if (document.readyState === "complete") arrancar();
+    else window.addEventListener("load", arrancar, { once: true });
+  }
+
   function initObraVideo() {
     var video = $("[data-obra-video]");
     if (!video) return;
@@ -269,14 +299,36 @@
       pintar();
     };
     var arrastrando = false;
+    var tocada = false;
     caja.addEventListener("pointerdown", function (e) {
-      arrastrando = true; mover(e);
+      arrastrando = true; tocada = true; mover(e);
       if (caja.setPointerCapture) { try { caja.setPointerCapture(e.pointerId); } catch (err) {} }
     });
     caja.addEventListener("pointermove", function (e) { if (arrastrando) mover(e); });
     ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
       caja.addEventListener(ev, function () { arrastrando = false; });
     });
+
+    // Al entrar en pantalla la manija se mueve sola una vez. Sin ese gesto
+    // nadie adivina que la foto se puede arrastrar.
+    if (reduced || !("IntersectionObserver" in window)) return;
+    var ob = new IntersectionObserver(function (filas) {
+      if (!filas[0].isIntersecting) return;
+      ob.disconnect();
+      var t0 = 0;
+      var paso = function (t) {
+        if (!t0) t0 = t;
+        var k = Math.min((t - t0) / 1800, 1);
+        if (tocada) return;
+        // Va a un lado, vuelve al otro y se queda en el centro
+        rango.value = 50 + Math.sin(k * Math.PI * 2) * 17;
+        pintar();
+        if (k < 1) requestAnimationFrame(paso);
+        else { rango.value = 50; pintar(); }
+      };
+      setTimeout(function () { if (!tocada) requestAnimationFrame(paso); }, 420);
+    }, { threshold: 0.45 });
+    ob.observe(caja);
   }
 
   /* ---------------------------------------------------------------------------
@@ -464,6 +516,7 @@
     safe(initNavSpy, "navSpy");
     safe(initReveals, "reveals");
     safe(initScrollState, "scrollState");
+    safe(initHeroVideo, "heroVideo");
     safe(initObraVideo, "obraVideo");
     safe(initCompare, "compare");
     safe(initLupa, "lupa");

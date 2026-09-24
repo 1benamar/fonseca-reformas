@@ -11,17 +11,39 @@
     ],
     "origen": "PDF vectorial entregado por el cliente, convertido a SVG",
     "titular": "Reformas F.S Fonseca",
-    "colores": { "azul": "#0277F5", "tinta": "#000000" }
+    "colores": {
+      "azul": "#0277F5",
+      "tinta": "#000000"
+    }
   },
   "fotografias": {
     "carpeta": "assets/img/",
     "origen": "Fotografias de obra tomadas por Reformas F.S Fonseca",
     "titular": "Reformas F.S Fonseca",
-    "licencia": "Uso exclusivo del titular. No hay material de banco de imagenes en la web."
+    "licencia": "Uso exclusivo del titular."
   },
   "video": {
     "archivo": "assets/video/obra.mp4",
     "origen": "Grabacion de obra del propio cliente",
     "titular": "Reformas F.S Fonseca"
+  },
+  "muestra": {
+    "nota": "Dos imagenes de ambiente que no son obra del cliente.",
+    "assets/img/hero.jpg": {
+      "titulo": "Living Room",
+      "autor": "Jeremy Levine Design",
+      "licencia": "CC BY 2.0",
+      "url": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    "assets/img/dormitorio.jpg": {
+      "titulo": "interior photo",
+      "autor": "Gnilenkov Aleksey",
+      "licencia": "CC BY 2.0",
+      "url": "https://creativecommons.org/licenses/by/2.0/"
+    }
+  },
+  "video_portada": {
+    "archivo": "assets/video/hero.mp4",
+    "origen": "Metraje de muestra de Pexels, uso libre tambien comercial"
   }
 }
