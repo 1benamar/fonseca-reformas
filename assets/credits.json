@@ -107,5 +107,12 @@
     "license_url": "https://www.pexels.com/license/",
     "foreign_landing_url": "https://www.pexels.com/video/a-man-polishing-the-ceiling-using-a-drywall-sanders-6473935/",
     "note": "Vídeo de muestra de la portada. Licencia Pexels: uso libre, tambien comercial, sin atribucion obligatoria. Sustituir por metraje propio cuando lo haya."
+  },
+  "logo": {
+    "src": "assets/logo.svg",
+    "title": "Logotipo de Reformas F.S Fonseca",
+    "creator": "Reformas F.S Fonseca",
+    "license": "propiedad del cliente",
+    "note": "Convertido a SVG desde el PDF original que envio el cliente. Colores de marca: negro #111a24 y azul #0277f5."
   }
 }

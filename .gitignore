@@ -7,6 +7,9 @@
 # Configuración local del entorno
 .claude/
 
+# Material original del cliente (fotos, videos y el PDF del logo)
+.cliente/
+
 # Sistema
 Thumbs.db
 .DS_Store

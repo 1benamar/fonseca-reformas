@@ -19,6 +19,7 @@ const TYPES = {
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
   ".mp4": "video/mp4",
+  ".pdf": "application/pdf",
   ".webm": "video/webm",
   ".ico": "image/x-icon"
 };

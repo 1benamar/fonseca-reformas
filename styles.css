@@ -10,25 +10,27 @@
    ============================================================= */
 :root {
   --paper:      #ffffff;
-  --mist:       #eef2f4;
-  --mist-2:     #e2e9ed;
-  --field:      #c9d6de;
-  --night:      #14181b;
+  --mist:       #eef3f9;
+  --mist-2:     #e0e9f4;
+  --field:      #cbdcef;
+  --night:      #0d1520;
 
-  --ink:        #1b2126;
-  --ink-2:      #4a5359;
-  --muted:      #5b656b;
-  --line:       #dce3e7;
-  --line-2:     #c3ccd2;
+  --ink:        #111a24;
+  --ink-2:      #44515f;
+  --muted:      #5a6875;
+  --line:       #dbe4ef;
+  --line-2:     #bfcedd;
 
-  --slate:      #8a9eab;
-  --slate-deep: #4f6573;
-  --btn-bg:     #8a9eab;
-  --btn-fg:     #1b2126;
-  --invert-bg:  #1b2126;
-  --invert-fg:  #f1f4f5;
-  --invert-mut: #aab6bd;
-  --panel-line: rgba(241, 244, 245, .16);
+  /* Azul del logo y su versión legible sobre blanco */
+  --marca:      #0277f5;
+  --slate:      #7d9dc2;
+  --slate-deep: #0b5fd0;
+  --btn-bg:     #0b5fd0;
+  --btn-fg:     #ffffff;
+  --invert-bg:  #111a24;
+  --invert-fg:  #f2f6fb;
+  --invert-mut: #a3b3c4;
+  --panel-line: rgba(242, 246, 251, .16);
   --error:      #a4452f;
   --wa:         #25d366;
 
@@ -141,25 +143,14 @@ strong { font-weight: 500; color: var(--ink); }
   .btn--line:hover { background: var(--ink); color: var(--paper); }
 }
 
-/* --- Marca --------------------------------------------------- */
+/* --- Marca: el logo del cliente ------------------------------- */
 .brand {
-  display: inline-grid; justify-items: center; align-content: center;
-  gap: .15rem; line-height: 1; color: var(--ink);
+  display: block; flex: none;
   transform-origin: left center;
   transition: transform .35s var(--ease-out);
 }
-.brand__mark { width: 24px; height: 22px; overflow: visible; margin-bottom: .2rem; }
-.brand__st { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
-.brand__dot { fill: var(--slate-deep); }
-.brand__name {
-  font-family: var(--serif); font-weight: 600;
-  font-size: 1.7rem; letter-spacing: .16em; text-transform: uppercase;
-  padding-left: .16em;
-}
-.brand__sub {
-  font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--ink-2); padding-left: .2em;
-}
+.brand img { width: 208px; height: auto; }
+.brand--foot img { width: 236px; }
 
 /* --- Cabecera flotante --------------------------------------- */
 .hdr {
@@ -299,18 +290,8 @@ strong { font-weight: 500; color: var(--ink); }
   animation: splashOut .8s 3.4s var(--ease-io) both;
 }
 .splash__in { display: grid; justify-items: center; gap: .55rem; padding-inline: var(--gutter); }
-.splash__mark { width: 46px; height: 42px; overflow: visible; }
-.splash__st { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
-.splash__dot { fill: var(--slate-deep); }
-.splash__name {
-  font-family: var(--serif); font-weight: 600;
-  font-size: 1.7rem; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--ink); padding-left: .18em;
-}
-.splash__sub {
-  font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--muted); padding-left: .2em;
-}
+.splash__mark { width: 68px; height: auto; }
+.splash__name { width: 232px; height: auto; margin-top: .3rem; }
 .splash__bar { display: block; width: 116px; height: 1px; margin-top: 1.1rem; background: var(--line-2); overflow: hidden; }
 .splash__bar i { display: block; width: 100%; height: 100%; background: var(--slate-deep); transform: scaleX(0); transform-origin: left; animation: splashBar 2.6s var(--ease-out) forwards; }
 .splash__in > * { animation: splashIn .7s var(--ease-out) both; }
@@ -599,7 +580,6 @@ strong { font-weight: 500; color: var(--ink); }
 .foot { padding-block: clamp(3.5rem, 7vw, 5rem) 1.8rem; background: var(--field); color: var(--ink-2); }
 .foot__top { display: grid; gap: 2.2rem; justify-items: start; }
 .brand--foot { justify-items: start; }
-.brand--foot .brand__mark { margin-left: .1rem; }
 .foot__nav { display: flex; flex-wrap: wrap; gap: .6rem 1.1rem; }
 .foot__nav a { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
 .foot__contact { display: grid; gap: .3rem; font-size: .98rem; }
@@ -687,9 +667,7 @@ strong { font-weight: 500; color: var(--ink); }
   .strip__in { grid-template-columns: repeat(3, 1fr); }
   .strip__item { border-top: 0; border-left: 1px solid var(--line); padding-left: clamp(1.2rem, 2.6vw, 2.2rem); }
   .strip__item:first-child { border-left: 0; padding-left: 0; }
-  .brand__name { font-size: 1.95rem; letter-spacing: .2em; padding-left: .2em; }
-  .brand__sub { letter-spacing: .26em; padding-left: .26em; }
-  .brand__mark { width: 26px; height: 24px; }
+  .brand img { width: 238px; }
   .hero__bar-in span:nth-child(2) { display: inline; }
   .car { grid-auto-columns: calc((100% - 1.4rem) / 2); }
   .panel__list { grid-template-columns: 1fr 1fr; column-gap: clamp(1.6rem, 3vw, 2.6rem); }
@@ -809,26 +787,27 @@ strong { font-weight: 500; color: var(--ink); }
    ============================================================= */
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper:      #14181b;
-    --mist:       #191e22;
-    --mist-2:     #212a2f;
-    --field:      #1b2328;
-    --night:      #0d1012;
+    --paper:      #0e161f;
+    --mist:       #121c27;
+    --mist-2:     #17222e;
+    --field:      #101a24;
+    --night:      #0a1119;
 
-    --ink:        #eef1f3;
-    --ink-2:      #b4bec4;
-    --muted:      #8d979d;
-    --line:       #293238;
-    --line-2:     #3a444b;
+    --ink:        #eef4fb;
+    --ink-2:      #b3c1d0;
+    --muted:      #8b9aaa;
+    --line:       #24313f;
+    --line-2:     #36465a;
 
-    --slate:      #8a9eab;
-    --slate-deep: #a9bdc9;
-    --btn-bg:     #9db1be;
-    --btn-fg:     #11161a;
-    --invert-bg:  #e7ecee;
-    --invert-fg:  #14181b;
-    --invert-mut: #4c565c;
-    --panel-line: rgba(20, 24, 27, .14);
+    --marca:      #2e8bff;
+    --slate:      #4e7196;
+    --slate-deep: #6aa9ff;
+    --btn-bg:     #2e8bff;
+    --btn-fg:     #08121c;
+    --invert-bg:  #e8eff7;
+    --invert-fg:  #111a24;
+    --invert-mut: #4a5a6b;
+    --panel-line: rgba(17, 26, 36, .14);
     --error:      #e08a6f;
 
     --shadow:    0 22px 48px -24px rgba(0, 0, 0, .7), 0 2px 8px rgba(0, 0, 0, .35);
