@@ -35,4 +35,4 @@ Y abrir `http://localhost:8850`.
 
 ## Créditos de las fotografías
 
-Las imágenes actuales son de muestra, con licencia [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) salvo una de dominio público. La autoría está en `assets/credits.json` y acreditada en el pie de la página.
+Todas las fotografías y el vídeo son obra del propio cliente, tomadas en sus reformas. No queda material de banco de imágenes. La titularidad está recogida en `assets/credits.json`.

@@ -223,34 +223,114 @@
      pidió menos movimiento o si lleva el ahorro de datos puesto, la portada se
      queda con la fotografía y no se descarga nada.
   --------------------------------------------------------------------------- */
-  function initHeroVideo() {
-    var video = $("[data-hero-video]");
+  function initObraVideo() {
+    var video = $("[data-obra-video]");
     if (!video) return;
 
     var con = navigator.connection || {};
-    if (reduced || con.saveData) return;
+    if (reduced || con.saveData) { video.setAttribute("controls", ""); return; }
 
-    var src = video.getAttribute("data-src");
-    if (!src) return;
+    // Solo se reproduce mientras se está viendo: ni gasta datos ni distrae.
+    if (!("IntersectionObserver" in window)) return;
+    var ob = new IntersectionObserver(function (filas) {
+      filas.forEach(function (f) {
+        if (f.isIntersecting) {
+          var intento = video.play();
+          if (intento && intento.catch) intento.catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+    ob.observe(video);
+  }
 
-    video.addEventListener("playing", function () {
-      video.classList.add("is-playing");
-    }, { once: true });
+  /* ---------------------------------------------------------------------------
+     Comparativa antes y después: arrastre, teclado y tacto
+  --------------------------------------------------------------------------- */
+  function initCompare() {
+    var caja = $("[data-cmp]");
+    if (!caja) return;
+    var rango = caja.querySelector("[data-cmp-range]");
+    if (!rango) return;
 
-    // Si el archivo no está, no pasa nada: la foto ya se está viendo.
-    video.addEventListener("error", function () {
-      video.remove();
-    }, { once: true });
-
-    // Se carga después de que la página esté lista, para no competir con la
-    // fotografía de portada, que es lo que el visitante ve primero.
-    var arrancar = function () {
-      video.src = src;
-      var intento = video.play();
-      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    var pintar = function () {
+      caja.style.setProperty("--pos", rango.value + "%");
     };
-    if (document.readyState === "complete") arrancar();
-    else window.addEventListener("load", arrancar, { once: true });
+    rango.addEventListener("input", pintar);
+    pintar();
+
+    // Arrastrar sobre la foto mueve el control, que es quien manda.
+    var mover = function (e) {
+      var r = caja.getBoundingClientRect();
+      var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+      var v = Math.max(0, Math.min(100, (x / r.width) * 100));
+      rango.value = v;
+      pintar();
+    };
+    var arrastrando = false;
+    caja.addEventListener("pointerdown", function (e) {
+      arrastrando = true; mover(e);
+      if (caja.setPointerCapture) { try { caja.setPointerCapture(e.pointerId); } catch (err) {} }
+    });
+    caja.addEventListener("pointermove", function (e) { if (arrastrando) mover(e); });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
+      caja.addEventListener(ev, function () { arrastrando = false; });
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
+     Visor de fotografías de la galería
+  --------------------------------------------------------------------------- */
+  function initLupa() {
+    var lupa = $("#lupa");
+    var botones = $$("[data-lupa]");
+    if (!lupa || !botones.length) return;
+
+    var img = lupa.querySelector("[data-lupa-img]");
+    var pie = lupa.querySelector("[data-lupa-pie]");
+    var cerrar = lupa.querySelector("[data-lupa-x]");
+    var previo = null;
+
+    var abrir = function (btn) {
+      previo = btn;
+      img.src = btn.getAttribute("data-lupa");
+      img.alt = btn.querySelector("img") ? btn.querySelector("img").alt : "";
+      pie.textContent = btn.getAttribute("data-pie") || "";
+      lupa.hidden = false;
+      document.body.style.overflow = "hidden";
+      // Un reflujo forzado basta para que la transicion arranque, y a diferencia
+      // de requestAnimationFrame no se queda parado si la pestana esta de fondo.
+      void lupa.offsetWidth;
+      lupa.classList.add("is-on");
+      cerrar.focus();
+    };
+
+    var quitar = function () {
+      lupa.classList.remove("is-on");
+      document.body.style.overflow = "";
+      var fin = function () {
+        lupa.hidden = true;
+        img.removeAttribute("src");
+        if (previo) { previo.focus(); previo = null; }
+      };
+      if (reduced) fin();
+      else setTimeout(fin, 300);
+    };
+
+    botones.forEach(function (b) {
+      b.addEventListener("click", function () { abrir(b); });
+    });
+    cerrar.addEventListener("click", quitar);
+    lupa.addEventListener("click", function (e) {
+      if (e.target === lupa) quitar();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (lupa.hidden) return;
+      if (e.key === "Escape") quitar();
+      // El visor solo tiene un botón: el foco no debe salir de él.
+      if (e.key === "Tab") { e.preventDefault(); cerrar.focus(); }
+    });
   }
 
   /* ---------------------------------------------------------------------------
@@ -384,7 +464,9 @@
     safe(initNavSpy, "navSpy");
     safe(initReveals, "reveals");
     safe(initScrollState, "scrollState");
-    safe(initHeroVideo, "heroVideo");
+    safe(initObraVideo, "obraVideo");
+    safe(initCompare, "compare");
+    safe(initLupa, "lupa");
     safe(initCarousel, "carousel");
     safe(initPrefill, "prefill");
     safe(initForm, "form");

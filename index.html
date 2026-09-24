@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
 
 <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20260924">
+<link rel="stylesheet" href="styles.css?v=20260925">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%22309.8%20113.7%20230.5%20213.9%22%20role%3D%22img%22%20aria-label%3D%22Reformas%20F.S%20Fonseca%22%3E%3Cpath%20d%3D%22M514.8%20192.5C511.3%20183.5%20506.3%20175.2%20500.2%20167.8C496.4%20163.3%20492.2%20159.1%20487.6%20155.4L487.6%20211L536.7%20211L537.1%20218.7C537.1%20219.5%20537.2%20220.5%20537.2%20221.7C537.3%20223.4%20537.3%20224.4%20537.3%20224.7C537.3%20244.1%20532%20262.3%20522.6%20278.1C513%20294.3%20499.1%20307.9%20482.5%20317.5L470.2%20324.6L470.2%20250.1L486.6%20250.1L486.6%20294.9C495.4%20287.9%20502.9%20279.3%20508.5%20269.7C516%20257.2%20520.4%20242.7%20520.8%20227.4L471.2%20227.4L471.2%20125.3L483.6%20132.6C494.7%20139.2%20504.6%20147.6%20512.7%20157.4C520.8%20167.1%20528.2%20180.5%20532.4%20192.5Z%22%20fill%3D%22%23000000%22%2F%3E%3Cpath%20d%3D%22M399.4%20285.9L399.4%20119.4L406.3%20118.3C409.5%20117.7%20412.6%20117.4%20415.6%20117.1C418.8%20116.9%20421.9%20116.7%20425%20116.7C429.2%20116.7%20433.5%20117%20437.8%20117.5C442%20117.9%20446.2%20118.6%20450.4%20119.6L456.9%20121L456.9%20161.3L440.4%20161.3L440.4%20134.3C439%20134.1%20437.6%20133.9%20436.1%20133.7C432.6%20133.4%20428.9%20133.2%20425%20133.2C422.2%20133.2%20419.5%20133.3%20416.9%20133.5C416.5%20133.5%20416.1%20133.5%20415.8%20133.6L415.8%20203.2L446.6%20203.2L446.6%20219.6L415.8%20219.6L415.8%20272.3ZZM415.8%20287.6L415.8%20289.7L413.3%20289.7Z%22%20fill%3D%22%230277f5%22%20fill-rule%3D%22evenodd%22%2F%3E%3Cpath%20d%3D%22M323.6%20271C316.6%20256.9%20312.8%20241.3%20312.8%20224.7C312.8%20204.7%20318.4%20185.9%20328.4%20169.8C338.6%20153.2%20353.3%20139.4%20370.9%20130.1L383%20123.7L383%20203.5L362.9%20220L383%20236.5L383%20323.6C377%20321.8%20371.5%20319.3%20366.6%20316.4L366.6%20244.2L347.1%20228.3L329.2%20228.3C329.7%20241%20332.9%20252.9%20338.3%20263.7C343.2%20273.8%20350%20282.8%20358.3%20290.5L358.3%20311.3C343.4%20301.2%20331.5%20287.1%20323.6%20271ZM347.1%20211.9L366.6%20195.9L366.6%20152.1C356.8%20159.3%20348.6%20168.2%20342.3%20178.4C336.1%20188.5%20331.9%20199.8%20330.1%20211.9Z%22%20fill%3D%22%23000000%22%2F%3E%3C%2Fsvg%3E">
 
@@ -71,6 +71,7 @@
       <ul class="nav__list">
         <li><a class="nav__a" href="#empresa">La empresa</a></li>
         <li><a class="nav__a" href="#servicios">Servicios</a></li>
+        <li><a class="nav__a" href="#obras">Obras</a></li>
         <li><a class="nav__a" href="#reformas">Qué incluye</a></li>
         <li><a class="nav__a" href="#proceso">Cómo trabajamos</a></li>
         <li><a class="nav__a" href="#contacto">Contacto</a></li>
@@ -92,6 +93,7 @@
     <ul class="menu__list">
       <li><a class="menu__a" href="#empresa">La empresa</a></li>
       <li><a class="menu__a" href="#servicios">Servicios</a></li>
+      <li><a class="menu__a" href="#obras">Obras</a></li>
       <li><a class="menu__a" href="#reformas">Qué incluye</a></li>
       <li><a class="menu__a" href="#proceso">Cómo trabajamos</a></li>
       <li><a class="menu__a" href="#contacto">Contacto</a></li>
@@ -110,12 +112,7 @@
 <!-- ============================ PORTADA ============================= -->
 <section class="hero" id="hero" aria-labelledby="hero-t">
   <div class="hero__plate" data-hero-plate>
-    <img src="assets/img/hero.jpg" alt="Salón reformado con techo de madera, grandes ventanales y carpintería a medida" width="1024" height="683" fetchpriority="high" loading="eager">
-    <!-- El vídeo se carga solo si existe el archivo y el visitante no ha pedido
-         menos movimiento ni tiene el ahorro de datos activado. Si falta, se
-         queda la foto de arriba. Ver assets/video/LEEME.txt -->
-    <video class="hero__video" data-hero-video data-src="assets/video/hero.mp4"
-           muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+    <img src="assets/img/hero.jpg" alt="Tres operarios de la empresa extendiendo el hormigón de una solera" width="1800" height="1125" fetchpriority="high" loading="eager">
   </div>
 
   <div class="wrap hero__in">
@@ -178,7 +175,7 @@
   <div class="wrap about__grid">
     <figure class="about__fig">
       <div class="plate" data-reveal="clip">
-        <img src="assets/img/salon.jpg" alt="Salón terminado con techo de madera y carpintería a medida" decoding="async" width="1024" height="683">
+        <img src="assets/img/equipo.jpg" alt="Operario de la empresa encintando una junta de pladur" decoding="async" width="1000" height="1333">
       </div>
       <span class="about__frame" aria-hidden="true" data-reveal="frame"></span>
     </figure>
@@ -198,7 +195,7 @@
 <!-- ============================ OPINIÓN ============================= -->
 <section class="voice" aria-labelledby="voice-t">
   <div class="voice__plate" data-parallax>
-    <img src="assets/img/dormitorio.jpg" alt="" loading="lazy" decoding="async" width="578" height="1024">
+    <img src="assets/img/pasillo.jpg" alt="" loading="lazy" decoding="async" width="900" height="1400">
   </div>
   <div class="wrap voice__in">
     <div class="voice__card" data-reveal="up">
@@ -250,37 +247,37 @@
 
     <div class="car" id="car" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Servicios">
       <article class="scard" data-reveal="up">
-        <div class="scard__img"><img src="assets/img/arquitectura.jpg" alt="Interior de líneas limpias tras una reforma integral" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-integral.jpg" alt="Planta diáfana con tabiquería y falso techo de pladur terminados" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Reformas integrales</h3>
         <p>Nueva distribución, instalaciones y acabados. Le entregamos la vivienda limpia y lista para entrar a vivir.</p>
         <a class="more" href="#contacto" data-prefill="Reforma integral">Pedir presupuesto</a>
       </article>
       <article class="scard" data-reveal="up" data-d="1">
-        <div class="scard__img"><img src="assets/img/bano.jpg" alt="Baño reformado con lavabo sobre encimera y ducha" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-bano.jpg" alt="Baño en reforma: alicatado antiguo retirado y plato de ducha ya colocado" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Baños</h3>
         <p>Del derribo al último remate: fontanería nueva, impermeabilización, alicatado, sanitarios y mampara.</p>
         <a class="more" href="#contacto" data-prefill="Baño">Pedir presupuesto</a>
       </article>
       <article class="scard" data-reveal="up" data-d="2">
-        <div class="scard__img"><img src="assets/img/cocina.jpg" alt="Cocina abierta al comedor con isla y taburetes" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-cocina.jpg" alt="Sala abierta al jardín con falso techo y luz empotrada terminados" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Cocinas</h3>
         <p>Tomas de agua y gas, electricidad al día y revestimientos, coordinados con su proveedor de muebles.</p>
         <a class="more" href="#contacto" data-prefill="Cocina">Pedir presupuesto</a>
       </article>
       <article class="scard">
-        <div class="scard__img"><img src="assets/img/obra.jpg" alt="Pared de ladrillo visto durante la obra de una vivienda" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-obranueva.jpg" alt="Solera de hormigón extendida en la planta baja de una obra nueva" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Obra nueva y ampliaciones</h3>
         <p>Casas desde cero y ampliaciones: cimentación, estructura, cerramientos y cubierta.</p>
         <a class="more" href="#contacto" data-prefill="Obra nueva">Pedir presupuesto</a>
       </article>
       <article class="scard">
-        <div class="scard__img"><img src="assets/img/pintura.jpg" alt="Botes de pintura y rodillo frente a una pared recién pintada" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-pintura.jpg" alt="Operario lijando el encuentro de un tabique antes de pintar" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Pintura y decoración</h3>
         <p>Alisado, plastecido y pintura, con ayuda para elegir el color y todo lo demás protegido.</p>
         <a class="more" href="#contacto" data-prefill="Pintura">Pedir presupuesto</a>
       </article>
       <article class="scard">
-        <div class="scard__img"><img src="assets/img/suelo.jpg" alt="Pavimento de madera recién instalado en un salón" loading="lazy" decoding="async"></div>
+        <div class="scard__img"><img src="assets/img/s-suelos.jpg" alt="Porche exterior solado con gres imitación piedra" loading="lazy" decoding="async" width="1200" height="900"></div>
         <h3 class="scard__t">Suelos y albañilería</h3>
         <p>Solados, terrazas, humedades y reparaciones que conviene hacer bien y de una sola vez.</p>
         <a class="more" href="#contacto" data-prefill="Albañilería">Pedir presupuesto</a>
@@ -290,6 +287,149 @@
     <div class="car__rail" aria-hidden="true"><span class="car__fill" data-car-fill></span></div>
 
     <p class="svc__also" data-reveal="fade">También realizamos <strong>movimiento de tierras</strong>, <strong>pladur y techos</strong>, <strong>instalación de aire acondicionado</strong>, armarios a medida, aislamiento acústico y pequeñas reparaciones. Si lo prefiere, entregamos la obra <strong>llave en mano</strong>.</p>
+  </div>
+</section>
+
+
+<!-- ============================ OBRAS =============================== -->
+<section class="obras" id="obras" aria-labelledby="obras-t">
+  <div class="wrap">
+    <h2 class="h2 obras__t" id="obras-t" data-reveal="mask">Obras nuestras</h2>
+    <p class="lede obras__lede" data-reveal="up" data-d="1">Todas las fotos de esta página son de obras que hemos hecho nosotros. Ninguna es de catálogo.</p>
+
+    <!-- Comparativa antes y después ---------------------------------- -->
+    <figure class="cmp" data-reveal="up">
+      <div class="cmp__box" data-cmp>
+        <img class="cmp__img cmp__img--b" src="assets/img/despues.jpg" alt="El mismo mueble ya enlucido y pintado, con la televisión encastrada" width="1280" height="960" loading="lazy" decoding="async">
+        <div class="cmp__clip" data-cmp-clip>
+          <img class="cmp__img cmp__img--a" src="assets/img/antes.jpg" alt="Mueble de salón recién montado en pladur, con las juntas todavía sin tapar" width="1280" height="960" loading="lazy" decoding="async">
+        </div>
+        <span class="cmp__tag cmp__tag--a" aria-hidden="true">Antes</span>
+        <span class="cmp__tag cmp__tag--b" aria-hidden="true">Después</span>
+        <input class="cmp__range" type="range" min="0" max="100" value="50" step="0.1"
+               data-cmp-range aria-label="Desplazar para comparar el antes y el después">
+        <span class="cmp__bar" data-cmp-bar aria-hidden="true"><span class="cmp__knob"></span></span>
+      </div>
+      <figcaption>Mueble de salón levantado en pladur sobre perfilería, con hornacina para la televisión, baldas curvas y luz empotrada. De la placa vista al acabado pintado.</figcaption>
+    </figure>
+
+    <!-- Galería ------------------------------------------------------- -->
+    <div class="gal">
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-diafana.jpg" data-pie="Estancia con falso techo escalonado y focos empotrados">
+          <img src="assets/img/o-diafana.jpg" alt="Estancia con falso techo de pladur escalonado y focos ya montados" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Estancia con falso techo escalonado y focos empotrados</span>
+        </button>
+        <figcaption>Estancia con falso techo escalonado y focos empotrados</figcaption>
+      </figure>
+      <figure class="gal__it gal__it--ancho">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-tierras.jpg" data-pie="Movimiento de tierras y desbroce de parcela">
+          <img src="assets/img/o-tierras.jpg" alt="Excavadora perfilando el terreno de una parcela" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Movimiento de tierras y desbroce de parcela</span>
+        </button>
+        <figcaption>Movimiento de tierras y desbroce de parcela</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-gres.jpg" data-pie="Colocación de gres en porche exterior">
+          <img src="assets/img/o-gres.jpg" alt="Operario extendiendo cemento cola y colocando el gres del porche" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Colocación de gres en porche exterior</span>
+        </button>
+        <figcaption>Colocación de gres en porche exterior</figcaption>
+      </figure>
+      <figure class="gal__it gal__it--ancho">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-solado.jpg" data-pie="Solado de gres con sistema de nivelación">
+          <img src="assets/img/o-solado.jpg" alt="Baldosas de gres con crucetas de nivelación puestas antes del fraguado" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Solado de gres con sistema de nivelación</span>
+        </button>
+        <figcaption>Solado de gres con sistema de nivelación</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-hidrofuga.jpg" data-pie="Placa hidrófuga en cuarto húmedo">
+          <img src="assets/img/o-hidrofuga.jpg" alt="Cuarto húmedo cerrado con placa hidrófuga verde y tomas de agua vistas" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Placa hidrófuga en cuarto húmedo</span>
+        </button>
+        <figcaption>Placa hidrófuga en cuarto húmedo</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-maestreado.jpg" data-pie="Maestreado del suelo antes de solar">
+          <img src="assets/img/o-maestreado.jpg" alt="Operario tirando las maestras de mortero sobre el forjado" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Maestreado del suelo antes de solar</span>
+        </button>
+        <figcaption>Maestreado del suelo antes de solar</figcaption>
+      </figure>
+      <figure class="gal__it gal__it--ancho">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-aislamiento.jpg" data-pie="Aislamiento de lana de roca antes de cerrar">
+          <img src="assets/img/o-aislamiento.jpg" alt="Lana de roca colocada entre montantes metálicos antes de cerrar el tabique" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Aislamiento de lana de roca antes de cerrar</span>
+        </button>
+        <figcaption>Aislamiento de lana de roca antes de cerrar</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-cinta.jpg" data-pie="Encintado de juntas, paso previo al alisado">
+          <img src="assets/img/o-cinta.jpg" alt="Operario encintando la junta entre dos placas de yeso" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Encintado de juntas, paso previo al alisado</span>
+        </button>
+        <figcaption>Encintado de juntas, paso previo al alisado</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-perfileria.jpg" data-pie="Perfilería y cercos antes de aplacar">
+          <img src="assets/img/o-perfileria.jpg" alt="Perfilería metálica montada con los cercos de las puertas colocados" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Perfilería y cercos antes de aplacar</span>
+        </button>
+        <figcaption>Perfilería y cercos antes de aplacar</figcaption>
+      </figure>
+      <figure class="gal__it">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-hueco.jpg" data-pie="Dormitorio cerrado y rematado en pladur">
+          <img src="assets/img/o-hueco.jpg" alt="Habitación pequeña terminada en pladur con la ventana ya colocada" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Dormitorio cerrado y rematado en pladur</span>
+        </button>
+        <figcaption>Dormitorio cerrado y rematado en pladur</figcaption>
+      </figure>
+      <figure class="gal__it gal__it--ancho">
+        <button class="gal__btn" type="button" data-lupa="assets/img/o-tabique.jpg" data-pie="Tabique nuevo, pintado y con puertas montadas">
+          <img src="assets/img/o-tabique.jpg" alt="Tabique de pladur acabado, pintado y con dos puertas montadas" loading="lazy" decoding="async">
+          <span class="gal__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+          </span>
+          <span class="sr-only">Ampliar: Tabique nuevo, pintado y con puertas montadas</span>
+        </button>
+        <figcaption>Tabique nuevo, pintado y con puertas montadas</figcaption>
+      </figure>
+      <figure class="gal__it gal__it--video">
+        <video src="assets/video/obra.mp4" muted loop playsinline preload="metadata" data-obra-video aria-label="Vídeo breve de una obra de pladur en marcha"></video>
+        <figcaption>Local en obra: tabiques y techo de pladur en marcha</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -475,6 +615,7 @@
       <nav class="foot__nav" aria-label="Enlaces del pie">
         <a href="#empresa">La empresa</a>
         <a href="#servicios">Servicios</a>
+        <a href="#obras">Obras</a>
         <a href="#reformas">Qué incluye</a>
         <a href="#proceso">Cómo trabajamos</a>
         <a href="#contacto">Contacto</a>
@@ -486,16 +627,26 @@
     </div>
     <div class="foot__bot">
       <span>© <span data-year>2026</span> Reformas F.S Fonseca</span>
-      <p class="foot__credits">Fotografías de muestra bajo licencia <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>: Jeremy Levine Design, andrechinn, tukanuk, Gavin Tapp, Gnilenkov Aleksey y Plage Vinilos y Decoración; Foto Miki Digital (dominio público).</p>
+      <p class="foot__credits">Todas las fotografías son de obras ejecutadas por Reformas F.S Fonseca.</p>
     </div>
   </div>
 </footer>
+
+<div class="lupa" id="lupa" hidden>
+  <div class="lupa__caja" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+    <img class="lupa__img" alt="" data-lupa-img>
+    <p class="lupa__pie" data-lupa-pie></p>
+    <button class="lupa__x" type="button" data-lupa-x aria-label="Cerrar la fotografía">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</div>
 
 <a class="wa" id="wa" href="https://wa.me/34613766476" target="_blank" rel="noopener" data-contact="wa" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.6 6.6 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.4c0 1.7 1.2 3.3 1.4 3.5a11 11 0 004.2 3.7c1.5.6 2.1.7 2.9.5.5-.1 1.4-.6 1.6-1.2s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-<script defer src="lib/manifest.js?v=20260924"></script>
-<script defer src="main.js?v=20260924"></script>
+<script defer src="lib/manifest.js?v=20260925"></script>
+<script defer src="main.js?v=20260925"></script>
 </body>
 </html>

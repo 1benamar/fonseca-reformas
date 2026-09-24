@@ -116,17 +116,24 @@ Si algun dia quieres quitarla, borra el bloque <div class="splash"> del
 index.html y la web arranca directa.
 
 
-VIDEO DE LA PORTADA
+FOTOGRAFIAS Y VIDEO
 -------------------
-La portada lleva un video en bucle: un operario lijando el techo de una obra.
-Es metraje de muestra de Pexels (uso libre, tambien comercial). Pesa 2,4 MB.
+Todas las fotos de la web son vuestras: salen de las que nos enviasteis. Ya no
+queda ninguna imagen de banco, y por eso el pie de la pagina tampoco lleva
+creditos de terceros.
 
-Para cambiarlo por uno vuestro, sustituye assets/video/hero.mp4 por el nuevo
-archivo con el mismo nombre. Las condiciones estan en assets/video/LEEME.txt.
-Un video de obra vuestra vale mas que cualquier metraje de banco.
+Las fotos estan en assets/img/. Si quereis cambiar alguna, sustituid el archivo
+por otro con el mismo nombre y las mismas proporciones, para que no se descuadre
+la maquetacion. Los nombres empiezan por s- las de servicios, por o- las de la
+galeria de obras, y antes.jpg y despues.jpg son las dos de la comparativa.
 
-Si algun dia prefieres quitar el video y dejar solo la fotografia, borra el
-archivo assets/video/hero.mp4 y la web vuelve sola a la foto.
+El video corto que se ve en la galeria es vuestro y esta en
+assets/video/obra.mp4. Se reproduce sin sonido y solo mientras se esta viendo.
+Para cambiarlo, sustituid el archivo por otro con el mismo nombre.
+
+Lo que mas mejoraria la web ahora mismo: una foto de una cocina terminada y
+otra de un bano terminado. Son los dos unicos servicios que no podemos
+ensenar acabados porque no habia ninguna foto de ellos.
 
 
 DETALLES DE LA WEB

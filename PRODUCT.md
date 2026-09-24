@@ -49,7 +49,8 @@ The sales conversation happens offline: visit to measure, written quote with ite
 
 - Public habitissimo profile: 4.3/5 average from 9 reviews; in the sector 9 years (since about 2016); on habitissimo since 2023.
 - One short real review usable with attribution: "Ràpidos y formales. Contenta con el trabajo hecho." (Montse Garcia, habitissimo).
-- No real project photos yet. Stock photos from Openverse (CC BY 2.0 and one public-domain) are used as placeholders and must be credited in the footer until replaced.
+- All photography is the client's own, from their jobs: 22 images plus a short site video, supplied over WhatsApp. No stock material remains.
+- Two gaps in the photo set: there is no finished kitchen and no finished bathroom, so those two service cards lean on work-in-progress shots. Ask the client for both.
 - Absent and must not be fabricated: number of completed projects, team names or photos, additional testimonials, certifications, warranties beyond what is stated, prices.
 
 ## Product Principles
