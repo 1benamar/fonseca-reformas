@@ -6,6 +6,29 @@
    ============================================================= */
 
 /* =============================================================
+   0. TIPOGRAFÍAS
+   ============================================================= */
+/* Servidas desde la propia web. Las dos son variables: un solo archivo cubre
+   todos los pesos que se usan. Solo el juego latino, que incluye tildes, eñe
+   y el símbolo del euro. */
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("assets/fonts/jost.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Noto Serif Display";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("assets/fonts/noto-serif-display.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* =============================================================
    1. TOKENS
    ============================================================= */
 :root {
@@ -1118,4 +1141,41 @@ strong { font-weight: 500; color: var(--ink); }
 @keyframes golpe-chispa {
   from { transform: rotate(var(--a)) translateY(-6px) scaleY(1); opacity: 1; }
   to   { transform: rotate(var(--a)) translateY(-17px) scaleY(.3); opacity: 0; }
+}
+
+/* =============================================================
+   12. PÁGINA 404
+   ============================================================= */
+/* Misma piel que la web, sin cabecera ni animaciones: logo, aviso claro y
+   dos salidas, volver al inicio o llamar. */
+.nf { min-height: 100vh; min-height: 100dvh; display: grid; align-items: center; }
+.nf__in { padding-block: 4rem; }
+.nf__logo { display: inline-block; }
+.nf__logo img { width: 220px; height: auto; }
+.nf__k {
+  margin-top: clamp(3rem, 8vh, 5rem);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--marca);
+}
+.nf__t { margin-top: 1rem; max-width: 18em; }
+.nf__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2.4rem; }
+.nf__tel { color: var(--ink-2); }
+.nf__tel strong { color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: 1.12rem; }
+
+/* =============================================================
+   13. DEDOS
+   ============================================================= */
+/* En pantallas táctiles los enlaces del pie medían 20 px de alto y costaba
+   acertarlos con el dedo. Crece la zona que se puede tocar, no la letra: en
+   el ordenador el pie queda igual. */
+@media (pointer: coarse) {
+  .foot__nav { row-gap: 0; }
+  .foot__nav a { display: inline-block; padding-block: .75rem; }
+  .foot__contact a { display: inline-block; padding-block: .6rem; }
+}
+
+/* En móvil el pie ocupa todo el ancho y el botón flotante de WhatsApp tapaba
+   la última línea de los créditos al llegar al final. Se le deja sitio
+   debajo. En pantallas anchas los créditos van a la derecha y no chocan. */
+@media (max-width: 719.98px) {
+  .foot { padding-bottom: calc(56px + 2.4rem); }
 }

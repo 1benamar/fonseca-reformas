@@ -94,3 +94,8 @@
 #   RewriteCond %{REQUEST_FILENAME}.html -f
 #   RewriteRule ^(.+?)/?$ $1.html [L]
 # </IfModule>
+
+# ----- Página de error -----
+# Cualquier dirección que no exista muestra la 404 propia de la web, no la
+# genérica del hosting.
+ErrorDocument 404 /404.html

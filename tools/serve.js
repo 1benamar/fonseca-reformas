@@ -21,6 +21,7 @@ const TYPES = {
   ".mp4": "video/mp4",
   ".pdf": "application/pdf",
   ".webm": "video/webm",
+  ".woff2": "font/woff2",
   ".ico": "image/x-icon"
 };
 
@@ -36,7 +37,10 @@ http.createServer((req, res) => {
 
   fs.readFile(file, (err, buf) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" }).end("404 " + rel);
+      // Igual que en el hosting: lo que no existe muestra la 404 de la web.
+      fs.readFile(path.join(ROOT, "404.html"), (e2, pagina) => {
+        res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" }).end(e2 ? "404 " + rel : pagina);
+      });
       return;
     }
     res.writeHead(200, {

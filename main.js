@@ -246,8 +246,12 @@
     // fotografía de portada, que es lo que el visitante ve primero.
     var arrancar = function () {
       video.src = src;
+      // Si el navegador no deja arrancarlo ahora (pestaña abierta en segundo
+      // plano, ahorro de energía), no se quita: sigue invisible detrás de la
+      // foto y arranca en cuanto el visitante vuelve a la pestaña. Solo se
+      // retira si el archivo falla de verdad (evento error, arriba).
       var intento = video.play();
-      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+      if (intento && intento.catch) intento.catch(function () {});
     };
     if (document.readyState === "complete") arrancar();
     else window.addEventListener("load", arrancar, { once: true });
