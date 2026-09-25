@@ -439,12 +439,22 @@
   function initPrefill() {
     var sel = $("#f-type");
     if (!sel) return;
+    // Se comparan sin mayusculas ni tildes, y si no hay coincidencia exacta
+    // vale que la opcion empiece igual: asi "Obra nueva" sigue encontrando
+    // a "Obra nueva o ampliacion" aunque se retoque la etiqueta.
+    var llano = function (s) {
+      return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+    };
     $$("[data-prefill]").forEach(function (a) {
       a.addEventListener("click", function () {
-        var want = a.getAttribute("data-prefill");
+        var want = llano(a.getAttribute("data-prefill"));
+        var elegida = null;
         $$("option", sel).forEach(function (o) {
-          if (o.textContent === want) sel.value = o.value || o.textContent;
+          var t = llano(o.textContent);
+          if (t === want) elegida = o;
+          else if (!elegida && t.indexOf(want) === 0) elegida = o;
         });
+        if (elegida) sel.value = elegida.value || elegida.textContent;
       });
     });
   }
