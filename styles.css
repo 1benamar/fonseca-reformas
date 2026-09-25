@@ -871,12 +871,15 @@ strong { font-weight: 500; color: var(--ink); }
 .hero__plate { animation: rise 1.25s var(--ease-io) both; }
 .hero__plate img { animation: settle 2.6s .1s var(--ease-out) both; }
 .hero__t .ln > span { animation: lineUp 1s var(--ease-out) both; }
-.hero__t .ln:nth-child(1) > span { animation-delay: .7s; }
-.hero__t .ln:nth-child(2) > span { animation-delay: .79s; }
-.hero__t .ln:nth-child(3) > span { animation-delay: .88s; }
-.hero__p   { animation: fadeUp .9s 1.1s var(--ease-out) both; }
-.hero__cta { animation: fadeUp .9s 1.22s var(--ease-out) both; }
-.hero__bar { animation: fadeIn 1s 1.35s ease both; }
+/* La entrada de la portada va seguida: titular, párrafo y botón llegan en
+   menos de un segundo, para que el contenido principal esté a la vista
+   pronto (lo que Google mide como LCP). Mismo orden y mismo ritmo que antes. */
+.hero__t .ln:nth-child(1) > span { animation-delay: .3s; }
+.hero__t .ln:nth-child(2) > span { animation-delay: .39s; }
+.hero__t .ln:nth-child(3) > span { animation-delay: .48s; }
+.hero__p   { animation: fadeUp .9s .5s var(--ease-out) both; }
+.hero__cta { animation: fadeUp .9s .62s var(--ease-out) both; }
+.hero__bar { animation: fadeIn 1s .75s ease both; }
 
 /* Apariciones al hacer scroll. Solo se ocultan cuando el JS está vivo. */
 [data-reveal] {
