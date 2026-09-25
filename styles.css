@@ -1074,16 +1074,15 @@ strong { font-weight: 500; color: var(--ink); }
 /* =============================================================
    11. CURSOR DE OBRA
    ============================================================= */
-/* Sobre lo que se puede pulsar, la mano del sistema se cambia por un
-   martillo de uña: cabeza de acero, uña curva y mango en el azul de la marca,
-   todo con contorno oscuro para que se lea sobre el fondo, sobre las fotos y
-   sobre el blanco. El punto activo es la cara que golpea, arriba del todo.
-   Solo ahí: leyendo se sigue viendo la flecha de siempre, en los campos se
-   escribe con el cursor de texto, la galería conserva la lupa y el antes y
-   después, sus flechas de arrastre. Safari no admite cursores en SVG y se
-   queda con la mano, y en pantallas táctiles no hay cursor que cambiar. */
+/* En toda la página el cursor es un martillo de uña: cabeza de acero, uña
+   curva y mango en el azul de la marca, con contorno oscuro para que se lea
+   sobre el fondo, sobre las fotos y sobre el blanco. El punto activo es la
+   cara que golpea, arriba del todo. Solo los campos donde se escribe
+   conservan el cursor de texto, para saber dónde cae la letra.
+   En táctiles no hay cursor, y Safari, que no admite cursores en SVG, se
+   queda con los de siempre. */
 @media (hover: hover) and (pointer: fine) {
-  a[href], button, [role="button"] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-45 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 23 3, pointer;
+  html, *:not(input):not(textarea), input[type="range"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-45 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 18 2, auto !important;
   }
 }
