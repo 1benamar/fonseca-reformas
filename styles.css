@@ -9,6 +9,8 @@
    1. TOKENS
    ============================================================= */
 :root {
+  color-scheme: light;
+
   --paper:      #ffffff;
   --mist:       #eef2f4;
   --mist-2:     #e2e9ed;
@@ -982,43 +984,3 @@ strong { font-weight: 500; color: var(--ink); }
   .cmp__img { animation: none; }
 }
 
-/* =============================================================
-   10. MODO OSCURO (sigue la preferencia del sistema)
-   Mismo lenguaje visual, solo cambian los tokens.
-   ============================================================= */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:      #14181b;
-    --mist:       #191e22;
-    --mist-2:     #212a2f;
-    --field:      #1b2328;
-    --night:      #0d1012;
-
-    --ink:        #eef1f3;
-    --ink-2:      #b4bec4;
-    --muted:      #8d979d;
-    --line:       #293238;
-    --line-2:     #3a444b;
-
-    --marca:      #2e8bff;
-    --slate:      #8a9eab;
-    --slate-deep: #6aa9ff;
-    --btn-bg:     #2e8bff;
-    --btn-fg:     #0d1012;
-    --invert-bg:  #e7ecee;
-    --invert-fg:  #14181b;
-    --invert-mut: #4c565c;
-    --panel-line: rgba(20, 24, 27, .14);
-    --error:      #e08a6f;
-
-    --shadow:    0 22px 48px -24px rgba(0, 0, 0, .7), 0 2px 8px rgba(0, 0, 0, .35);
-    --shadow-lg: 0 32px 70px -30px rgba(0, 0, 0, .8), 0 4px 14px rgba(0, 0, 0, .4);
-    color-scheme: dark;
-  }
-  .hero__plate img, .hero__video { filter: grayscale(1) contrast(1.02) brightness(.8); }
-  .voice__plate img { filter: grayscale(1) brightness(.62); }
-  .voice__card { background: var(--paper); }
-  .foot__bot { border-top-color: var(--line-2); }
-  .foot__credits { color: var(--muted); }
-  .zones li, .more__list li { background: transparent; }
-}

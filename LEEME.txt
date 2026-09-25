@@ -92,15 +92,17 @@ usan las webs: se ve nitido a cualquier tamano y pesa poco. En assets/ tienes:
   logo.svg                 el original apilado (pie de pagina, imprenta)
   logo-horizontal.svg      monograma y nombre en linea (cabecera)
   logo-marca.svg           solo el circulo RFS (pantalla de carga, icono)
-  y de cada uno, la version -claro.svg para fondos oscuros
+  y de cada uno, la version -claro.svg, en tinta blanca, por si algun dia
+  hace falta poner el logo sobre un fondo oscuro (un rotulo, una furgoneta).
+  La web no las usa.
 
 Son los mismos archivos que puedes llevar a una furgoneta, una factura o un
 cartel: al ser vectoriales no pierden calidad por mucho que se amplien.
 
-La paleta de la web ahora sale del logo: el azul #0277F5 es el de la marca y
-se usa en botones, enlaces y detalles; los grises y el fondo oscuro se han
-girado hacia el azul para que todo pegue. Para texto sobre blanco uso un azul
-un punto mas oscuro (#0B5FD0) porque el de la marca no tiene contraste
+El azul del logo, #0277F5, es el color de la web: botones, enlaces, estrellas
+y detalles. Los fondos son grises neutros a proposito, para que las
+fotografias no compitan con el color. Para texto sobre blanco uso un azul un
+punto mas oscuro (#0B5FD0) porque el de la marca no tiene contraste
 suficiente a tamano pequeno y se lee mal.
 
 El boton de WhatsApp sigue verde a proposito: ese verde es de WhatsApp y la
@@ -138,9 +140,9 @@ ensenar acabados porque no habia ninguna foto de ellos.
 
 DETALLES DE LA WEB
 ------------------
-- La web tiene modo claro y modo oscuro: se adapta sola a como tenga puesto el
-  movil o el ordenador cada visitante. Si prefieres que sea siempre clara,
-  dimelo y quito el bloque "MODO OSCURO" del final de styles.css.
+- La web es siempre clara, para todo el mundo. Aunque el visitante tenga el
+  movil o el ordenador en tema oscuro, la vera en blanco: asi las fotos de las
+  obras se ven como en un catalogo y el logo sale siempre en su tinta original.
 - La portada y el fondo de las opiniones van en blanco y negro a proposito; las
   fotos de servicios van en color.
 - El formulario no envia solo: abre el correo del visitante con el mensaje ya
