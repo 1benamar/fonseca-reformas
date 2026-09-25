@@ -1182,3 +1182,36 @@ strong { font-weight: 500; color: var(--ink); }
 @media (max-width: 719.98px) {
   .foot { padding-bottom: calc(56px + 2.4rem); }
 }
+
+/* =============================================================
+   14. PÁGINAS LEGALES Y CASILLA DE PRIVACIDAD
+   ============================================================= */
+.legal__in { max-width: 46rem; padding-block: clamp(2.5rem, 6vw, 4.5rem) 5rem; }
+.legal__logo img { width: 200px; height: auto; }
+.legal__back {
+  display: inline-block; margin: 2.2rem 0 1.4rem; padding-block: .4rem;
+  font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--marca);
+}
+.legal__back::before { content: "← "; }
+.legal h2 { margin-top: 2.6rem; font-size: 1.3rem; }
+.legal p { margin-top: .9rem; color: var(--ink-2); line-height: 1.75; }
+.legal p a, .legal dd a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.legal__datos { margin-top: 1.4rem; border-top: 1px solid var(--line); }
+.legal__datos div { display: grid; gap: .2rem 1.5rem; padding-block: .85rem; border-bottom: 1px solid var(--line); }
+.legal__datos dt { font-size: .72rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.legal__datos dd { color: var(--ink); }
+@media (min-width: 540px) { .legal__datos div { grid-template-columns: 8rem 1fr; } }
+/* Hueco sin rellenar: salta a la vista para que no se publique así */
+mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 500; }
+
+.foot__legal { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin-top: .5rem; font-size: .85rem; }
+.foot__legal a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+
+.check { display: flex; gap: .75rem; align-items: flex-start; font-size: .9rem; line-height: 1.55; color: var(--ink-2); cursor: pointer; }
+.check input {
+  flex: none; width: 20px; height: 20px; margin: .1rem 0 0;
+  accent-color: var(--marca);
+}
+.check a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.check.is-invalid { color: var(--error); }
+.check.is-invalid input { outline: 2px solid var(--error); outline-offset: 2px; }

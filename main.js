@@ -538,7 +538,7 @@
 
     function check(input) {
       var field = input.closest(".field");
-      var ok = input.value.trim().length > 0;
+      var ok = input.type === "checkbox" ? input.checked : input.value.trim().length > 0;
       if (field) field.classList.toggle("is-invalid", !ok);
       input.setAttribute("aria-invalid", ok ? "false" : "true");
       var err = document.getElementById(input.id + "-err");
@@ -551,8 +551,8 @@
 
     var required = $$("[required]", form);
     required.forEach(function (input) {
-      input.addEventListener("blur", function () { if (input.value) check(input); });
-      input.addEventListener("input", function () {
+      input.addEventListener("blur", function () { if (input.type !== "checkbox" && input.value) check(input); });
+      input.addEventListener(input.type === "checkbox" ? "change" : "input", function () {
         if (input.closest(".field").classList.contains("is-invalid")) check(input);
       });
     });
