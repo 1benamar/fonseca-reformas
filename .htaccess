@@ -53,8 +53,11 @@
   </FilesMatch>
 
   # Images & fonts: long cache
-  <FilesMatch "\.(webp|jpg|jpeg|png|svg|avif|ico|woff|woff2)$">
-    Header set Cache-Control "public, max-age=2592000"
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|avif|ico|mp4|webm)$">
+    Header always set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(woff|woff2)$">
+    Header always set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
   # Minimal security headers
@@ -77,7 +80,7 @@
 
 # ----- Gzip compression for text assets -----
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff font/woff2
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml application/xml text/plain
 </IfModule>
 
 # ----- HTTPS redirect (uncomment if your domain has SSL) -----
@@ -108,4 +111,13 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^www\. [NC]
   RewriteRule ^ https://reformasfonseca.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ----- No comprimir lo que ya viene comprimido -----
+# Fotos, vídeo y fuentes ya están comprimidos por su propio formato. Si el
+# servidor los vuelve a comprimir, en Hostinger salen además marcados como
+# "no guardar en caché" y cada visita los descarga enteros otra vez. Así se
+# sirven tal cual, con la caché de arriba funcionando.
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase Request_URI "\.(jpe?g|png|webp|avif|gif|ico|mp4|webm|woff2?)$" no-gzip no-brotli dont-vary
 </IfModule>
