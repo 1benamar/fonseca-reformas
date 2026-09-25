@@ -287,6 +287,36 @@
     }
   }
 
+  /* ---------------------------------------------------------------------------
+     Golpe de martillo al hacer clic: el cursor se inclina un instante y en el
+     punto del clic salta un impacto que se borra solo.
+  --------------------------------------------------------------------------- */
+  function initGolpe() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    var raiz = document.documentElement;
+    var suelta;
+    document.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      raiz.classList.add("is-golpe");
+      clearTimeout(suelta);
+      suelta = setTimeout(function () { raiz.classList.remove("is-golpe"); }, 160);
+      if (reduced) return;
+
+      var g = document.createElement("span");
+      g.className = "golpe";
+      g.setAttribute("aria-hidden", "true");
+      g.style.left = e.clientX + "px";
+      g.style.top = e.clientY + "px";
+      [0, 60, 120, 180, 240, 300].forEach(function (a) {
+        var i = document.createElement("i");
+        i.style.setProperty("--a", a + "deg");
+        g.appendChild(i);
+      });
+      document.body.appendChild(g);
+      setTimeout(function () { g.remove(); }, 500);
+    }, { passive: true });
+  }
+
   function initObraVideo() {
     var video = $("[data-obra-video]");
     if (!video) return;
@@ -562,6 +592,7 @@
     safe(initScrollState, "scrollState");
     safe(initHeroVideo, "heroVideo");
     safe(initObraVideo, "obraVideo");
+    safe(initGolpe, "golpe");
     safe(initCompare, "compare");
     safe(initLupa, "lupa");
     safe(initCarousel, "carousel");

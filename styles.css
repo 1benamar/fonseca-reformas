@@ -1086,3 +1086,36 @@ strong { font-weight: 500; color: var(--ink); }
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-45 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 18 2, auto !important;
   }
 }
+
+/* Al hacer clic el martillo da el golpe: durante un instante el cursor pasa a
+   la cabeza inclinada hacia delante y, donde cae, salta un pequeño impacto en
+   el azul de la marca. Quien pide menos movimiento no ve el impacto. */
+@media (hover: hover) and (pointer: fine) {
+  html.is-golpe, html.is-golpe *:not(input):not(textarea), html.is-golpe input[type="range"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-65 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 14 2, auto !important;
+  }
+}
+.golpe {
+  position: fixed; z-index: 2147483000; pointer-events: none;
+  width: 34px; height: 34px; margin: -17px 0 0 -17px;
+}
+.golpe::before {
+  content: ""; position: absolute; inset: 9px;
+  border: 2px solid var(--marca); border-radius: 50%;
+  animation: golpe-onda .42s var(--ease-out) forwards;
+}
+.golpe i {
+  position: absolute; left: 50%; top: 50%;
+  width: 2px; height: 7px; margin: -3.5px 0 0 -1px;
+  background: var(--marca);
+  transform: rotate(var(--a)) translateY(-7px);
+  animation: golpe-chispa .38s var(--ease-out) forwards;
+}
+@keyframes golpe-onda {
+  from { transform: scale(.3); opacity: 1; }
+  to   { transform: scale(1.5); opacity: 0; }
+}
+@keyframes golpe-chispa {
+  from { transform: rotate(var(--a)) translateY(-6px) scaleY(1); opacity: 1; }
+  to   { transform: rotate(var(--a)) translateY(-17px) scaleY(.3); opacity: 0; }
+}
