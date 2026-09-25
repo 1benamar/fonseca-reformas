@@ -22,7 +22,7 @@
 
   /* ---------------------------------------------------------------------------
      Pantalla de carga. Se retira cuando la página está lista, con un mínimo de
-     600 ms para que no pegue un salto, y como muy tarde a los 2,6 s. El CSS
+     600 ms para que no pegue un salto, y como muy tarde a los 1,5 s. El CSS
      tiene su propia salida por si este script no llega a ejecutarse.
   --------------------------------------------------------------------------- */
   function initSplash() {
@@ -48,8 +48,9 @@
     if (document.readyState === "complete") cuandoToque();
     else window.addEventListener("load", cuandoToque, { once: true });
 
-    // Tope: pase lo que pase, a los 2,6 s la web se ve.
-    setTimeout(retirar, 2600);
+    // Tope: pase lo que pase, a los 1,5 s la web se ve. Si carga antes, sale
+    // antes (nunca menos de 0,6 s, para que el logo no sea un parpadeo).
+    setTimeout(retirar, 1500);
   }
 
   /* ---------------------------------------------------------------------------
