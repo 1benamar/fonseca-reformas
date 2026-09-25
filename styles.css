@@ -10,27 +10,28 @@
    ============================================================= */
 :root {
   --paper:      #ffffff;
-  --mist:       #eef3f9;
-  --mist-2:     #e0e9f4;
-  --field:      #cbdcef;
-  --night:      #0d1520;
+  --mist:       #eef2f4;
+  --mist-2:     #e2e9ed;
+  --field:      #ced8de;
+  --night:      #14181b;
 
-  --ink:        #111a24;
-  --ink-2:      #44515f;
-  --muted:      #5a6875;
-  --line:       #dbe4ef;
-  --line-2:     #bfcedd;
+  --ink:        #1b2126;
+  --ink-2:      #4a5359;
+  --muted:      #5b656b;
+  --line:       #dce3e7;
+  --line-2:     #c3ccd2;
 
-  /* Azul del logo y su versión legible sobre blanco */
+  /* Los fondos son grises neutros. El azul del logo entra solo como
+     acento, en su versión legible sobre blanco. */
   --marca:      #0277f5;
-  --slate:      #7d9dc2;
+  --slate:      #8a9eab;
   --slate-deep: #0b5fd0;
   --btn-bg:     #0b5fd0;
   --btn-fg:     #ffffff;
-  --invert-bg:  #111a24;
-  --invert-fg:  #f2f6fb;
-  --invert-mut: #a3b3c4;
-  --panel-line: rgba(242, 246, 251, .16);
+  --invert-bg:  #1b2126;
+  --invert-fg:  #f1f4f5;
+  --invert-mut: #aab6bd;
+  --panel-line: rgba(241, 244, 245, .16);
   --error:      #a4452f;
   --wa:         #25d366;
 
@@ -514,7 +515,7 @@ strong { font-weight: 500; color: var(--ink); }
   position: absolute; top: 0; z-index: 3;
   padding: .55rem .95rem;
   font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-  color: #fff; background: rgba(13, 21, 32, .76);
+  color: #fff; background: rgba(16, 19, 22, .76);
   backdrop-filter: blur(6px);
   transition: opacity .3s ease;
 }
@@ -528,14 +529,14 @@ strong { font-weight: 500; color: var(--ink); }
 .cmp__bar {
   position: absolute; top: 0; bottom: 0; z-index: 4;
   left: var(--pos); width: 2px; margin-left: -1px;
-  background: #fff; box-shadow: 0 0 0 1px rgba(13, 21, 32, .22);
+  background: #fff; box-shadow: 0 0 0 1px rgba(16, 19, 22, .22);
   pointer-events: none;
 }
 .cmp__knob {
   position: absolute; top: 50%; left: 50%;
   width: 52px; height: 52px; margin: -26px 0 0 -26px;
   border-radius: 50%; background: #fff;
-  box-shadow: 0 4px 18px rgba(13, 21, 32, .3);
+  box-shadow: 0 4px 18px rgba(16, 19, 22, .3);
 }
 .cmp__knob::before, .cmp__knob::after {
   content: ""; position: absolute; top: 50%; margin-top: -5px;
@@ -587,7 +588,7 @@ strong { font-weight: 500; color: var(--ink); }
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
   padding: 1.6rem .7rem .6rem;
   font-size: .76rem; line-height: 1.35; color: #fff; text-align: left;
-  background: linear-gradient(0deg, rgba(8, 13, 20, .88) 0%, rgba(8, 13, 20, .62) 52%, rgba(8, 13, 20, 0) 100%);
+  background: linear-gradient(0deg, rgba(11, 14, 16, .88) 0%, rgba(11, 14, 16, .62) 52%, rgba(11, 14, 16, 0) 100%);
   opacity: 0; transform: translateY(6px);
   transition: opacity .32s ease, transform .32s var(--ease-out);
 }
@@ -595,7 +596,7 @@ strong { font-weight: 500; color: var(--ink); }
 .gal__zoom {
   position: absolute; right: .5rem; top: .5rem; z-index: 3;
   width: 34px; height: 34px; display: grid; place-items: center;
-  background: rgba(13, 21, 32, .62); backdrop-filter: blur(6px);
+  background: rgba(16, 19, 22, .62); backdrop-filter: blur(6px);
   opacity: 0; transform: scale(.9);
   transition: opacity .3s ease, transform .3s var(--ease-out);
 }
@@ -634,7 +635,7 @@ strong { font-weight: 500; color: var(--ink); }
   position: fixed; inset: 0; z-index: 1900;
   display: grid; place-items: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(8, 12, 18, .92);
+  background: rgba(11, 14, 16, .92);
   opacity: 0; transition: opacity .3s ease;
 }
 .lupa[hidden] { display: none; }
@@ -987,27 +988,27 @@ strong { font-weight: 500; color: var(--ink); }
    ============================================================= */
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper:      #0e161f;
-    --mist:       #121c27;
-    --mist-2:     #17222e;
-    --field:      #101a24;
-    --night:      #0a1119;
+    --paper:      #14181b;
+    --mist:       #191e22;
+    --mist-2:     #212a2f;
+    --field:      #1b2328;
+    --night:      #0d1012;
 
-    --ink:        #eef4fb;
-    --ink-2:      #b3c1d0;
-    --muted:      #8b9aaa;
-    --line:       #24313f;
-    --line-2:     #36465a;
+    --ink:        #eef1f3;
+    --ink-2:      #b4bec4;
+    --muted:      #8d979d;
+    --line:       #293238;
+    --line-2:     #3a444b;
 
     --marca:      #2e8bff;
-    --slate:      #4e7196;
+    --slate:      #8a9eab;
     --slate-deep: #6aa9ff;
     --btn-bg:     #2e8bff;
-    --btn-fg:     #08121c;
-    --invert-bg:  #e8eff7;
-    --invert-fg:  #111a24;
-    --invert-mut: #4a5a6b;
-    --panel-line: rgba(17, 26, 36, .14);
+    --btn-fg:     #0d1012;
+    --invert-bg:  #e7ecee;
+    --invert-fg:  #14181b;
+    --invert-mut: #4c565c;
+    --panel-line: rgba(20, 24, 27, .14);
     --error:      #e08a6f;
 
     --shadow:    0 22px 48px -24px rgba(0, 0, 0, .7), 0 2px 8px rgba(0, 0, 0, .35);
