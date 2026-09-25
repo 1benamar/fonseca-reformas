@@ -251,6 +251,40 @@
     };
     if (document.readyState === "complete") arrancar();
     else window.addEventListener("load", arrancar, { once: true });
+
+    /* El atributo loop no siempre basta: hay navegadores que suspenden el
+       vídeo al cerrar la vuelta, al volver de otra pestaña o al recuperar la
+       ventana, y la portada se quedaba congelada. Aquí se vuelve a poner en
+       marcha sola. Mientras la portada no se ve, se para: ni gasta batería ni
+       datos, y al subir de nuevo arranca donde toca. */
+    var enPantalla = true;
+    var reanudar = function () {
+      if (!video.isConnected || !enPantalla || document.hidden) return;
+      if (!video.paused) return;
+      if (video.ended || (video.duration && video.currentTime >= video.duration - 0.05)) {
+        video.currentTime = 0;
+      }
+      var i = video.play();
+      if (i && i.catch) i.catch(function () {});
+    };
+
+    video.addEventListener("ended", reanudar);
+    video.addEventListener("pause", function () { setTimeout(reanudar, 80); });
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) reanudar();
+    });
+    window.addEventListener("pageshow", reanudar);
+    window.addEventListener("focus", reanudar);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (filas) {
+        filas.forEach(function (f) {
+          enPantalla = f.isIntersecting;
+          if (enPantalla) reanudar();
+          else if (!video.paused) video.pause();
+        });
+      }, { threshold: 0 }).observe(video);
+    }
   }
 
   function initObraVideo() {
