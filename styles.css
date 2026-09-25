@@ -355,12 +355,14 @@ strong { font-weight: 500; color: var(--ink); }
 .js .hero__plate,
 .js .hero__plate img,
 .js .hero__t .ln > span,
+.js .hero__k,
 .js .hero__p,
 .js .hero__cta,
 .js .hdr__card { animation-play-state: paused; }
 .js.is-revealed .hero__plate,
 .js.is-revealed .hero__plate img,
 .js.is-revealed .hero__t .ln > span,
+.js.is-revealed .hero__k,
 .js.is-revealed .hero__p,
 .js.is-revealed .hero__cta,
 .js.is-revealed .hdr__card { animation-play-state: running; }
@@ -403,6 +405,20 @@ strong { font-weight: 500; color: var(--ink); }
   color: #fff;
   font-size: clamp(2.15rem, 3.75vw, 3.4rem);
   line-height: 1.1;
+}
+/* Etiqueta de zona encima del titular. Va dentro del H1 porque es lo que
+   Google lee como tema principal de la página; se ve como las demás
+   etiquetas pequeñas de la web. */
+.hero__k {
+  display: block; margin-bottom: 1.1rem;
+  font-family: var(--sans); font-size: clamp(.68rem, .9vw, .76rem); font-weight: 500;
+  letter-spacing: .16em; line-height: 1.5; text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+}
+.hero__k::before {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 1.6rem; height: 1px; margin: -.15em .7rem 0 0;
+  background: var(--marca);
 }
 .hero__t .ln { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
 .hero__t .ln > span { display: block; }
@@ -874,9 +890,10 @@ strong { font-weight: 500; color: var(--ink); }
 /* La entrada de la portada va seguida: titular, párrafo y botón llegan en
    menos de un segundo, para que el contenido principal esté a la vista
    pronto (lo que Google mide como LCP). Mismo orden y mismo ritmo que antes. */
-.hero__t .ln:nth-child(1) > span { animation-delay: .3s; }
-.hero__t .ln:nth-child(2) > span { animation-delay: .39s; }
-.hero__t .ln:nth-child(3) > span { animation-delay: .48s; }
+.hero__t .ln:nth-child(2) > span { animation-delay: .3s; }
+.hero__t .ln:nth-child(3) > span { animation-delay: .39s; }
+.hero__t .ln:nth-child(4) > span { animation-delay: .48s; }
+.hero__k { animation: fadeUp .8s .15s var(--ease-out) both; }
 .hero__p   { animation: fadeUp .9s .5s var(--ease-out) both; }
 .hero__cta { animation: fadeUp .9s .62s var(--ease-out) both; }
 .hero__bar { animation: fadeIn 1s .75s ease both; }
@@ -1033,7 +1050,7 @@ strong { font-weight: 500; color: var(--ink); }
   @keyframes splashFade { to { opacity: 0; visibility: hidden; } }
   .hero__plate { animation: fadeIn .8s ease both; }
   .hero__plate img { animation: none; }
-  .hero__t .ln > span { animation: fadeIn .8s .2s ease both; }
+  .hero__t .ln > span, .hero__k { animation: fadeIn .8s .2s ease both; }
   .hero__p, .hero__cta, .hero__bar, .hdr__card { animation-name: fadeIn; }
   .js [data-reveal]:not(.is-in) { transform: none; clip-path: none; }
   .js [data-reveal="clip"]:not(.is-in), .js [data-reveal="frame"]:not(.is-in) { opacity: 0; }
