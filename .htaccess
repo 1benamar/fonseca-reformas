@@ -99,3 +99,13 @@
 # Cualquier dirección que no exista muestra la 404 propia de la web, no la
 # genérica del hosting.
 ErrorDocument 404 /404.html
+
+# ----- Una sola dirección: https y sin www -----
+# http://, www. o ambos acaban siempre en https://reformasfonseca.com, que es
+# la dirección que conoce Google. Así no se reparte en varias versiones.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://reformasfonseca.com%{REQUEST_URI} [L,R=301]
+</IfModule>
