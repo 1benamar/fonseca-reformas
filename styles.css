@@ -273,9 +273,23 @@ strong { font-weight: 500; color: var(--ink); }
   border: 0; border-bottom: 1px solid var(--line-2); border-radius: 0;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
+/* La flecha llevaba el gris de la paleta clara, que sobre el fondo oscuro casi
+   no se veia. Y si una opcion no cabe, se corta con puntos suspensivos en vez
+   de meterse por debajo de la flecha. */
 .field select {
-  -webkit-appearance: none; appearance: none; cursor: pointer; padding-right: 1.6rem;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f6573' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center / 16px no-repeat;
+  -webkit-appearance: none; appearance: none; cursor: pointer; padding-right: 2rem;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b9aaa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center / 16px no-repeat;
+}
+/* El desplegable que abre el sistema: los grupos, en versalitas apagadas;
+   las opciones, sobre el mismo azul oscuro del formulario. */
+.field select optgroup {
+  background: var(--paper); color: var(--muted);
+  font-size: .8rem; font-weight: 500; font-style: normal; letter-spacing: .08em;
+}
+.field select option {
+  background: var(--paper); color: var(--ink);
+  font-size: 1rem; font-weight: 400; letter-spacing: 0;
 }
 .field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .field input:focus, .field select:focus, .field textarea:focus {
