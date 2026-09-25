@@ -9,32 +9,32 @@
    1. TOKENS
    ============================================================= */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  --paper:      #ffffff;
-  --mist:       #eef2f4;
-  --mist-2:     #e2e9ed;
-  --field:      #ced8de;
-  --night:      #14181b;
+  /* La web va siempre en azul oscuro, con el sistema en claro o en oscuro.
+     Los fondos salen del azul del logo, oscurecido hasta casi negro. */
+  --paper:      #0e161f;
+  --mist:       #121c27;
+  --mist-2:     #17222e;
+  --field:      #101a24;
+  --night:      #0a1119;
 
-  --ink:        #1b2126;
-  --ink-2:      #4a5359;
-  --muted:      #5b656b;
-  --line:       #dce3e7;
-  --line-2:     #c3ccd2;
+  --ink:        #eef4fb;
+  --ink-2:      #b3c1d0;
+  --muted:      #8b9aaa;
+  --line:       #24313f;
+  --line-2:     #36465a;
 
-  /* Los fondos son grises neutros. El azul del logo entra solo como
-     acento, en su versión legible sobre blanco. */
-  --marca:      #0277f5;
-  --slate:      #8a9eab;
-  --slate-deep: #0b5fd0;
-  --btn-bg:     #0b5fd0;
-  --btn-fg:     #ffffff;
-  --invert-bg:  #1b2126;
-  --invert-fg:  #f1f4f5;
-  --invert-mut: #aab6bd;
-  --panel-line: rgba(241, 244, 245, .16);
-  --error:      #a4452f;
+  --marca:      #2e8bff;
+  --slate:      #4e7196;
+  --slate-deep: #6aa9ff;
+  --btn-bg:     #2e8bff;
+  --btn-fg:     #08121c;
+  --invert-bg:  #e8eff7;
+  --invert-fg:  #111a24;
+  --invert-mut: #4a5a6b;
+  --panel-line: rgba(17, 26, 36, .14);
+  --error:      #e08a6f;
   --wa:         #25d366;
 
   --serif: "Noto Serif Display", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -44,8 +44,8 @@
   --maxw:   1240px;
   --sec:    clamp(5rem, 10vw, 8.5rem);
 
-  --shadow:    0 22px 48px -24px rgba(27, 33, 38, .34), 0 2px 8px rgba(27, 33, 38, .05);
-  --shadow-lg: 0 32px 70px -30px rgba(27, 33, 38, .42), 0 4px 14px rgba(27, 33, 38, .06);
+  --shadow:    0 22px 48px -24px rgba(0, 0, 0, .7), 0 2px 8px rgba(0, 0, 0, .35);
+  --shadow-lg: 0 32px 70px -30px rgba(0, 0, 0, .8), 0 4px 14px rgba(0, 0, 0, .4);
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-io:  cubic-bezier(0.77, 0, 0.175, 1);
@@ -984,3 +984,15 @@ strong { font-weight: 500; color: var(--ink); }
   .cmp__img { animation: none; }
 }
 
+
+/* =============================================================
+   10. AJUSTES DEL FONDO OSCURO
+   Van al final a proposito: sobrescriben reglas anteriores que
+   estaban pensadas para fondo claro.
+   ============================================================= */
+.hero__plate img { filter: grayscale(1) contrast(1.02) brightness(.8); }
+.voice__plate img { filter: grayscale(1) brightness(.62); }
+.voice__card { background: var(--paper); }
+.foot__bot { border-top-color: var(--line-2); }
+.foot__credits { color: var(--muted); }
+.zones li, .more__list li { background: transparent; }

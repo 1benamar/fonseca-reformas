@@ -17,7 +17,7 @@ Y abrir `http://localhost:8850`.
 | Archivo | Para qué sirve |
 | --- | --- |
 | `index.html` | La página entera |
-| `styles.css` | Todos los estilos. La web es siempre clara, no tiene modo oscuro |
+| `styles.css` | Todos los estilos. La web va siempre en azul oscuro, sin variante clara |
 | `main.js` | Menú, apariciones al hacer scroll, carrusel y formulario |
 | `lib/manifest.js` | Teléfono y WhatsApp. Es el único sitio donde tocar los datos de contacto |
 | `assets/img/` | Fotografías |

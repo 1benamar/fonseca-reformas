@@ -92,18 +92,17 @@ usan las webs: se ve nitido a cualquier tamano y pesa poco. En assets/ tienes:
   logo.svg                 el original apilado (pie de pagina, imprenta)
   logo-horizontal.svg      monograma y nombre en linea (cabecera)
   logo-marca.svg           solo el circulo RFS (pantalla de carga, icono)
-  y de cada uno, la version -claro.svg, en tinta blanca, por si algun dia
-  hace falta poner el logo sobre un fondo oscuro (un rotulo, una furgoneta).
-  La web no las usa.
+  y de cada uno, la version -claro.svg, en tinta blanca. Como la web va en
+  fondo oscuro, son estas las que se ven en pantalla. Las otras te sirven
+  para papel, facturas o cualquier fondo claro.
 
 Son los mismos archivos que puedes llevar a una furgoneta, una factura o un
 cartel: al ser vectoriales no pierden calidad por mucho que se amplien.
 
-El azul del logo, #0277F5, es el color de la web: botones, enlaces, estrellas
-y detalles. Los fondos son grises neutros a proposito, para que las
-fotografias no compitan con el color. Para texto sobre blanco uso un azul un
-punto mas oscuro (#0B5FD0) porque el de la marca no tiene contraste
-suficiente a tamano pequeno y se lee mal.
+La web va en azul oscuro: los fondos salen del azul del logo oscurecido
+hasta casi negro (#0E161F el general, #121C27 las secciones alternas). Sobre
+ese fondo el azul de marca se aclara a #2E8BFF para que se lea bien, y es el
+que llevan botones, enlaces, estrellas y la barra de avance.
 
 El boton de WhatsApp sigue verde a proposito: ese verde es de WhatsApp y la
 gente lo reconoce al instante.
@@ -140,9 +139,10 @@ ensenar acabados porque no habia ninguna foto de ellos.
 
 DETALLES DE LA WEB
 ------------------
-- La web es siempre clara, para todo el mundo. Aunque el visitante tenga el
-  movil o el ordenador en tema oscuro, la vera en blanco: asi las fotos de las
-  obras se ven como en un catalogo y el logo sale siempre en su tinta original.
+- La web va siempre en azul oscuro, para todo el mundo. Tenga el visitante el
+  movil o el ordenador en tema claro o en tema oscuro, la vera igual. Por eso
+  el logo sale en su version -claro.svg, de tinta blanca, que es la que se lee
+  sobre ese fondo.
 - La portada y el fondo de las opiniones van en blanco y negro a proposito; las
   fotos de servicios van en color.
 - El formulario no envia solo: abre el correo del visitante con el mensaje ya
