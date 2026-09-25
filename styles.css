@@ -25,6 +25,11 @@
   --line:       #24313f;
   --line-2:     #36465a;
 
+  /* Superficie de las fichas del manifiesto: un escalon por encima del
+     fondo, y otro mas cuando el cursor pasa por encima. */
+  --card:       #1b2836;
+  --card-2:     #22334a;
+
   --marca:      #2e8bff;
   --slate:      #4e7196;
   --slate-deep: #6aa9ff;
@@ -382,23 +387,43 @@ strong { font-weight: 500; color: var(--ink); }
   font-weight: 400; font-size: clamp(1.45rem, 2.6vw, 2.25rem); line-height: 1.35;
 }
 .stance__grid {
-  position: relative;
   display: grid; gap: 1.5rem;
   margin-top: clamp(3rem, 6vw, 4.8rem);
   padding-bottom: var(--sec);
 }
-.stance__grid::before {
-  content: ""; position: absolute; z-index: -1;
-  top: 6rem; bottom: 0;
-  left: 50%; width: 100vw; transform: translateX(-50%);
-  background: var(--mist);
-}
+/* Antes cruzaba estas fichas por detras una banda de color a media altura y,
+   sobre fondo oscuro, aquello solo se leia como una costura. Ahora se
+   sostienen solas: la superficie sube un escalon sobre el fondo, un filete
+   claro cierra el contorno y el icono en azul, con su regla al lado, las
+   hace localizables de un vistazo. */
 .note {
-  background: var(--paper);
-  padding: clamp(2rem, 3.6vw, 3rem);
-  box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  padding: clamp(1.9rem, 3.2vw, 2.7rem);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
-.note__t { font-size: clamp(1.25rem, 1.7vw, 1.45rem); line-height: 1.3; }
+.note__i {
+  position: relative;
+  display: grid; place-items: center;
+  width: 54px; height: 54px; margin-bottom: 1.7rem;
+  background: rgba(46, 139, 255, .13);
+  border: 1px solid rgba(46, 139, 255, .32);
+  color: var(--marca);
+}
+/* Regla fina que arranca del icono y muere en el borde de la ficha */
+.note__i::after {
+  content: ""; position: absolute; top: 50%;
+  left: calc(100% + 1.1rem); width: 100vw;
+  border-top: 1px solid var(--line);
+}
+.note__i svg {
+  width: 25px; height: 25px;
+  fill: none; stroke: currentColor; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.note__t { color: var(--ink); font-size: clamp(1.25rem, 1.7vw, 1.45rem); line-height: 1.3; }
 .note p { margin-top: 1.2rem; font-size: 1rem; line-height: 1.8; }
 
 /* ---------- LA EMPRESA -------------------------------------- */
@@ -870,7 +895,6 @@ strong { font-weight: 500; color: var(--ink); }
   .hdr.is-compact .brand { transform: scale(.86); }
 
   .stance__grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .stance__grid::before { top: 42%; }
   .about__grid { grid-template-columns: 1fr 1fr; }
   .about__fig { margin: 0 2.4rem 2.4rem 0; }
   .about__frame { right: -2.4rem; bottom: -2.4rem; }
@@ -996,3 +1020,39 @@ strong { font-weight: 500; color: var(--ink); }
 .foot__bot { border-top-color: var(--line-2); }
 .foot__credits { color: var(--muted); }
 .zones li, .more__list li { background: transparent; }
+
+/* Las fichas del manifiesto responden al cursor: se levantan un poco, el
+   contorno se tine de azul y el icono se enciende. El selector lleva .is-in
+   porque la regla de las apariciones tiene la misma especificidad y, sin el,
+   ganaria ella y el desplazamiento no llegaria a verse. */
+@media (hover: hover) and (pointer: fine) {
+  .note {
+    transition: transform .45s var(--ease-out), background-color .45s ease,
+                box-shadow .45s ease, border-color .45s ease;
+  }
+  .note__i {
+    transition: background-color .45s ease, border-color .45s ease,
+                transform .45s var(--ease-out);
+  }
+  .note__i::after { transition: border-color .45s ease; }
+  .note:hover,
+  .note.is-in:hover {
+    transform: translateY(-6px);
+    background: var(--card-2);
+    border-color: rgba(46, 139, 255, .5);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, .07);
+  }
+  .note:hover .note__i,
+  .note.is-in:hover .note__i {
+    background: rgba(46, 139, 255, .24);
+    border-color: rgba(46, 139, 255, .6);
+    transform: scale(1.06);
+  }
+  .note:hover .note__i::after,
+  .note.is-in:hover .note__i::after { border-top-color: rgba(46, 139, 255, .4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note, .note__i { transition: background-color .2s ease, border-color .2s ease; }
+  .note:hover, .note.is-in:hover { transform: none; }
+  .note:hover .note__i, .note.is-in:hover .note__i { transform: none; }
+}
