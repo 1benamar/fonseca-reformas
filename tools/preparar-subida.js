@@ -177,7 +177,7 @@ async function publicado(rel, binario) {
       const ruta = path.join(dir, e.name);
       if (e.isDirectory()) return recorrer(ruta);
       const rel = path.relative(COMPLETA, ruta).split(path.sep).join("/");
-      if (/\.(webp|jpe?g|png|gif|avif|ico|mp4|webm|woff2?|php)$/.test(rel) || rel.startsWith("inc/")) registro[rel] = md5(fs.readFileSync(ruta));
+      if (/\.(webp|jpe?g|png|svg|gif|avif|ico|mp4|webm|woff2?|php)$/.test(rel) || rel.startsWith("inc/")) registro[rel] = md5(fs.readFileSync(ruta));
     });
     recorrer(COMPLETA);
     fs.writeFileSync(REGISTRO, JSON.stringify(registro, null, 2) + "\n");
@@ -219,8 +219,9 @@ async function publicado(rel, binario) {
   fs.rmSync(SUBIDA, { recursive: true, force: true });
   fs.mkdirSync(SUBIDA, { recursive: true }); // vacía = no hay nada que subir
   const subir = [];
-  const binario = (r) => /\.(webp|jpe?g|png|gif|avif|ico|mp4|webm|woff2?)$/.test(r);
-  const recomprimido = (r) => /\.(jpe?g|png)$/.test(r);
+  const binario = (r) => /\.(webp|jpe?g|png|svg|gif|avif|ico|mp4|webm|woff2?)$/.test(r);
+  // El CDN recomprime JPG y PNG y optimiza los SVG: no se pueden comparar
+  const recomprimido = (r) => /\.(jpe?g|png|svg)$/.test(r);
   const registro = fs.existsSync(REGISTRO) ? JSON.parse(fs.readFileSync(REGISTRO, "utf8")) : {};
   for (const [rel, datos] of salida) {
     if (rel === ".htaccess" && !CON_HTACCESS) continue;
