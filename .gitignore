@@ -20,3 +20,6 @@ reel.html
 # Ajustes privados del servidor (lleva la clave del panel). Se suben al
 # hosting, nunca a GitHub: el repositorio es público.
 inc/ajustes.php
+
+# Registro local de lo que ya está publicado (lo usa tools/preparar-subida.js)
+tools/.publicado.json

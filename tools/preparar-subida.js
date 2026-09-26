@@ -13,6 +13,12 @@
 
    El .htaccess de la raíz no se incluye en la subida (el hosting puede haberle
    añadido líneas); para subirlo también:  node tools/preparar-subida.js --htaccess
+
+   Fotos JPG y PNG: el CDN de Hostinger las recomprime al servirlas, así que no
+   se pueden comparar con lo publicado. Por eso, cuando se comprueba que una
+   subida ya está en el servidor, se apunta qué fotos había:
+       node tools/preparar-subida.js --publicado
+   y en adelante solo se piden las que cambien respecto a ese registro.
 ============================================================================= */
 const fs = require("fs");
 const path = require("path");
@@ -26,6 +32,8 @@ const COMPLETA = path.join(ESCRITORIO, "fonseca-web-publicar");
 const SUBIDA = path.join(ESCRITORIO, "fonseca-subir-ahora");
 const DOMINIO = "https://reformasfonseca.com";
 const CON_HTACCESS = process.argv.includes("--htaccess");
+const MARCAR_PUBLICADO = process.argv.includes("--publicado");
+const REGISTRO = path.join(__dirname, ".publicado.json");
 
 /* --- Qué forma parte de la web ------------------------------------------- */
 const PAGINAS = ["index.html", "404.html", "aviso-legal.html", "privacidad.html",
@@ -161,6 +169,21 @@ async function publicado(rel, binario) {
 
 /* --- Proceso -------------------------------------------------------------- */
 (async () => {
+  // Apuntar como publicadas las fotos y archivos de la copia actual
+  if (MARCAR_PUBLICADO) {
+    const registro = {};
+    const recorrer = (dir) => fs.readdirSync(dir, { withFileTypes: true }).forEach((e) => {
+      const ruta = path.join(dir, e.name);
+      if (e.isDirectory()) return recorrer(ruta);
+      const rel = path.relative(COMPLETA, ruta).split(path.sep).join("/");
+      if (/\.(webp|jpe?g|png|gif|avif|ico|mp4|webm|woff2?|php)$/.test(rel) || rel.startsWith("inc/")) registro[rel] = md5(fs.readFileSync(ruta));
+    });
+    recorrer(COMPLETA);
+    fs.writeFileSync(REGISTRO, JSON.stringify(registro, null, 2) + "\n");
+    console.log("Apuntados como publicados " + Object.keys(registro).length + " archivos (imágenes, fuentes, vídeo y PHP).");
+    return;
+  }
+
   // 1. Catalán al día
   execFileSync(process.execPath, [path.join(__dirname, "version-catalana.js")], { stdio: "inherit" });
 
@@ -192,13 +215,30 @@ async function publicado(rel, binario) {
 
   // 3. Solo lo que ha cambiado respecto a lo publicado
   fs.rmSync(SUBIDA, { recursive: true, force: true });
+  fs.mkdirSync(SUBIDA, { recursive: true }); // vacía = no hay nada que subir
   const subir = [];
   const binario = (r) => /\.(webp|jpe?g|png|gif|avif|ico|mp4|webm|woff2?)$/.test(r);
+  const recomprimido = (r) => /\.(jpe?g|png)$/.test(r);
+  const registro = fs.existsSync(REGISTRO) ? JSON.parse(fs.readFileSync(REGISTRO, "utf8")) : {};
   for (const [rel, datos] of salida) {
     if (rel === ".htaccess" && !CON_HTACCESS) continue;
     // Lo del servidor (PHP y la carpeta inc) no se puede descargar para
-    // compararlo: va siempre. Pesa poco.
-    if (rel.endsWith(".php") || rel.startsWith("inc/")) { subir.push(rel); continue; }
+    // compararlo: va si ha cambiado desde la última subida comprobada.
+    if (rel.endsWith(".php") || rel.startsWith("inc/")) {
+      if (registro[rel] !== md5(datos)) subir.push(rel);
+      continue;
+    }
+    // Imágenes, fuentes y vídeo ya apuntados como publicados: solo si cambian
+    if (binario(rel) && registro[rel]) {
+      if (registro[rel] !== md5(datos)) subir.push(rel);
+      continue;
+    }
+    // JPG y PNG sin registro: el CDN los recomprime, basta con que existan
+    if (recomprimido(rel)) {
+      const r = await fetch(DOMINIO + "/" + rel, { method: "HEAD" }).catch(() => null);
+      if (!r || !r.ok) subir.push(rel);
+      continue;
+    }
     const live = await publicado(rel, binario(rel));
     const igual = live && (binario(rel) ? live.tam === datos.length : live.md5 === md5(datos));
     if (!igual) subir.push(rel);
