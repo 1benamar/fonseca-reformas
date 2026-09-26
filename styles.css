@@ -172,10 +172,8 @@ strong { font-weight: 500; color: var(--ink); }
 .btn:active { transform: scale(.97); }
 @media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-1px); } .btn:active { transform: scale(.97); } }
 .btn--slate { background: var(--btn-bg); color: var(--btn-fg); border-color: var(--btn-bg); }
-.btn--line { background: transparent; color: var(--ink); border-color: var(--ink); }
 @media (hover: hover) and (pointer: fine) {
   .btn--slate:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .btn--line:hover { background: var(--ink); color: var(--paper); }
 }
 
 /* --- Marca: el logo del cliente ------------------------------- */
@@ -380,18 +378,10 @@ strong { font-weight: 500; color: var(--ink); }
   overflow: hidden;
 }
 .hero__plate { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-.hero__plate img,
-.hero__video {
+.hero__plate img {
   width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%;
   filter: grayscale(1) contrast(1.06) brightness(.94);
 }
-/* El vídeo entra por encima de la foto y solo cuando ya está reproduciéndose */
-.hero__video {
-  position: absolute; inset: 0;
-  opacity: 0; pointer-events: none;
-  transition: opacity 1.1s var(--ease-out);
-}
-.hero__video.is-playing { opacity: 1; }
 .hero__plate::after {
   content: ""; position: absolute; inset: 0;
   background:
@@ -525,7 +515,6 @@ strong { font-weight: 500; color: var(--ink); }
 .voice__t { font-size: clamp(1.7rem, 2.6vw, 2.2rem); }
 .stars { display: flex; gap: .2rem; margin-top: 1.4rem; }
 .stars svg { width: 18px; height: 18px; fill: var(--slate-deep); }
-.stars svg.is-part { fill: var(--line-2); }
 .quote { margin-top: 1.4rem; }
 .quote blockquote p { font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.4; color: var(--ink); }
 .quote figcaption { margin-top: 1rem; font-size: .92rem; color: var(--muted); }
@@ -905,7 +894,6 @@ strong { font-weight: 500; color: var(--ink); }
 .hero__k { animation: fadeUp .8s .15s var(--ease-out) both; }
 .hero__p   { animation: fadeUp .9s .5s var(--ease-out) both; }
 .hero__cta { animation: fadeUp .9s .62s var(--ease-out) both; }
-.hero__bar { animation: fadeIn 1s .75s ease both; }
 
 /* Apariciones al hacer scroll. Solo se ocultan cuando el JS está vivo. */
 [data-reveal] {
@@ -934,7 +922,6 @@ strong { font-weight: 500; color: var(--ink); }
    ============================================================= */
 @media (min-width: 540px) {
   .form__row { grid-template-columns: 1fr 1fr; }
-  .hero__bar-in span:nth-child(3) { display: inline; }
 }
 
 @media (min-width: 720px) {
@@ -943,7 +930,6 @@ strong { font-weight: 500; color: var(--ink); }
   .strip__item { border-top: 0; border-left: 1px solid var(--line); padding-left: clamp(1.2rem, 2.6vw, 2.2rem); }
   .strip__item:first-child { border-left: 0; padding-left: 0; }
   .brand img { width: 238px; }
-  .hero__bar-in span:nth-child(2) { display: inline; }
   .car { grid-auto-columns: calc((100% - 1.4rem) / 2); }
   .panel__list { grid-template-columns: 1fr 1fr; column-gap: clamp(1.6rem, 3vw, 2.6rem); }
   .panel__list li:nth-child(2) { border-top: 0; padding-top: 0; }
@@ -1044,9 +1030,6 @@ strong { font-weight: 500; color: var(--ink); }
   }
 }
 
-/* ---------- ESTADOS DEL CARRUSEL ----------------------------- */
-.car__empty { display: none; }
-
 /* =============================================================
    9. MOVIMIENTO REDUCIDO
    Se quita el desplazamiento; se conservan los fundidos.
@@ -1060,7 +1043,7 @@ strong { font-weight: 500; color: var(--ink); }
   .hero__plate { animation: fadeIn .8s ease both; }
   .hero__plate img { animation: none; }
   .hero__t .ln > span, .hero__k { animation: fadeIn .8s .2s ease both; }
-  .hero__p, .hero__cta, .hero__bar, .hdr__card { animation-name: fadeIn; }
+  .hero__p, .hero__cta, .hdr__card { animation-name: fadeIn; }
   .js [data-reveal]:not(.is-in) { transform: none; clip-path: none; }
   .js [data-reveal="clip"]:not(.is-in), .js [data-reveal="frame"]:not(.is-in) { opacity: 0; }
   .js [data-reveal="clip"]:not(.is-in) img { transform: none; }

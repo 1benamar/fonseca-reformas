@@ -1,11 +1,13 @@
 /* Servidor estatico minimo para previsualizar la web en local.
    Solo herramienta de desarrollo: no hace falta subirlo al hosting.
-   Uso:  node tools/serve.js         ->  http://localhost:8765            */
+   Uso:  node tools/serve.js [puerto] [carpeta]
+         sin carpeta sirve el proyecto; con carpeta, por ejemplo la copia
+         optimizada que prepara tools/preparar-subida.js                   */
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = path.resolve(process.argv[3] || path.join(__dirname, ".."));
 const PORT = process.argv[2] || process.env.PORT || 8765;
 
 const TYPES = {

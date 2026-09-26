@@ -254,82 +254,6 @@
   }
 
   /* ---------------------------------------------------------------------------
-     Vídeo de portada. Es opcional: si el archivo no existe, si el visitante
-     pidió menos movimiento o si lleva el ahorro de datos puesto, la portada se
-     queda con la fotografía y no se descarga nada.
-  --------------------------------------------------------------------------- */
-  function initHeroVideo() {
-    var video = $("[data-hero-video]");
-    if (!video) return;
-
-    var con = navigator.connection || {};
-    if (reduced || con.saveData) return;
-    // En móvil y tableta la portada lleva el retrato de fondo: el vídeo no se
-    // vería, así que ni se descarga.
-    if (!window.matchMedia("(min-width: 960px)").matches) return;
-
-    var src = video.getAttribute("data-src");
-    if (!src) return;
-
-    video.addEventListener("playing", function () {
-      video.classList.add("is-playing");
-    }, { once: true });
-
-    // Si el archivo no está, no pasa nada: la foto ya se está viendo.
-    video.addEventListener("error", function () {
-      video.remove();
-    }, { once: true });
-
-    // Se carga después de que la página esté lista, para no competir con la
-    // fotografía de portada, que es lo que el visitante ve primero.
-    var arrancar = function () {
-      video.src = src;
-      // Si el navegador no deja arrancarlo ahora (pestaña abierta en segundo
-      // plano, ahorro de energía), no se quita: sigue invisible detrás de la
-      // foto y arranca en cuanto el visitante vuelve a la pestaña. Solo se
-      // retira si el archivo falla de verdad (evento error, arriba).
-      var intento = video.play();
-      if (intento && intento.catch) intento.catch(function () {});
-    };
-    if (document.readyState === "complete") arrancar();
-    else window.addEventListener("load", arrancar, { once: true });
-
-    /* El atributo loop no siempre basta: hay navegadores que suspenden el
-       vídeo al cerrar la vuelta, al volver de otra pestaña o al recuperar la
-       ventana, y la portada se quedaba congelada. Aquí se vuelve a poner en
-       marcha sola. Mientras la portada no se ve, se para: ni gasta batería ni
-       datos, y al subir de nuevo arranca donde toca. */
-    var enPantalla = true;
-    var reanudar = function () {
-      if (!video.isConnected || !enPantalla || document.hidden) return;
-      if (!video.paused) return;
-      if (video.ended || (video.duration && video.currentTime >= video.duration - 0.05)) {
-        video.currentTime = 0;
-      }
-      var i = video.play();
-      if (i && i.catch) i.catch(function () {});
-    };
-
-    video.addEventListener("ended", reanudar);
-    video.addEventListener("pause", function () { setTimeout(reanudar, 80); });
-    document.addEventListener("visibilitychange", function () {
-      if (!document.hidden) reanudar();
-    });
-    window.addEventListener("pageshow", reanudar);
-    window.addEventListener("focus", reanudar);
-
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (filas) {
-        filas.forEach(function (f) {
-          enPantalla = f.isIntersecting;
-          if (enPantalla) reanudar();
-          else if (!video.paused) video.pause();
-        });
-      }, { threshold: 0 }).observe(video);
-    }
-  }
-
-  /* ---------------------------------------------------------------------------
      La nota de Google cuenta de 0,0 a su valor cuando la franja entra en
      pantalla. El valor real ya está en el HTML: si esto no llega a correr,
      se ve igual.
@@ -739,7 +663,6 @@
     safe(initNavSpy, "navSpy");
     safe(initReveals, "reveals");
     safe(initScrollState, "scrollState");
-    safe(initHeroVideo, "heroVideo");
     safe(initObraVideo, "obraVideo");
     safe(initCuenta, "cuenta");
     safe(initCompare, "compare");
