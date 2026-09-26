@@ -16,7 +16,11 @@
 <meta property="og:image:height" content="996">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://reformasfonseca.com/">
+<link rel="alternate" hreflang="es" href="https://reformasfonseca.com/">
+<link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/">
+<link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/">
 <meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="ca_ES">
 
 <!-- Las tipografías se sirven desde la propia web: no se envía la IP de
      cada visitante a Google y la página no depende de un servidor ajeno. -->
@@ -25,7 +29,7 @@
 
 <link rel="preload" as="image" href="assets/img/hero-jesus-movil.webp" type="image/webp" fetchpriority="high" media="(max-width: 959px) and (max-aspect-ratio: 4/5)">
 <link rel="preload" as="image" imagesrcset="assets/img/hero-jesus-2400.webp 2400w, assets/img/hero-jesus-3440.webp 3440w" imagesizes="100vw" type="image/webp" fetchpriority="high" media="(min-width: 960px), (min-aspect-ratio: 4/5)">
-<link rel="stylesheet" href="styles.css?v=20261033">
+<link rel="stylesheet" href="styles.css?v=20261034">
 
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <!-- La R y la S cambian de color con el tema del navegador: oscuras sobre
@@ -268,6 +272,14 @@
     },
     {
       "@type": "Question",
+      "name": "¿También construyen casas nuevas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Además de reformar, construimos casas de obra nueva desde cero y hacemos ampliaciones: cimentación, estructura, cerramientos y cubierta. Como en cualquier obra, la visita y el presupuesto no tienen coste."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "¿Hacen instalaciones de luz, agua y gas con boletín?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -351,7 +363,13 @@
       </ul>
     </nav>
 
-    <a class="hdr__tel" href="tel:+34613766476" data-contact="tel">613 76 64 76</a>
+    <div class="hdr__end">
+      <nav class="lang" aria-label="Idioma">
+        <a href="/" lang="es" hreflang="es" aria-current="page" aria-label="Castellano">ES</a>
+        <a href="/ca/" lang="ca" hreflang="ca" aria-label="Català">CA</a>
+      </nav>
+      <a class="hdr__tel" href="tel:+34613766476" data-contact="tel">613 76 64 76</a>
+    </div>
 
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">
       <span class="sr-only" data-burger-label>Abrir menú</span>
@@ -376,6 +394,10 @@
   <div class="menu__foot">
     <a class="btn btn--slate" href="#contacto"><span>Pida su visita</span><svg class="btn__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     <a class="menu__tel" href="tel:+34613766476" data-contact="tel">613 76 64 76</a>
+    <nav class="menu__lang" aria-label="Idioma">
+      <a href="/" lang="es" hreflang="es" aria-current="page">Castellano</a>
+      <a href="/ca/" lang="ca" hreflang="ca">Català</a>
+    </nav>
   </div>
 </div>
 
@@ -474,6 +496,7 @@
       <h2 class="h2" id="about-t" data-reveal="mask">Diez años de oficio en obra real</h2>
       <div class="about__text" data-reveal="up" data-d="1">
         <p>Llevamos desde 2016 entrando en casas de verdad: pisos con la instalación original, baños que ya no dan más de sí, cocinas que se quedaron pequeñas y casas que piden crecer.</p>
+        <p>Y cuando hace falta empezar de cero, también construimos: casas de obra nueva y ampliaciones, desde la cimentación hasta la cubierta.</p>
         <p>Trabajamos con materiales y sistemas actuales, pero sin perder lo que enseña el oficio: saber qué aguanta, qué da problemas con los años y qué conviene resolver antes de alicatar.</p>
         <p>La confianza de quien nos llama se gana igual en cada obra: siendo honestos con lo que hace falta, ordenados en la ejecución y limpios al terminar cada jornada.</p>
       </div>
@@ -826,6 +849,10 @@
           <div class="faq__a"><p>Va por escrito y detallado, con los materiales y los plazos previstos. Así sabe desde el primer día qué se va a hacer y en qué orden.</p></div>
         </details>
         <details class="faq__it">
+          <summary><h3 class="faq__q">¿También construyen casas nuevas?</h3><span class="faq__i" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Sí. Además de reformar, construimos casas de obra nueva desde cero y hacemos ampliaciones: cimentación, estructura, cerramientos y cubierta. Como en cualquier obra, la visita y el presupuesto no tienen coste.</p></div>
+        </details>
+        <details class="faq__it">
           <summary><h3 class="faq__q">¿Hacen instalaciones de luz, agua y gas con boletín?</h3><span class="faq__i" aria-hidden="true"></span></summary>
           <div class="faq__a"><p>Sí. Hacemos las instalaciones de luz, agua y gas con su boletín, de modo que quedan certificadas y en regla.</p></div>
         </details>
@@ -875,7 +902,12 @@
       </ul>
     </div>
 
-    <form class="form" id="form" novalidate data-reveal="up" data-d="1">
+    <form class="form" id="form" action="/enviar.php" method="post" novalidate data-reveal="up" data-d="1">
+      <input type="hidden" name="idioma" value="es">
+      <!-- Trampa para robots: nadie la ve ni llega a ella con el teclado. -->
+      <div class="form__hp" aria-hidden="true">
+        <label>Deje este campo vacío <input type="text" name="web" tabindex="-1" autocomplete="off"></label>
+      </div>
       <h3 class="form__t">Solicitud de visita</h3>
       <div class="form__row">
         <label class="field" for="f-name">
@@ -941,10 +973,16 @@
         <span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que usen mis datos para responderme.</span>
       </label>
       <div class="form__foot">
-        <button class="btn btn--slate" type="submit"><span>Enviar por WhatsApp</span><svg class="btn__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
-        <p class="form__note">Se abrirá WhatsApp con el mensaje ya escrito. Solo usamos sus datos para responderle.</p>
+        <button class="btn btn--slate" type="submit"><span>Enviar solicitud</span><svg class="btn__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        <p class="form__note">Le llamaremos para concertar la visita. Solo usamos sus datos para responderle.</p>
       </div>
       <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+      <div class="form__done" hidden tabindex="-1">
+        <span class="form__done-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>
+        <h3 class="form__t">Solicitud enviada</h3>
+        <p>Gracias<span data-done-nombre></span>. Hemos recibido su solicitud y le llamaremos para concertar la visita.</p>
+        <p class="form__note">Si es urgente, llámenos al <a href="tel:+34613766476" data-contact="tel">613 76 64 76</a>.</p>
+      </div>
     </form>
   </div>
 </section>
@@ -977,9 +1015,13 @@
           <a href="aviso-legal.html">Aviso legal</a>
           <a href="privacidad.html">Privacidad</a>
         </nav>
+        <nav class="foot__lang" aria-label="Idioma">
+          <a href="/" lang="es" hreflang="es" aria-current="page">Castellano</a>
+          <a href="/ca/" lang="ca" hreflang="ca">Català</a>
+        </nav>
         <a class="totop" href="#top">Volver arriba<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 11l6-6 6 6"/></svg></a>
       </div>
-      <p class="foot__credits">Las fotografías de obra son nuestras. Las dos imágenes de ambiente, la de portada y la de la sección de opiniones, son de muestra bajo licencia <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>: Jeremy Levine Design y Gnilenkov Aleksey.</p>
+      <p class="foot__credits">Las fotografías de obra y las de Jesús son de la empresa. La imagen de ambiente de la sección de opiniones es de muestra, con licencia <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>: Gnilenkov Aleksey.</p>
     </div>
   </div>
 </footer>
@@ -998,7 +1040,7 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.6 6.6 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.4c0 1.7 1.2 3.3 1.4 3.5a11 11 0 004.2 3.7c1.5.6 2.1.7 2.9.5.5-.1 1.4-.6 1.6-1.2s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-<script defer src="lib/manifest.js?v=20261033"></script>
-<script defer src="main.js?v=20261033"></script>
+<script defer src="lib/manifest.js?v=20261034"></script>
+<script defer src="main.js?v=20261034"></script>
 </body>
 </html>

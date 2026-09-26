@@ -10,6 +10,39 @@
   var data = window.__BRAND__ || {};
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Textos del script en el idioma de la página. El resto de textos está en
+  // el HTML de cada versión (index.html y ca/index.html).
+  var CA = (root.getAttribute("lang") || "").slice(0, 2) === "ca";
+  var T = CA ? {
+    menuAbrir: "Obre el menú",
+    menuCerrar: "Tanca el menú",
+    revise: "Revisi els camps marcats, si us plau.",
+    enviando: "Enviant…",
+    datos: "Revisi el nom i el telèfon, si us plau.",
+    limite: "Ara mateix no podem rebre més sol·licituds pel web. Truqui’ns o escrigui’ns per WhatsApp, si us plau.",
+    fallo: "No hem pogut enviar la sol·licitud. Pot enviar-la per WhatsApp amb el missatge ja escrit:",
+    waBoton: "Enviar per WhatsApp",
+    waHola: "Hola, voldria demanar una visita.",
+    waNombre: "Nom",
+    waTel: "Telèfon",
+    waPob: "Població",
+    waTipo: "Tipus d’obra"
+  } : {
+    menuAbrir: "Abrir menú",
+    menuCerrar: "Cerrar menú",
+    revise: "Revise los campos marcados, por favor.",
+    enviando: "Enviando…",
+    datos: "Revise el nombre y el teléfono, por favor.",
+    limite: "Ahora mismo no podemos recibir más solicitudes por la web. Llámenos o escríbanos por WhatsApp, por favor.",
+    fallo: "No hemos podido enviar la solicitud. Puede mandarla por WhatsApp con el mensaje ya escrito:",
+    waBoton: "Enviar por WhatsApp",
+    waHola: "Hola, quiero pedir una visita.",
+    waNombre: "Nombre",
+    waTel: "Teléfono",
+    waPob: "Población",
+    waTipo: "Tipo de obra"
+  };
+
   // Activa las apariciones. Sin esta clase (JS caído) todo se ve.
   root.classList.add("js");
 
@@ -95,7 +128,7 @@
     function setOpen(open) {
       menu.classList.toggle("is-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
-      if (label) label.textContent = open ? "Cerrar menú" : "Abrir menú";
+      if (label) label.textContent = open ? T.menuCerrar : T.menuAbrir;
       document.body.style.overflow = open ? "hidden" : "";
       if (open) {
         var first = $(".menu__a", menu);
@@ -115,7 +148,8 @@
         burger.focus();
       }
     });
-    window.matchMedia("(min-width: 960px)").addEventListener("change", function (m) {
+    // A partir de 1100 px la cabecera lleva el menú completo (styles.css)
+    window.matchMedia("(min-width: 1100px)").addEventListener("change", function (m) {
       if (m.matches) setOpen(false);
     });
   }
@@ -528,16 +562,32 @@
   }
 
   /* ---------------------------------------------------------------------------
-     Formulario: sin servidor, abre el correo con el mensaje redactado
+     Formulario: se envía a enviar.php, que manda la solicitud por correo y
+     guarda una copia. Si algo falla, se ofrece WhatsApp con el mensaje ya
+     escrito, para que la solicitud no se pierda.
   --------------------------------------------------------------------------- */
   function initForm() {
     var form = $("#form");
     var status = $("#form-status");
-    if (!form) return;
+    if (!form || !status) return;
+
+    var inicio = Date.now();
+    var boton = form.querySelector('[type="submit"]');
+    var etiqueta = boton ? boton.querySelector("span") : null;
+    var textoBoton = etiqueta ? etiqueta.textContent : "";
+    var enviando = false;
+
+    function valido(input) {
+      if (input.type === "checkbox") return input.checked;
+      var v = input.value.trim();
+      // Un teléfono de verdad tiene al menos 9 cifras.
+      if (input.type === "tel") return v.replace(/\D/g, "").length >= 9;
+      return v.length > 0;
+    }
 
     function check(input) {
       var field = input.closest(".field");
-      var ok = input.type === "checkbox" ? input.checked : input.value.trim().length > 0;
+      var ok = valido(input);
       if (field) field.classList.toggle("is-invalid", !ok);
       input.setAttribute("aria-invalid", ok ? "false" : "true");
       var err = document.getElementById(input.id + "-err");
@@ -556,31 +606,126 @@
       });
     });
 
+    var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; };
+
+    function enlaceWhatsApp() {
+      var wa = (data.contact && data.contact.whatsapp) || "34613766476";
+      var texto =
+        T.waHola + "\n" +
+        T.waNombre + ": " + v("f-name") + "\n" +
+        T.waTel + ": " + v("f-phone") + "\n" +
+        (v("f-town") ? T.waPob + ": " + v("f-town") + "\n" : "") +
+        T.waTipo + ": " + v("f-type") +
+        (v("f-msg") ? "\n\n" + v("f-msg") : "");
+      return "https://wa.me/" + wa + "?text=" + encodeURIComponent(texto);
+    }
+
+    function avisar(texto, conWhatsApp) {
+      status.textContent = texto;
+      status.classList.add("is-error");
+      if (conWhatsApp) {
+        var a = document.createElement("a");
+        a.href = enlaceWhatsApp();
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.className = "form__wa";
+        a.textContent = T.waBoton;
+        status.appendChild(document.createTextNode(" "));
+        status.appendChild(a);
+      }
+    }
+
+    function listo() {
+      var hecho = $(".form__done", form);
+      if (!hecho) { status.classList.remove("is-error"); return; }
+      var nombre = $("[data-done-nombre]", hecho);
+      if (nombre) nombre.textContent = v("f-name") ? ", " + v("f-name") : "";
+      form.reset();
+      status.textContent = "";
+      form.classList.add("is-sent");
+      hecho.hidden = false;
+      hecho.focus({ preventScroll: true });
+      hecho.scrollIntoView({ block: "center", behavior: reduced ? "auto" : "smooth" });
+    }
+
+    function ocupado(si) {
+      enviando = si;
+      if (boton) boton.disabled = si;
+      if (etiqueta) etiqueta.textContent = si ? T.enviando : textoBoton;
+      if (si) form.setAttribute("aria-busy", "true");
+      else form.removeAttribute("aria-busy");
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (enviando) return;
       var firstBad = null;
       required.forEach(function (input) { if (!check(input) && !firstBad) firstBad = input; });
       if (firstBad) {
-        status.textContent = "Revise los campos marcados, por favor.";
+        status.textContent = T.revise;
         status.classList.add("is-error");
         firstBad.focus();
         return;
       }
 
-      var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; };
-      var wa = (data.contact && data.contact.whatsapp) || "34613766476";
-      var texto =
-        "Hola, quiero pedir una visita." + "\n" +
-        "Nombre: " + v("f-name") + "\n" +
-        "Teléfono: " + v("f-phone") + "\n" +
-        (v("f-town") ? "Población: " + v("f-town") + "\n" : "") +
-        "Tipo de obra: " + v("f-type") +
-        (v("f-msg") ? "\n\n" + v("f-msg") : "");
-
+      var datos = new FormData(form);
+      datos.append("ms", String(Date.now() - inicio));
+      status.textContent = "";
       status.classList.remove("is-error");
-      status.textContent = "Abriendo WhatsApp con la solicitud ya escrita…";
-      window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(texto), "_blank", "noopener");
+      ocupado(true);
+
+      // Si el servidor no contesta en 20 s, se da por fallido.
+      var ctrl = "AbortController" in window ? new AbortController() : null;
+      var reloj = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
+
+      fetch(form.getAttribute("action") || "/enviar.php", {
+        method: "POST",
+        body: datos,
+        headers: { "X-Requested-With": "fetch", "Accept": "application/json" },
+        credentials: "same-origin",
+        signal: ctrl ? ctrl.signal : undefined
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: false, error: "envio" }; }); })
+        .then(function (res) {
+          clearTimeout(reloj);
+          ocupado(false);
+          if (res && res.ok) listo();
+          else if (res && res.error === "datos") avisar(T.datos, false);
+          else if (res && res.error === "limite") avisar(T.limite, true);
+          else avisar(T.fallo, true);
+        })
+        .catch(function () {
+          clearTimeout(reloj);
+          ocupado(false);
+          avisar(T.fallo, true);
+        });
     });
+  }
+
+  /* ---------------------------------------------------------------------------
+     Contador de la web, sin cookies: avisa a contar.php cuando se abre la
+     página y cuando se pulsa el teléfono o WhatsApp. No manda nada de la
+     persona. En local (pruebas) no cuenta.
+  --------------------------------------------------------------------------- */
+  function initContar() {
+    var host = location.hostname;
+    if (!host || host === "localhost" || host === "127.0.0.1" || !navigator.sendBeacon) return;
+
+    var avisar = function (evento) {
+      var d = new FormData();
+      d.append("e", evento);
+      d.append("idioma", CA ? "ca" : "es");
+      try { navigator.sendBeacon("/contar.php", d); } catch (err) {}
+    };
+
+    avisar("visita");
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      if (href.indexOf("tel:") === 0) avisar("llamada");
+      else if (href.indexOf("wa.me/") !== -1) avisar("whatsapp");
+    }, true);
   }
 
   function initYear() {
@@ -603,6 +748,7 @@
     safe(initPrefill, "prefill");
     safe(initForm, "form");
     safe(initYear, "year");
+    safe(initContar, "contar");
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

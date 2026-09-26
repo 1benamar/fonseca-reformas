@@ -16,3 +16,7 @@ Thumbs.db
 
 # Muestrario de animaciones, herramienta de trabajo
 reel.html
+
+# Ajustes privados del servidor (lleva la clave del panel). Se suben al
+# hosting, nunca a GitHub: el repositorio es público.
+inc/ajustes.php

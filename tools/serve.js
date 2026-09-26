@@ -27,11 +27,43 @@ const TYPES = {
 
 http.createServer((req, res) => {
   let rel = decodeURIComponent(req.url.split("?")[0]);
-  if (rel === "/") rel = "/index.html";
+  if (rel.endsWith("/")) rel += "index.html";
+
+  // Los .php solo funcionan en el hosting. Aquí se simulan para probar la
+  // web: el formulario responde como si hubiera ido bien (o falla si el
+  // nombre es "fallo" o "limite") y el contador no hace nada.
+  if (rel.endsWith(".php")) {
+    if (req.method !== "POST") {
+      res.writeHead(405, { "Content-Type": "application/json; charset=utf-8" }).end('{"ok":false,"error":"metodo"}');
+      return;
+    }
+    const trozos = [];
+    req.on("data", (t) => trozos.push(t));
+    req.on("end", () => {
+      const cuerpo = Buffer.concat(trozos).toString("utf8");
+      if (rel === "/enviar.php") {
+        console.log("[simulación] formulario recibido:\n" + cuerpo.replace(/-{6,}\S*\r?\n/g, "").slice(0, 900));
+        const nombre = (cuerpo.match(/name="name"\r?\n\r?\n([^\r\n]*)/) || [])[1] || "";
+        const [codigo, json] =
+          nombre === "fallo" ? [502, '{"ok":false,"error":"envio"}'] :
+          nombre === "limite" ? [429, '{"ok":false,"error":"limite"}'] :
+          [200, '{"ok":true}'];
+        setTimeout(() => res.writeHead(codigo, { "Content-Type": "application/json; charset=utf-8" }).end(json), 700);
+      } else {
+        res.writeHead(204).end();
+      }
+    });
+    return;
+  }
 
   const file = path.join(ROOT, rel);
   if (!file.startsWith(ROOT)) {
     res.writeHead(403).end("Forbidden");
+    return;
+  }
+  // Como Apache: /ca lleva a /ca/
+  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+    res.writeHead(301, { Location: rel + "/" }).end();
     return;
   }
 

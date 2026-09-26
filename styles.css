@@ -1509,3 +1509,85 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 @media (max-width: 959px) and (max-aspect-ratio: 4/5) {
   .hero__in { padding-bottom: 5.2rem; }
 }
+
+/* =============================================================
+   18. IDIOMA: CASTELLANO Y CATALÁN
+   ============================================================= */
+/* En la cabecera, junto al teléfono, con la misma letra que el menú y
+   separado de él por un filete. El idioma en que se está, en claro; el
+   otro, apagado. En el móvil va dentro del menú, y siempre al pie. */
+.hdr__end { display: flex; align-items: center; gap: clamp(1.2rem, 2vw, 2rem); }
+.lang { display: none; }
+.lang a {
+  display: inline-block; padding: .5rem .3rem;
+  font-size: .74rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); transition: color .25s ease;
+}
+.lang a[aria-current="page"] { color: var(--ink); }
+@media (min-width: 960px) {
+  .lang {
+    display: flex; align-items: center; gap: .15rem;
+    padding-left: clamp(.9rem, 1.4vw, 1.4rem); border-left: 1px solid var(--line-2);
+  }
+}
+.menu__lang { display: flex; justify-content: center; gap: 1.8rem; margin-top: .4rem; }
+.menu__lang a {
+  display: inline-block; padding-block: .6rem;
+  font-size: .78rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.menu__lang a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--marca); }
+.foot__lang { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin-top: .5rem; font-size: .85rem; }
+.foot__lang a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.foot__lang a[aria-current="page"] { color: var(--muted); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) {
+  .lang a:hover, .menu__lang a:hover { color: var(--ink); }
+  .foot__lang a:hover { color: var(--ink); }
+}
+@media (pointer: coarse) {
+  .foot__lang a { display: inline-block; padding-block: .6rem; }
+}
+
+/* =============================================================
+   19. FORMULARIO: ENVÍO DIRECTO
+   ============================================================= */
+/* Trampa para robots: fuera de la pantalla, no oculta con display, para que
+   los robots la vean y la rellenen. */
+.form__hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* Mientras se envía, el botón queda apagado y avisa de que está trabajando. */
+.form[aria-busy="true"] .btn { opacity: .72; cursor: progress; }
+.form .btn:disabled { pointer-events: none; }
+
+/* Aviso de error con el enlace a WhatsApp de reserva */
+.form__status .form__wa {
+  display: inline-block; margin-top: .35rem; font-weight: 500;
+  color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--wa);
+}
+
+/* Enviado: el formulario deja paso a la confirmación. */
+.form.is-sent > :not(.form__done) { display: none; }
+.form__done { display: grid; gap: 1rem; justify-items: start; }
+.form__done[hidden] { display: none; }
+.form__done:focus { outline: none; }
+.form__done p { color: var(--ink-2); line-height: 1.7; max-width: 44ch; }
+.form__done .form__note a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.form__done-i {
+  display: grid; place-items: center; width: 52px; height: 52px;
+  border: 1px solid var(--marca); border-radius: 50%; color: var(--marca);
+}
+.form__done-i svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: no-preference) {
+  .form.is-sent .form__done { animation: fadeUp .6s var(--ease-out) both; }
+  .form.is-sent .form__done-i svg path { stroke-dasharray: 22; animation: trazo .6s .2s var(--ease-out) backwards; }
+}
+@keyframes trazo { from { stroke-dashoffset: 22; } to { stroke-dashoffset: 0; } }
+
+/* Entre 960 y 1100 px (tableta en horizontal) el menú completo no cabe en una
+   línea junto al logotipo y el idioma: se partía en dos. Ahí la cabecera usa
+   el menú desplegable, como en el móvil. */
+@media (min-width: 960px) and (max-width: 1099.98px) {
+  .nav, .lang { display: none; }
+  .burger { display: grid; }
+  .menu { display: flex; }
+}

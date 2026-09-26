@@ -28,7 +28,7 @@
     "titular": "Reformas F.S Fonseca"
   },
   "muestra": {
-    "nota": "Dos imagenes de ambiente que no son obra del cliente.",
+    "nota": "Imagen de ambiente que no es obra del cliente. Solo se usa dormitorio.jpg (fondo de opiniones); hero.jpg ya no aparece en la web desde que la portada lleva la foto de Jesús.",
     "assets/img/hero.jpg": {
       "titulo": "Living Room",
       "autor": "Jeremy Levine Design",
@@ -44,6 +44,16 @@
   },
   "video_portada": {
     "archivo": "assets/video/hero.mp4",
-    "origen": "Metraje de muestra de Pexels, uso libre tambien comercial"
+    "origen": "Metraje de muestra de Pexels, uso libre tambien comercial",
+    "nota": "Ya no se usa: la portada lleva la foto de Jesús."
+  },
+  "retratos": {
+    "archivos": [
+      "assets/img/jesus.jpg",
+      "assets/img/despacho.jpg",
+      "assets/img/hero-jesus-*.webp"
+    ],
+    "origen": "Fotografías de Jesús Fonseca entregadas por el cliente",
+    "titular": "Reformas F.S Fonseca"
   }
 }
