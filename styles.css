@@ -585,7 +585,9 @@ strong { font-weight: 500; color: var(--ink); }
 .obras__lede { margin-bottom: clamp(2.6rem, 5vw, 3.8rem); }
 
 /* --- Antes y después ----------------------------------------- */
-.cmp { margin: 0 0 clamp(2.6rem, 5vw, 3.8rem); }
+/* Un poco más estrecho que la columna y centrado: a todo el ancho ocupaba
+   más de una pantalla de alto en escritorio. */
+.cmp { max-width: 56rem; margin: 0 auto clamp(2.6rem, 5vw, 3.8rem); }
 .cmp__box {
   --pos: 50%;
   position: relative; overflow: hidden;
