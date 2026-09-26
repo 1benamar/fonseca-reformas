@@ -484,6 +484,9 @@ strong { font-weight: 500; color: var(--ink); }
 .about__grid { display: grid; gap: clamp(3.5rem, 7vw, 6.5rem); align-items: center; }
 .about__fig { position: relative; margin: 0 1.6rem 1.6rem 0; }
 .about__fig .plate { aspect-ratio: 4 / 5; }
+/* El retrato es de cuerpo entero y mucho más alto que el marco: se ancla
+   arriba para que entre la cara y el torso, no el centro de las piernas. */
+.about__retrato { object-position: 50% 4%; }
 .about__frame {
   position: absolute; z-index: -1;
   top: 2.4rem; left: 2.4rem; right: -1.6rem; bottom: -1.6rem;
@@ -792,6 +795,14 @@ strong { font-weight: 500; color: var(--ink); }
 /* ---------- PROCESO ----------------------------------------- */
 .steps { padding-block: var(--sec); }
 .steps__head { max-width: 44rem; margin-bottom: clamp(2.8rem, 5vw, 4rem); }
+/* Con foto: el texto a un lado y la imagen del despacho al otro. En móvil,
+   la foto debajo del texto. El encuadre se corre a la derecha para dejar
+   fuera el calendario del borde izquierdo y centrar a Jesús y la pantalla. */
+.steps__head--foto { max-width: none; display: grid; gap: 2.2rem; }
+.steps__head--foto > div { max-width: 44rem; }
+.steps__fig { margin: 0; }
+.steps__fig .plate { aspect-ratio: 3 / 2; }
+.steps__fig img { object-position: 100% 50%; }
 .steps__list { position: relative; display: grid; gap: 2.2rem; }
 .steps__list::before, .steps__list::after {
   content: ""; position: absolute; z-index: -1;
@@ -960,6 +971,7 @@ strong { font-weight: 500; color: var(--ink); }
   .panel__side { padding-left: clamp(2rem, 3vw, 3rem); border-left: 1px solid var(--panel-line); }
 
   .steps__list { grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+  .steps__head--foto { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(3rem, 6vw, 5.5rem); align-items: center; }
   .steps__list::before, .steps__list::after { left: 24px; right: 24px; top: 23px; bottom: auto; width: auto; height: 1px; }
   .steps__list::after { transform: scaleX(0); transform-origin: left; }
   .steps__list.is-drawn::after { transform: scaleX(1); }
