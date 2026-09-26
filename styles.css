@@ -1298,3 +1298,225 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
   .faq__it::details-content { transition: none; }
   .faq__i::before, .faq__i::after { transition: none; }
 }
+
+/* =============================================================
+   16. PULIDO: ACCESORIOS Y MOVIMIENTO POR APARTADO
+   Movimientos cortos, ligados a algo (entrar en pantalla, pasar el
+   ratón, escribir), sin rebotes. Solo transform, opacity y clip-path.
+   Los "pop" usan fill backwards: actúan durante la espera y luego
+   devuelven el control a los estilos normales (hover incluido).
+   ============================================================= */
+@keyframes pop     { from { opacity: 0; transform: scale(.82); } to { opacity: 1; transform: none; } }
+@keyframes drawX   { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes drawY   { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes riseIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* --- Etiqueta de sección ------------------------------------- */
+.kicker {
+  display: flex; align-items: center; gap: .8rem;
+  margin-bottom: 1.1rem;
+  font-size: .72rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--marca);
+}
+.kicker::before {
+  content: ""; flex: none; width: 1.8rem; height: 1px; background: currentColor;
+  transform-origin: left;
+}
+.kicker.is-in::before { animation: drawX .8s .1s var(--ease-out) backwards; }
+.js [data-reveal="kicker"]:not(.is-in) { transform: translateX(-8px); }
+
+/* --- Portada: indicador de seguir bajando --------------------- */
+.hero__scroll {
+  position: absolute; z-index: 2; right: var(--gutter); bottom: clamp(2rem, 5vh, 3rem);
+  display: none; width: 1px; height: 64px; overflow: hidden;
+  background: rgba(255, 255, 255, .22);
+  animation: fadeIn 1s 1.4s ease both;
+}
+.hero__scroll i {
+  position: absolute; left: 0; top: 0; width: 1px; height: 40%;
+  background: #fff;
+  animation: bajar 2.2s 1.8s var(--ease-io) infinite;
+}
+@keyframes bajar { from { transform: translateY(-100%); } to { transform: translateY(260%); } }
+@media (min-width: 720px) { .hero__scroll { display: block; } }
+
+/* --- Franja de datos: iconos ---------------------------------- */
+.strip__item { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: center; }
+.strip__i {
+  grid-row: span 2;
+  display: grid; place-items: center; width: 42px; height: 42px;
+  border: 1px solid rgba(46, 139, 255, .3); background: rgba(46, 139, 255, .1);
+  color: var(--marca);
+}
+.strip__i svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.strip__item.is-in .strip__i { animation: pop .6s .25s var(--ease-out) backwards; }
+.strip__item.is-in:nth-child(2) .strip__i { animation-delay: .34s; }
+.strip__item.is-in:nth-child(3) .strip__i { animation-delay: .43s; }
+
+/* --- Manifiesto: el icono aparece y su regla se dibuja --------- */
+.note__i::after { transform-origin: left; }
+.note.is-in .note__i { animation: pop .6s .3s var(--ease-out) backwards; }
+.note.is-in .note__i::after { animation: drawX 1s .5s var(--ease-io) backwards; }
+
+/* --- La empresa: sello sobre la foto -------------------------- */
+.about__badge {
+  position: absolute; z-index: 2; left: -.8rem; bottom: 2.2rem;
+  display: grid; justify-items: start; gap: .1rem;
+  padding: 1rem 1.3rem 1.05rem;
+  background: var(--card); border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-lg);
+}
+.about__badge::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--marca);
+  transform-origin: top;
+}
+.about__badge.is-in::before { animation: drawY .8s .6s var(--ease-out) backwards; }
+.about__badge-k { font-size: .66rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.about__badge-n { font-family: var(--serif); font-size: 2rem; line-height: 1.05; color: var(--ink); font-variant-numeric: lining-nums; }
+@media (min-width: 960px) { .about__badge { left: -1.6rem; bottom: 3rem; } }
+
+/* --- Opiniones: estrellas en cadena y filete en la cita -------- */
+.voice__card.is-in .stars svg { animation: pop .45s var(--ease-out) backwards; }
+.voice__card.is-in .stars svg:nth-child(1) { animation-delay: .35s; }
+.voice__card.is-in .stars svg:nth-child(2) { animation-delay: .42s; }
+.voice__card.is-in .stars svg:nth-child(3) { animation-delay: .49s; }
+.voice__card.is-in .stars svg:nth-child(4) { animation-delay: .56s; }
+.voice__card.is-in .stars svg:nth-child(5) { animation-delay: .63s; }
+.quote blockquote { position: relative; padding-left: 1.3rem; }
+.quote blockquote::before {
+  content: ""; position: absolute; left: 0; top: .2em; bottom: .2em; width: 2px;
+  background: var(--marca); transform-origin: top;
+}
+.voice__card.is-in .quote blockquote::before { animation: drawY .9s .5s var(--ease-out) backwards; }
+
+/* --- Servicios: número y barra al pasar ----------------------- */
+.scard__img { position: relative; }
+.scard__n {
+  position: absolute; z-index: 2; left: 0; top: 0;
+  padding: .45rem .7rem;
+  font-family: var(--serif); font-size: .95rem; line-height: 1; color: #fff;
+  background: rgba(10, 17, 25, .72); backdrop-filter: blur(6px);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.scard__img::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 3px;
+  background: var(--marca); transform: scaleX(0); transform-origin: right;
+  transition: transform .45s var(--ease-out);
+}
+.scard__t { transition: color .25s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .scard:hover .scard__img::after { transform: scaleX(1); transform-origin: left; }
+  .scard:hover .scard__t { color: var(--marca); }
+}
+
+/* --- Qué incluye: check en cada punto -------------------------- */
+.panel__list h3 { display: flex; align-items: center; gap: .6rem; }
+.panel__list h3::before {
+  content: ""; flex: none; width: 18px; height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a66c9' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.panel.is-in .panel__list h3::before { animation: pop .5s var(--ease-out) backwards; animation-delay: .35s; }
+.panel.is-in .panel__list li:nth-child(2) h3::before { animation-delay: .42s; }
+.panel.is-in .panel__list li:nth-child(3) h3::before { animation-delay: .49s; }
+.panel.is-in .panel__list li:nth-child(4) h3::before { animation-delay: .56s; }
+.panel.is-in .panel__list li:nth-child(5) h3::before { animation-delay: .63s; }
+.panel.is-in .panel__list li:nth-child(6) h3::before { animation-delay: .7s; }
+
+/* --- Cómo trabajamos: cada número se enciende al pasar la línea -- */
+.step__n { transition: border-color .45s ease, background-color .45s ease, color .45s ease; }
+.steps__list.is-drawn .step__n { border-color: var(--marca); background: #122439; }
+.steps__list.is-drawn .step:nth-child(1) .step__n { transition-delay: .05s; }
+.steps__list.is-drawn .step:nth-child(2) .step__n { transition-delay: .4s; }
+.steps__list.is-drawn .step:nth-child(3) .step__n { transition-delay: .75s; }
+.steps__list.is-drawn .step:nth-child(4) .step__n { transition-delay: 1.1s; }
+.steps__list.is-drawn .step:nth-child(5) .step__n { transition-delay: 1.45s; }
+
+/* --- Contacto: datos y poblaciones en cascada ----------------- */
+.data.is-in .data__row { animation: riseIn .6s var(--ease-out) backwards; }
+.data.is-in .data__row:nth-child(1) { animation-delay: .2s; }
+.data.is-in .data__row:nth-child(2) { animation-delay: .27s; }
+.data.is-in .data__row:nth-child(3) { animation-delay: .34s; }
+.data.is-in .data__row:nth-child(4) { animation-delay: .41s; }
+.zones.is-in li { animation: pop .45s var(--ease-out) backwards; }
+.zones.is-in li:nth-child(1)  { animation-delay: .15s; }
+.zones.is-in li:nth-child(2)  { animation-delay: .19s; }
+.zones.is-in li:nth-child(3)  { animation-delay: .23s; }
+.zones.is-in li:nth-child(4)  { animation-delay: .27s; }
+.zones.is-in li:nth-child(5)  { animation-delay: .31s; }
+.zones.is-in li:nth-child(6)  { animation-delay: .35s; }
+.zones.is-in li:nth-child(7)  { animation-delay: .39s; }
+.zones.is-in li:nth-child(8)  { animation-delay: .43s; }
+.zones.is-in li:nth-child(9)  { animation-delay: .47s; }
+.zones.is-in li:nth-child(10) { animation-delay: .51s; }
+
+/* --- Campos: subrayado azul que crece al escribir ------------- */
+.field input, .field textarea {
+  background: linear-gradient(var(--marca), var(--marca)) left bottom / 0% 2px no-repeat;
+  transition: border-color .25s ease, background-size .45s var(--ease-out);
+}
+.field select {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b9aaa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center / 16px no-repeat,
+    linear-gradient(var(--marca), var(--marca)) left bottom / 0% 2px no-repeat;
+  transition: border-color .25s ease, background-size .45s var(--ease-out);
+}
+.field input:focus, .field textarea:focus { box-shadow: none; border-color: var(--line-2); background-size: 100% 2px; }
+.field select:focus { box-shadow: none; border-color: var(--line-2); background-size: 16px, 100% 2px; }
+.field.is-invalid input { background-size: 0% 2px; }
+
+/* --- Botones: relleno que barre y flecha ---------------------- */
+.btn { gap: .75rem; }
+.btn__i { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s var(--ease-out); }
+.btn--slate { position: relative; isolation: isolate; overflow: hidden; }
+.btn--slate::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--ink); transform: scaleX(0); transform-origin: right;
+  transition: transform .45s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn--slate:hover { background: var(--btn-bg); border-color: var(--ink); color: var(--paper); }
+  .btn--slate:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn:hover .btn__i { transform: translateX(3px); }
+}
+
+/* --- Pie: subrayados y volver arriba -------------------------- */
+.foot__nav a { position: relative; }
+.foot__nav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -.3rem; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: right;
+  transition: transform .3s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .foot__nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+}
+.totop {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem;
+  font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
+}
+.totop svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .totop:hover { color: var(--marca); }
+  .totop:hover svg { transform: translateY(-3px); }
+}
+
+/* --- El indicador de la portada se va al empezar a bajar ------- */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__scroll {
+      animation: heroFade linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 22vh;
+    }
+  }
+}
+
+/* --- Menos movimiento: fuera desplazamientos y latidos --------- */
+@media (prefers-reduced-motion: reduce) {
+  .kicker.is-in::before, .strip__item.is-in .strip__i, .note.is-in .note__i,
+  .note.is-in .note__i::after, .about__badge.is-in::before, .voice__card.is-in .stars svg,
+  .voice__card.is-in .quote blockquote::before, .panel.is-in .panel__list h3::before,
+  .data.is-in .data__row, .zones.is-in li { animation: none; }
+  .hero__scroll { display: none; }
+  .js [data-reveal="kicker"]:not(.is-in) { transform: none; }
+  .btn--slate::before, .scard__img::after { transition-duration: .01s; }
+}

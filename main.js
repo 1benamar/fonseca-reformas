@@ -322,6 +322,32 @@
     }, { passive: true });
   }
 
+  /* ---------------------------------------------------------------------------
+     La nota de Google cuenta de 0,0 a su valor cuando la franja entra en
+     pantalla. El valor real ya está en el HTML: si esto no llega a correr,
+     se ve igual.
+  --------------------------------------------------------------------------- */
+  function initCuenta() {
+    var el = $(".strip__score");
+    if (!el || reduced || !("IntersectionObserver" in window)) return;
+    var fin = parseFloat(el.textContent.replace(",", "."));
+    if (isNaN(fin)) return;
+    var io = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      io.disconnect();
+      var t0 = null, dur = 1100;
+      var paso = function (t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur);
+        var e = 1 - Math.pow(1 - k, 3);
+        el.textContent = (fin * e).toFixed(1).replace(".", ",");
+        if (k < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    }, { threshold: 0.6 });
+    io.observe(el);
+  }
+
   function initObraVideo() {
     var video = $("[data-obra-video]");
     if (!video) return;
@@ -597,6 +623,7 @@
     safe(initScrollState, "scrollState");
     safe(initHeroVideo, "heroVideo");
     safe(initObraVideo, "obraVideo");
+    safe(initCuenta, "cuenta");
     safe(initGolpe, "golpe");
     safe(initCompare, "compare");
     safe(initLupa, "lupa");
