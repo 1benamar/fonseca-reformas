@@ -1482,7 +1482,8 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
     linear-gradient(180deg, rgba(10,17,25,.35) 0%, rgba(10,17,25,0) 18%);
 }
 @media (max-width: 959px) {
-  .hero__plate { top: calc(var(--hdr-h) + var(--hdr-top)); }
+  /* La foto llega hasta arriba, por detrás de la cabecera: el aire para la
+     cabeza va dentro de la propia imagen, sin franja oscura encima. */
   .hero__plate img.hero__retrato { object-position: 60% 30%; }
   .hero__plate::after {
     background:
