@@ -91,6 +91,10 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 118px;
   scrollbar-color: var(--slate) var(--mist);
+  /* Las tarjetas que entran deslizándose desde un lado sobresalen un instante
+     del borde. Sin este recorte, en móvil la página se hace más ancha que la
+     pantalla y la cabecera fija queda descentrada. */
+  overflow-x: clip;
 }
 body {
   font-family: var(--sans);
