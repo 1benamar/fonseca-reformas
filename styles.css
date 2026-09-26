@@ -1475,14 +1475,17 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 .hero__plate img.hero__retrato { filter: none; object-position: 70% 0; }
 .hero__plate::after {
   background:
-    linear-gradient(90deg, rgba(14,18,21,.9) 0%, rgba(14,18,21,.8) 34%, rgba(14,18,21,.34) 60%, rgba(14,18,21,.06) 80%),
-    linear-gradient(0deg, rgba(14,18,21,.55) 0%, rgba(14,18,21,0) 40%);
+    linear-gradient(90deg, rgba(10,17,25,.92) 0%, rgba(10,17,25,.82) 32%, rgba(10,17,25,.38) 58%, rgba(10,17,25,.1) 78%, rgba(10,17,25,.18) 100%),
+    linear-gradient(0deg, rgba(10,17,25,.85) 0%, rgba(10,17,25,.35) 16%, rgba(10,17,25,0) 38%),
+    linear-gradient(180deg, rgba(10,17,25,.35) 0%, rgba(10,17,25,0) 18%);
 }
 @media (max-width: 959px) {
   .hero__plate { top: calc(var(--hdr-h) + var(--hdr-top)); }
   .hero__plate img.hero__retrato { object-position: 50% 0; }
   .hero__plate::after {
-    background: linear-gradient(0deg, rgba(14,18,21,.94) 0%, rgba(14,18,21,.82) 38%, rgba(14,18,21,.3) 64%, rgba(14,18,21,.12) 100%);
+    background:
+      linear-gradient(0deg, rgba(10,17,25,.96) 0%, rgba(10,17,25,.84) 38%, rgba(10,17,25,.3) 64%, rgba(10,17,25,.14) 100%),
+      linear-gradient(180deg, rgba(10,17,25,.45) 0%, rgba(10,17,25,0) 12%);
   }
 }
 @media (min-width: 960px) {
