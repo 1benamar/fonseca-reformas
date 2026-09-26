@@ -1244,3 +1244,57 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 .check a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .check.is-invalid { color: var(--error); }
 .check.is-invalid input { outline: 2px solid var(--error); outline-offset: 2px; }
+
+/* =============================================================
+   15. PREGUNTAS FRECUENTES
+   ============================================================= */
+/* Acordeón con <details>: funciona sin JavaScript y con teclado. En
+   escritorio, el título se queda fijo a la izquierda mientras se leen las
+   preguntas. Filetes finos, preguntas en la serif, respuesta en la sans. */
+.faq { padding-block: var(--sec); border-top: 1px solid var(--line); }
+.faq__grid { display: grid; gap: clamp(2.4rem, 5vw, 4rem); }
+.faq__head .lede a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); white-space: nowrap; }
+.faq__list { border-top: 1px solid var(--line-2); }
+.faq__it { border-bottom: 1px solid var(--line-2); }
+.faq__it summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding-block: 1.35rem; list-style: none;
+}
+.faq__it summary::-webkit-details-marker { display: none; }
+.faq__q {
+  font-size: clamp(1.06rem, 1.35vw, 1.2rem); font-weight: 400; line-height: 1.4;
+  color: var(--ink); transition: color .25s ease;
+}
+.faq__i { position: relative; flex: none; width: 30px; height: 30px; border: 1px solid var(--line-2); transition: border-color .25s ease, background-color .25s ease; }
+.faq__i::before, .faq__i::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 12px; height: 1.5px; margin: -.75px 0 0 -6px; background: var(--ink-2);
+  transition: transform .35s var(--ease-out), background-color .25s ease;
+}
+.faq__i::after { transform: rotate(90deg); }
+.faq__it[open] .faq__i { border-color: var(--marca); background: rgba(46, 139, 255, .12); }
+.faq__it[open] .faq__i::before, .faq__it[open] .faq__i::after { background: var(--marca); }
+.faq__it[open] .faq__i::after { transform: rotate(0deg); }
+.faq__a p { max-width: 62ch; padding: 0 3rem 1.6rem 0; color: var(--ink-2); line-height: 1.75; }
+@media (hover: hover) and (pointer: fine) {
+  .faq__it summary:hover .faq__q { color: var(--marca); }
+  .faq__it summary:hover .faq__i { border-color: var(--marca); }
+}
+/* Apertura suave donde el navegador lo permite; en el resto se abre al
+   instante, que también es correcto. */
+@supports (interpolate-size: allow-keywords) {
+  .faq__list { interpolate-size: allow-keywords; }
+  .faq__it::details-content {
+    block-size: 0; overflow: hidden;
+    transition: block-size .4s var(--ease-out), content-visibility .4s allow-discrete;
+  }
+  .faq__it[open]::details-content { block-size: auto; }
+}
+@media (min-width: 960px) {
+  .faq__grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+  .faq__head { position: sticky; top: calc(var(--hdr-h) + var(--hdr-top) + 2rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq__it::details-content { transition: none; }
+  .faq__i::before, .faq__i::after { transition: none; }
+}
