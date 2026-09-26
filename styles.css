@@ -1472,7 +1472,9 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
    Móvil y tableta: retrato vertical que empieza bajo la cabecera, para que no
    le tape la cara, oscurecido por abajo, donde va el texto. */
 .hero__plate picture { display: block; width: 100%; height: 100%; }
-.hero__plate img.hero__retrato { filter: none; object-position: 70% 0; }
+/* En pantallas muy apaisadas sobra foto por arriba y por abajo: se recorta
+   un poco más de suelo que de pared, para no pegar la cabeza a la cabecera. */
+.hero__plate img.hero__retrato { filter: none; object-position: 70% 40%; }
 .hero__plate::after {
   background:
     linear-gradient(90deg, rgba(10,17,25,.92) 0%, rgba(10,17,25,.82) 32%, rgba(10,17,25,.38) 58%, rgba(10,17,25,.1) 78%, rgba(10,17,25,.18) 100%),
@@ -1481,7 +1483,7 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 }
 @media (max-width: 959px) {
   .hero__plate { top: calc(var(--hdr-h) + var(--hdr-top)); }
-  .hero__plate img.hero__retrato { object-position: 50% 0; }
+  .hero__plate img.hero__retrato { object-position: 60% 30%; }
   .hero__plate::after {
     background:
       linear-gradient(0deg, rgba(10,17,25,.96) 0%, rgba(10,17,25,.84) 38%, rgba(10,17,25,.3) 64%, rgba(10,17,25,.14) 100%),
@@ -1491,4 +1493,12 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 @media (min-width: 960px) {
   /* Un punto menos de titular para que la primera línea no roce el brazo */
   .hero__t { font-size: clamp(2.15rem, 3.3vw, 3.1rem); }
+}
+@media (max-width: 959px) and (max-aspect-ratio: 4/5) {
+  .hero__plate img.hero__retrato { object-position: 50% 0; }
+}
+/* Móvil de pie: el texto baja un poco para dejar la cara de Jesús despejada
+   entre la cabecera y la etiqueta de zona. */
+@media (max-width: 959px) and (max-aspect-ratio: 4/5) {
+  .hero__in { padding-bottom: 5.2rem; }
 }
