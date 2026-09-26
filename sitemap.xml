@@ -48,7 +48,17 @@
   <url>
     <loc>https://reformasfonseca.com/obra-nueva/</loc>
     <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/obra-nueva/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/obra-nova/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/obra-nueva/"/>
     <image:image><image:loc>https://reformasfonseca.com/assets/img/s-obranueva.jpg</image:loc></image:image>
     <image:image><image:loc>https://reformasfonseca.com/assets/img/o-tierras.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/ca/obra-nova/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/obra-nueva/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/obra-nova/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/obra-nueva/"/>
   </url>
 </urlset>

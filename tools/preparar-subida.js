@@ -38,7 +38,7 @@ const REGISTRO = path.join(__dirname, ".publicado.json");
 
 /* --- Qué forma parte de la web ------------------------------------------- */
 const PAGINAS = ["index.html", "404.html", "aviso-legal.html", "privacidad.html",
-  "ca/index.html", "ca/avis-legal.html", "ca/privacitat.html", "obra-nueva/index.html"];
+  "ca/index.html", "ca/avis-legal.html", "ca/privacitat.html", "obra-nueva/index.html", "ca/obra-nova/index.html"];
 const CODIGO = ["styles.css", "main.js", "lib/manifest.js"];
 const SERVIDOR = ["enviar.php", "contar.php", "panel.php", "inc/comun.php", "inc/ajustes.php", "inc/.htaccess"];
 const OTROS = [".htaccess", "robots.txt", "sitemap.xml", "apple-touch-icon.png"];
