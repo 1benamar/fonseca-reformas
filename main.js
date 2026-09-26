@@ -180,12 +180,14 @@
   --------------------------------------------------------------------------- */
   function initReveals() {
     var items = $$("[data-reveal]");
-    var steps = $("[data-steps]");
+    // Líneas que se dibujan al llegar: el proceso y las fases de obra
+    var lineas = $$("[data-steps], [data-dibujo]");
     var show = function (el) { el.classList.add("is-in"); };
+    var dibujar = function (el) { el.classList.add("is-drawn"); };
 
     if (!("IntersectionObserver" in window)) {
       items.forEach(show);
-      if (steps) steps.classList.add("is-drawn");
+      lineas.forEach(dibujar);
       return;
     }
 
@@ -208,14 +210,15 @@
     }, { threshold: 0.04, rootMargin: "0px 0px -7% 0px" });
     groups.forEach(function (_, target) { io.observe(target); });
 
-    if (steps) {
+    if (lineas.length) {
       var sio = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          steps.classList.add("is-drawn");
-          sio.disconnect();
-        }
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          dibujar(en.target);
+          sio.unobserve(en.target);
+        });
       }, { threshold: 0.3 });
-      sio.observe(steps);
+      lineas.forEach(function (el) { sio.observe(el); });
     }
 
     // Red de seguridad: a los 6 s, lo que ya está a la vista o por encima
@@ -250,6 +253,9 @@
       new IntersectionObserver(function (entries) {
         wa.classList.toggle("is-on", !entries[0].isIntersecting);
       }, { threshold: 0 }).observe(hero);
+    } else if (wa) {
+      // Páginas de servicio: no hay portada que tapar, el botón está desde el principio
+      wa.classList.add("is-on");
     }
   }
 

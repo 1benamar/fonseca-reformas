@@ -1574,3 +1574,162 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
   .burger { display: grid; }
   .menu { display: flex; }
 }
+
+/* =============================================================
+   20. PÁGINAS DE SERVICIO (obra-nueva/ y las que vengan)
+   ============================================================= */
+/* Cabecera de la página: el texto a un lado y la foto enmarcada al otro,
+   con el mismo marco que La empresa. Entra sola, con la cadencia de la
+   portada, sin esperar a ningún script. */
+.sub { padding-block: calc(var(--hdr-h) + var(--hdr-top) + clamp(2.4rem, 6vw, 4.5rem)) clamp(3.5rem, 7vw, 6rem); }
+.sub__grid { display: grid; gap: clamp(3rem, 6vw, 5rem); align-items: center; }
+.migas ol {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .55rem;
+  margin: 0 0 1.8rem; padding: 0; list-style: none;
+  font-size: .8rem; color: var(--muted);
+}
+.migas li + li::before { content: "/"; margin-right: .55rem; color: var(--line-2); }
+.migas a {
+  color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: var(--line-2); transition: color .25s ease, text-decoration-color .25s ease;
+}
+.migas [aria-current] { color: var(--ink); }
+.sub__t { font-size: clamp(2.1rem, 4.1vw, 3.35rem); line-height: 1.1; max-width: 21ch; }
+.sub__p { margin-top: 1.5rem; max-width: 48ch; font-size: clamp(1.02rem, 1.3vw, 1.14rem); line-height: 1.75; color: var(--ink-2); }
+.sub__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2.2rem; }
+.sub__tel { display: inline-block; padding-block: .6rem; font-size: .98rem; color: var(--ink-2); }
+.sub__tel strong {
+  color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: 1.12rem;
+  border-bottom: 1px solid var(--line-2); padding-bottom: 1px; transition: border-color .25s ease;
+}
+.sub__foto { object-position: 50% 55%; }
+@media (hover: hover) and (pointer: fine) {
+  .migas a:hover { color: var(--ink); text-decoration-color: currentColor; }
+  .sub__tel:hover strong { border-color: var(--ink); }
+}
+@media (min-width: 960px) {
+  .sub__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+}
+
+/* Entrada escalonada: ruta, etiqueta, título, texto y botones, 70 ms entre
+   cada uno; la foto sube recortada y se asienta, y el marco llega después. */
+.sub .migas, .sub__k, .sub__t, .sub__p, .sub__cta { animation: fadeUp .8s var(--ease-out) both; }
+.sub__k { animation-delay: .07s; }
+.sub__t { animation-delay: .14s; }
+.sub__p { animation-delay: .21s; }
+.sub__cta { animation-delay: .28s; }
+.sub__fig .plate { animation: rise 1.2s .12s var(--ease-io) both; }
+.sub__fig .plate img { animation: settle 2.2s .12s var(--ease-out) both; }
+.sub__fig .about__frame { animation: fadeIn .9s .7s ease both; }
+
+/* --- Fases: línea que se dibuja al bajar -------------------------- */
+/* El título se queda fijo a la izquierda mientras se leen las fases. La
+   línea que las une se va llenando de azul con el desplazamiento; donde el
+   navegador no sabe hacerlo, se dibuja de una vez al llegar (clase is-drawn
+   que pone main.js). Cada número se enciende cuando su fase aparece. */
+.fases { padding-block: var(--sec); }
+.fases__grid { display: grid; gap: clamp(2.6rem, 5vw, 4rem); }
+.fases__head .more { margin-top: 1.6rem; }
+.fases__list { position: relative; list-style: none; margin: 0; padding: 0; }
+.fases__list::before, .fases__list::after {
+  content: ""; position: absolute; left: 23.5px; top: 24px; bottom: 24px; width: 1px;
+  background: var(--line-2);
+}
+.fases__list::after {
+  background: var(--marca); transform: scaleY(0); transform-origin: top;
+  transition: transform 1.8s var(--ease-io);
+}
+.fases__list.is-drawn::after { transform: scaleY(1); }
+.fase {
+  position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 1.4rem;
+  padding-bottom: clamp(1.9rem, 3.6vw, 2.8rem);
+}
+.fase:last-child { padding-bottom: 0; }
+.fase__n {
+  position: relative; z-index: 1;
+  width: 48px; height: 48px; display: grid; place-items: center;
+  background: var(--paper); border: 1px solid var(--line-2);
+  font-family: var(--serif); font-size: 1.02rem; color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+  transition: border-color .6s ease .2s, color .6s ease .2s, background-color .6s ease .2s;
+}
+.fase.is-in .fase__n { border-color: var(--marca); color: var(--ink); background: #10233a; }
+.fase__t { font-size: clamp(1.2rem, 1.6vw, 1.36rem); padding-top: .6rem; }
+.fase p { margin-top: .45rem; max-width: 46ch; line-height: 1.7; color: var(--ink-2); }
+@media (min-width: 960px) {
+  .fases__grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+  .fases__head { position: sticky; top: calc(var(--hdr-h) + var(--hdr-top) + 2.4rem); }
+}
+@keyframes dibujarY { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fases__list::after {
+      transition: none;
+      animation: dibujarY linear both;
+      animation-timeline: view();
+      animation-range: entry 35% cover 62%;
+    }
+  }
+}
+
+/* --- Foto a todo el ancho ------------------------------------------ */
+/* La fotografía lleva el peso: ancho completo, oscurecida por abajo para que
+   la frase se lea, y un paralaje leve al pasar (igual que el fondo de las
+   opiniones de la portada). */
+.banda {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: flex-end;
+  min-height: clamp(360px, 64vh, 640px);
+  background: var(--night); color: #fff;
+}
+.banda__foto { position: absolute; inset: -6% 0; z-index: -1; }
+.banda__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+/* La foto se amplía un poco hacia la excavadora: así queda fuera la cabina
+   de obra del borde izquierdo, que no aporta nada. */
+.banda__foto img { transform: scale(1.24); transform-origin: 100% 55%; }
+.banda::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(0deg, rgba(10,17,25,.9) 0%, rgba(10,17,25,.45) 42%, rgba(10,17,25,.08) 100%),
+    linear-gradient(90deg, rgba(10,17,25,.5) 0%, rgba(10,17,25,0) 65%);
+}
+.banda__in { padding-block: clamp(2.6rem, 6vw, 4.6rem); }
+.banda__t { max-width: 18ch; font-family: var(--serif); font-size: clamp(1.8rem, 3.4vw, 2.8rem); line-height: 1.15; color: #fff; }
+.banda__pie { margin-top: 1rem; font-size: .74rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.72); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .banda__foto { animation: driftBack linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  }
+}
+
+/* --- Antes de empezar y galería ----------------------------------- */
+.notas { padding-block: var(--sec); }
+.notas__head { max-width: 44rem; margin-bottom: clamp(2.4rem, 5vw, 3.4rem); }
+.notas .stance__grid { margin-top: 0; padding-bottom: 0; }
+@media (min-width: 960px) { .notas .stance__grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+/* Tres fotos: en fila desde tableta; en el móvil, dos arriba y la tercera
+   apaisada debajo, para que ninguna quede sola a media anchura. */
+.gal--3 .gal__it:last-child { grid-column: 1 / -1; }
+.gal--3 .gal__it:last-child .gal__btn { aspect-ratio: 2 / 1; }
+@media (min-width: 720px) {
+  .gal--3 { grid-template-columns: repeat(3, 1fr); }
+  .gal--3 .gal__it:last-child { grid-column: auto; }
+  .gal--3 .gal__it:last-child .gal__btn { aspect-ratio: 1 / 1; }
+}
+
+/* Enlaces a la página de obra nueva desde la portada */
+.scard__t a, .about__text a {
+  color: inherit; text-decoration: underline; text-underline-offset: .18em;
+  text-decoration-thickness: 1px; text-decoration-color: var(--line-2);
+  transition: text-decoration-color .25s ease, color .25s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .scard__t a:hover, .about__text a:hover { text-decoration-color: currentColor; }
+}
+
+/* Menos movimiento: la página entra con un fundido, sin desplazamientos */
+@media (prefers-reduced-motion: reduce) {
+  .sub .migas, .sub__k, .sub__t, .sub__p, .sub__cta, .sub__fig .plate { animation: fadeIn .6s ease both; }
+  .sub__fig .plate img { animation: none; }
+  .fases__list::after { transition: none; transform: scaleY(1); }
+}

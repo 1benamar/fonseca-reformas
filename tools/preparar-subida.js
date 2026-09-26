@@ -2,7 +2,8 @@
    Prepara la web para subirla a Hostinger.
    Uso:  node tools/preparar-subida.js
 
-   1. Regenera la versión en catalán (tools/version-catalana.js).
+   1. Regenera la versión en catalán y las páginas de servicio
+      (tools/version-catalana.js y tools/paginas-servicio.js).
    2. Copia en el Escritorio, en "fonseca-web-publicar", la web completa y
       optimizada: HTML, CSS y JS sin comentarios ni sangrías, datos para Google
       compactados, y solo las imágenes, fuentes y vídeos que se usan de verdad.
@@ -37,7 +38,7 @@ const REGISTRO = path.join(__dirname, ".publicado.json");
 
 /* --- Qué forma parte de la web ------------------------------------------- */
 const PAGINAS = ["index.html", "404.html", "aviso-legal.html", "privacidad.html",
-  "ca/index.html", "ca/avis-legal.html", "ca/privacitat.html"];
+  "ca/index.html", "ca/avis-legal.html", "ca/privacitat.html", "obra-nueva/index.html"];
 const CODIGO = ["styles.css", "main.js", "lib/manifest.js"];
 const SERVIDOR = ["enviar.php", "contar.php", "panel.php", "inc/comun.php", "inc/ajustes.php", "inc/.htaccess"];
 const OTROS = [".htaccess", "robots.txt", "sitemap.xml", "apple-touch-icon.png"];
@@ -184,8 +185,9 @@ async function publicado(rel, binario) {
     return;
   }
 
-  // 1. Catalán al día
+  // 1. Catalán y páginas de servicio al día
   execFileSync(process.execPath, [path.join(__dirname, "version-catalana.js")], { stdio: "inherit" });
+  execFileSync(process.execPath, [path.join(__dirname, "paginas-servicio.js")], { stdio: "inherit" });
 
   // 2. Web completa y optimizada
   const salida = new Map();
