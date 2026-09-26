@@ -11,9 +11,9 @@
 <meta property="og:title" content="Reformas F.S Fonseca · Reformas y obra nueva en Tordera y alrededores">
 <meta property="og:description" content="Reformas y construcción de obra nueva en el Maresme, la Selva y el área de Barcelona. Visita y presupuesto sin compromiso.">
 <meta property="og:url" content="https://reformasfonseca.com/">
-<meta property="og:image" content="https://reformasfonseca.com/assets/img/hero.jpg">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="683">
+<meta property="og:image" content="https://reformasfonseca.com/assets/img/hero-jesus.jpg">
+<meta property="og:image:width" content="2133">
+<meta property="og:image:height" content="1320">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://reformasfonseca.com/">
 <meta property="og:locale" content="es_ES">
@@ -23,9 +23,9 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-serif-display.woff2" crossorigin>
 
-<link rel="preload" as="image" href="assets/img/jesus.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" media="(min-width: 960px)">
-<link rel="stylesheet" href="styles.css?v=20261027">
+<link rel="preload" as="image" href="assets/img/jesus.webp" type="image/webp" fetchpriority="high" media="(max-width: 959px)">
+<link rel="preload" as="image" href="assets/img/hero-jesus.webp" type="image/webp" fetchpriority="high" media="(min-width: 960px)">
+<link rel="stylesheet" href="styles.css?v=20261028">
 
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <!-- La R y la S cambian de color con el tema del navegador: oscuras sobre
@@ -40,7 +40,7 @@
   "name": "Reformas F.S Fonseca",
   "url": "https://reformasfonseca.com/",
   "logo": "https://reformasfonseca.com/apple-touch-icon.png",
-  "image": "https://reformasfonseca.com/assets/img/hero.jpg",
+  "image": "https://reformasfonseca.com/assets/img/hero-jesus.jpg",
   "description": "Empresa de reformas y construcción de Tordera: reformas integrales, baños, cocinas, construcción de obra nueva y ampliaciones, instalaciones de luz, agua y gas con boletín, pladur, pintura, albañilería y movimiento de tierras en el Maresme, la Selva, Barcelona y Girona.",
   "telephone": "+34613766476",
   "email": "reformasf.s.fonseca@gmail.com",
@@ -387,12 +387,13 @@
 <section class="hero" id="hero" aria-labelledby="hero-t">
   <span class="hero__scroll" aria-hidden="true"><i></i></span>
   <div class="hero__plate" data-hero-plate>
-    <img src="assets/img/hero.webp" alt="Salón reformado con techo de madera, grandes ventanales y carpintería a medida" width="1024" height="683" fetchpriority="high" loading="eager">
-    <!-- El vídeo se carga solo si existe el archivo y el visitante no ha pedido
-         menos movimiento ni tiene el ahorro de datos activado. Si falta, se
-         queda la foto de arriba. Ver assets/video/LEEME.txt -->
-    <video class="hero__video" data-hero-video data-src="assets/video/hero.mp4"
-           muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+    <!-- Jesús ocupa toda la portada. En escritorio, una versión apaisada con la
+         pared prolongada a la izquierda para que el titular se lea encima; en
+         móvil, el retrato vertical tal cual. -->
+    <picture>
+      <source media="(max-width: 959px)" srcset="assets/img/jesus.webp" type="image/webp" width="941" height="1671">
+      <img class="hero__retrato" src="assets/img/hero-jesus.webp" alt="Jesús Fonseca, responsable de Reformas F.S Fonseca" width="2133" height="1320" fetchpriority="high" loading="eager">
+    </picture>
   </div>
 
   <div class="wrap hero__in">
@@ -408,12 +409,6 @@
         <a class="hero__tel" href="tel:+34613766476"><span>o llame al</span> <strong data-contact="tel-label">613 76 64 76</strong></a>
       </div>
     </div>
-    <figure class="hero__fig">
-      <div class="plate">
-        <img class="hero__retrato" src="assets/img/jesus.webp" alt="Jesús Fonseca, responsable de Reformas F.S Fonseca" width="941" height="1671" fetchpriority="high" loading="eager" decoding="async">
-      </div>
-      <span class="hero__frame" aria-hidden="true"></span>
-    </figure>
   </div>
 </section>
 
@@ -1003,7 +998,7 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.6 6.6 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.4c0 1.7 1.2 3.3 1.4 3.5a11 11 0 004.2 3.7c1.5.6 2.1.7 2.9.5.5-.1 1.4-.6 1.6-1.2s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-<script defer src="lib/manifest.js?v=20261027"></script>
-<script defer src="main.js?v=20261027"></script>
+<script defer src="lib/manifest.js?v=20261028"></script>
+<script defer src="main.js?v=20261028"></script>
 </body>
 </html>
