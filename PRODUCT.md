@@ -20,7 +20,7 @@ Marketing site for Reformas F.S Fonseca, a small renovation and installations co
 
 ## Positioning
 
-A small company on purpose: the person who quotes the job is the same one who runs it and answers for it. Nine years in the trade, free visit and a written, itemised quote before any work starts.
+A small company on purpose: the person who quotes the job is the same one who runs it and answers for it. Ten years in the trade (since 2016), free visit and a written, itemised quote before any work starts.
 
 ## Operating Context
 
