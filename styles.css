@@ -358,6 +358,7 @@ strong { font-weight: 500; color: var(--ink); }
 .js .hero__k,
 .js .hero__p,
 .js .hero__cta,
+.js .hero__fig,
 .js .hdr__card { animation-play-state: paused; }
 .js.is-revealed .hero__plate,
 .js.is-revealed .hero__plate img,
@@ -365,6 +366,7 @@ strong { font-weight: 500; color: var(--ink); }
 .js.is-revealed .hero__k,
 .js.is-revealed .hero__p,
 .js.is-revealed .hero__cta,
+.js.is-revealed .hero__fig,
 .js.is-revealed .hdr__card { animation-play-state: running; }
 
 /* ---------- PORTADA ----------------------------------------- */
@@ -483,10 +485,10 @@ strong { font-weight: 500; color: var(--ink); }
 .about { padding-block: var(--sec); }
 .about__grid { display: grid; gap: clamp(3.5rem, 7vw, 6.5rem); align-items: center; }
 .about__fig { position: relative; margin: 0 1.6rem 1.6rem 0; }
-.about__fig .plate { aspect-ratio: 4 / 5; }
-/* El retrato es de cuerpo entero y mucho más alto que el marco: se ancla
-   arriba para que entre la cara y el torso, no el centro de las piernas. */
-.about__retrato { object-position: 50% 4%; }
+.about__fig .plate { aspect-ratio: 5 / 4; }
+/* Foto del despacho: el encuadre se corre a la derecha para que entren la
+   pantalla con el logotipo y Jesús, y quede fuera el calendario del borde. */
+.about__foto { object-position: 62% 50%; }
 .about__frame {
   position: absolute; z-index: -1;
   top: 2.4rem; left: 2.4rem; right: -1.6rem; bottom: -1.6rem;
@@ -795,14 +797,6 @@ strong { font-weight: 500; color: var(--ink); }
 /* ---------- PROCESO ----------------------------------------- */
 .steps { padding-block: var(--sec); }
 .steps__head { max-width: 44rem; margin-bottom: clamp(2.8rem, 5vw, 4rem); }
-/* Con foto: el texto a un lado y la imagen del despacho al otro. En móvil,
-   la foto debajo del texto. El encuadre se corre a la derecha para dejar
-   fuera el calendario del borde izquierdo y centrar a Jesús y la pantalla. */
-.steps__head--foto { max-width: none; display: grid; gap: 2.2rem; }
-.steps__head--foto > div { max-width: 44rem; }
-.steps__fig { margin: 0; }
-.steps__fig .plate { aspect-ratio: 3 / 2; }
-.steps__fig img { object-position: 100% 50%; }
 .steps__list { position: relative; display: grid; gap: 2.2rem; }
 .steps__list::before, .steps__list::after {
   content: ""; position: absolute; z-index: -1;
@@ -971,7 +965,6 @@ strong { font-weight: 500; color: var(--ink); }
   .panel__side { padding-left: clamp(2rem, 3vw, 3rem); border-left: 1px solid var(--panel-line); }
 
   .steps__list { grid-template-columns: repeat(5, 1fr); gap: 2rem; }
-  .steps__head--foto { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(3rem, 6vw, 5.5rem); align-items: center; }
   .steps__list::before, .steps__list::after { left: 24px; right: 24px; top: 23px; bottom: auto; width: auto; height: 1px; }
   .steps__list::after { transform: scaleX(0); transform-origin: left; }
   .steps__list.is-drawn::after { transform: scaleX(1); }
@@ -1124,55 +1117,6 @@ strong { font-weight: 500; color: var(--ink); }
   .note, .note__i { transition: background-color .2s ease, border-color .2s ease; }
   .note:hover, .note.is-in:hover { transform: none; }
   .note:hover .note__i, .note.is-in:hover .note__i { transform: none; }
-}
-
-/* =============================================================
-   11. CURSOR DE OBRA
-   ============================================================= */
-/* En toda la página el cursor es un martillo de uña: cabeza de acero, uña
-   curva y mango en el azul de la marca, con contorno oscuro para que se lea
-   sobre el fondo, sobre las fotos y sobre el blanco. El punto activo es la
-   cara que golpea, arriba del todo. Solo los campos donde se escribe
-   conservan el cursor de texto, para saber dónde cae la letra.
-   En táctiles no hay cursor, y Safari, que no admite cursores en SVG, se
-   queda con los de siempre. */
-@media (hover: hover) and (pointer: fine) {
-  html, *:not(input):not(textarea), input[type="range"] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-45 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 18 2, auto !important;
-  }
-}
-
-/* Al hacer clic el martillo da el golpe: durante un instante el cursor pasa a
-   la cabeza inclinada hacia delante y, donde cae, salta un pequeño impacto en
-   el azul de la marca. Quien pide menos movimiento no ve el impacto. */
-@media (hover: hover) and (pointer: fine) {
-  html.is-golpe, html.is-golpe *:not(input):not(textarea), html.is-golpe input[type="range"] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-65 20 20)' stroke='%230a1119' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='17.3' y='13' width='5.4' height='25' rx='2' fill='%232e8bff'/%3E%3Cpath d='M16 4.5h8v10h-8z' fill='%23c9d3dd'/%3E%3Cpath d='M24 5.5h9.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H24z' fill='%23eef4fb'/%3E%3Cpath d='M16 5.5C11 5.5 6.5 7.5 4 12.5c3-2 6.5-3 12-2.5z' fill='%23eef4fb'/%3E%3C/g%3E%3C/svg%3E%0A") 14 2, auto !important;
-  }
-}
-.golpe {
-  position: fixed; z-index: 2147483000; pointer-events: none;
-  width: 34px; height: 34px; margin: -17px 0 0 -17px;
-}
-.golpe::before {
-  content: ""; position: absolute; inset: 9px;
-  border: 2px solid var(--marca); border-radius: 50%;
-  animation: golpe-onda .42s var(--ease-out) forwards;
-}
-.golpe i {
-  position: absolute; left: 50%; top: 50%;
-  width: 2px; height: 7px; margin: -3.5px 0 0 -1px;
-  background: var(--marca);
-  transform: rotate(var(--a)) translateY(-7px);
-  animation: golpe-chispa .38s var(--ease-out) forwards;
-}
-@keyframes golpe-onda {
-  from { transform: scale(.3); opacity: 1; }
-  to   { transform: scale(1.5); opacity: 0; }
-}
-@keyframes golpe-chispa {
-  from { transform: rotate(var(--a)) translateY(-6px) scaleY(1); opacity: 1; }
-  to   { transform: rotate(var(--a)) translateY(-17px) scaleY(.3); opacity: 0; }
 }
 
 /* =============================================================
@@ -1519,4 +1463,53 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
   .hero__scroll { display: none; }
   .js [data-reveal="kicker"]:not(.is-in) { transform: none; }
   .btn--slate::before, .scard__img::after { transition-duration: .01s; }
+}
+
+/* =============================================================
+   17. PORTADA CON EL RETRATO DE JESÚS
+   ============================================================= */
+/* Móvil y tableta: el retrato ocupa el fondo de la portada, empezando bajo la
+   cabecera para que no le tape la cara, y se oscurece por abajo para que el
+   titular se lea encima. El vídeo no se carga: no se vería.
+   Escritorio: el vídeo sigue de fondo y el retrato va a la derecha del
+   titular, enmarcado igual que las demás fotos de la web. */
+.hero__fig { margin: 0; animation: fadeIn 1.1s .1s ease both; }
+.hero__fig .plate { background: var(--night); }
+.hero__retrato { object-position: 50% 0; }
+@media (max-width: 959px) {
+  .hero__plate { display: none; }
+  .hero__fig {
+    position: absolute; z-index: -1; left: 0; right: 0; bottom: 0;
+    top: calc(var(--hdr-h) + var(--hdr-top));
+  }
+  .hero__fig .plate { height: 100%; }
+  .hero__fig::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(0deg, rgba(14,18,21,.94) 0%, rgba(14,18,21,.82) 38%, rgba(14,18,21,.3) 64%, rgba(14,18,21,.12) 100%);
+  }
+  .hero__frame { display: none; }
+}
+@media (min-width: 960px) {
+  .hero__in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(2.5rem, 4vw, 3.5rem); align-items: end; }
+  /* El titular cede un poco de tamaño para que cada línea siga entrando
+     entera al lado del retrato. */
+  .hero__t { font-size: clamp(2rem, 3.3vw, 3.1rem); }
+  .hero__fig {
+    position: relative; align-self: end;
+    width: min(clamp(15rem, 22vw, 20rem), calc((100svh - 17rem) * .75));
+    margin: 0 1.6rem 1.6rem 0;
+    animation: fadeUp .9s .4s var(--ease-out) both;
+  }
+  .hero__fig .plate { aspect-ratio: 3 / 4; box-shadow: 0 30px 60px -20px rgba(0,0,0,.55); }
+  .hero__retrato { object-position: 50% 2%; }
+  .hero__frame {
+    position: absolute; z-index: -1;
+    top: 1.6rem; left: 1.6rem; right: -1.6rem; bottom: -1.6rem;
+    border: 1px solid var(--marca);
+  }
+  .hero__scroll { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__fig { animation: fadeIn .8s ease both; }
 }
