@@ -628,7 +628,6 @@ function montar(s, idioma) {
 <meta property="og:locale" content="${c.locale}">
 
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/oswald.woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=${P.version}">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
