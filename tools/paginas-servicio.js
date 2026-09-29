@@ -495,7 +495,7 @@ ${P.franja}
       <p class="lede" data-reveal="up" data-d="1">${t.fasesP}</p>
       <a class="more" href="#contacto" data-prefill="${t.prefill}" data-reveal="up" data-d="2">${c.pedir}</a>
     </div>
-    <ol class="fases__list" data-dibujo>
+    <ol class="fases__list">
 ${t.fases.map(([titulo, texto], i) => `      <li class="fase" data-reveal="up">
         <span class="fase__n" aria-hidden="true">0${i + 1}</span>
         <div><h3 class="fase__t">${titulo}</h3>

@@ -1766,3 +1766,10 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 @media (pointer: coarse) { .foot__serv a { display: inline-block; padding-block: .45rem; } }
 .svc__also a { color: inherit; text-decoration: underline; text-underline-offset: .18em; text-decoration-color: var(--line-2); }
 @media (hover: hover) and (pointer: fine) { .svc__also a:hover { text-decoration-color: currentColor; } }
+
+/* Fases de las páginas de servicio: sin línea que se dibuja. Cada fase entra
+   con un fundido suave hacia arriba (data-reveal) y el número ya viene
+   marcado en azul, sin cambios al llegar. */
+.fases__list::before, .fases__list::after { display: none; }
+.fase__n, .fase.is-in .fase__n { border-color: var(--marca); color: var(--ink); background: #10233a; transition: none; }
+.fase[data-reveal] { transition-duration: .7s, .8s; }
