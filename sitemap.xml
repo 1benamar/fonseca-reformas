@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://reformasfonseca.com/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/"/>
     <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/"/>
@@ -40,14 +40,14 @@
   </url>
   <url>
     <loc>https://reformasfonseca.com/ca/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/"/>
     <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/"/>
   </url>
   <url>
     <loc>https://reformasfonseca.com/obra-nueva/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/obra-nueva/"/>
     <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/obra-nova/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/obra-nueva/"/>
@@ -56,9 +56,57 @@
   </url>
   <url>
     <loc>https://reformasfonseca.com/ca/obra-nova/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/obra-nueva/"/>
     <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/obra-nova/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/obra-nueva/"/>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/reformas-integrales/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/reformas-integrales/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/reformes-integrals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/reformas-integrales/"/>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/s-integral.jpg</image:loc></image:image>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/o-aislamiento.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/ca/reformes-integrals/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/reformas-integrales/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/reformes-integrals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/reformas-integrales/"/>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/pladur/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/pladur/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/pladur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/pladur/"/>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/o-tabique.jpg</image:loc></image:image>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/despues.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/ca/pladur/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/pladur/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/pladur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/pladur/"/>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/suelos-albanileria/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/suelos-albanileria/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/paviments-paleteria/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/suelos-albanileria/"/>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/s-suelos.jpg</image:loc></image:image>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/o-gres.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/ca/paviments-paleteria/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/suelos-albanileria/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/paviments-paleteria/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/suelos-albanileria/"/>
   </url>
 </urlset>

@@ -1686,7 +1686,7 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 .banda__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 /* La foto se amplía un poco hacia la excavadora: así queda fuera la cabina
    de obra del borde izquierdo, que no aporta nada. */
-.banda__foto img { transform: scale(1.24); transform-origin: 100% 55%; }
+.banda--tierras .banda__foto img { transform: scale(1.24); transform-origin: 100% 55%; }
 .banda::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
@@ -1748,3 +1748,21 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 .copiar:active { transform: scale(.97); }
 .copiar.is-hecho { color: var(--marca); border-color: var(--marca); }
 @media (hover: hover) and (pointer: fine) { .copiar:hover { color: var(--ink); border-color: var(--ink-2); } }
+
+/* Galería de dos fotos (páginas de servicio): siempre en pareja y sin
+   crecer demasiado en pantallas anchas. */
+.gal--2 { grid-template-columns: repeat(2, 1fr); max-width: 52rem; }
+@media (min-width: 1000px) { .gal--2 { grid-template-columns: repeat(2, 1fr); } }
+
+/* Antes y después en la página de pladur: mismo comparador que la portada */
+.antes { padding-block: var(--sec); background: var(--mist); }
+
+/* Pie: una línea con las páginas de servicio, entre los datos y el aviso
+   legal. Enlaza todas las páginas desde cualquier página de la web. */
+.foot__serv { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: 2.4rem; font-size: .9rem; }
+.foot__serv a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); transition: color .25s ease; }
+.foot__serv a[aria-current] { color: var(--ink); text-decoration-color: var(--marca); }
+@media (hover: hover) and (pointer: fine) { .foot__serv a:hover { color: var(--ink); } }
+@media (pointer: coarse) { .foot__serv a { display: inline-block; padding-block: .45rem; } }
+.svc__also a { color: inherit; text-decoration: underline; text-underline-offset: .18em; text-decoration-color: var(--line-2); }
+@media (hover: hover) and (pointer: fine) { .svc__also a:hover { text-decoration-color: currentColor; } }

@@ -53,19 +53,7 @@ const FAQ = [
    "Sí. Fem les instal·lacions de llum, aigua i gas amb el seu butlletí, de manera que queden certificades i en regla."],
   ["¿En qué poblaciones trabajan?", "En quines poblacions treballen?"],
   ["Trabajamos desde Tordera en el Maresme, la Selva y el área de Barcelona y Girona: Tordera, Blanes, Lloret de Mar, Malgrat de Mar, Palafolls, Pineda de Mar, Calella, Mataró, Girona y Barcelona. Si su población no está en la lista, pregúntenos.",
-   "Treballem des de Tordera al Maresme, la Selva i l’àrea de Barcelona i Girona: Tordera, Blanes, Lloret de Mar, Malgrat de Mar, Palafolls, Pineda de Mar, Calella, Mataró, Girona i Barcelona. Si la seva població no és a la llista, pregunti’ns."],
-  ["¿Hacen también trabajos pequeños o un solo oficio?", "També fan feines petites o un sol ofici?"],
-  ["Sí. Tanto una obra completa como un solo oficio: pintura, pladur, albañilería, bajantes o una reparación que conviene hacer bien y de una vez.",
-   "Sí. Tant una obra completa com un sol ofici: pintura, pladur, paleteria, baixants o una reparació que convé fer bé i d’una vegada."],
-  ["¿Puedo seguir viviendo en casa durante la obra?", "Puc continuar vivint a casa durant l’obra?"],
-  ["Sí, trabajamos también en viviendas habitadas. Protegemos suelos, muebles y accesos antes de mover nada y dejamos la casa recogida al terminar cada jornada.",
-   "Sí, també treballem en habitatges habitats. Protegim terres, mobles i accessos abans de moure res i deixem la casa endreçada en acabar cada jornada."],
-  ["¿Quién se encarga de los permisos y de los escombros?", "Qui s’encarrega dels permisos i de la runa?"],
-  ["Le decimos qué permisos hacen falta y, si lo prefiere, los tramitamos nosotros. El contenedor, la carga y la retirada de escombros van incluidos en el presupuesto.",
-   "Li diem quins permisos calen i, si ho prefereix, els tramitem nosaltres. El contenidor, la càrrega i la retirada de la runa van inclosos al pressupost."],
-  ["¿Con quién trato durante la obra?", "Amb qui tracto durant l’obra?"],
-  ["Con la misma persona de principio a fin: quien le presupuesta la reforma es quien la dirige y quien responde, también cuando entran otros gremios. Si lo prefiere, le entregamos la obra llave en mano.",
-   "Amb la mateixa persona de principi a fi: qui li pressuposta la reforma és qui la dirigeix i qui en respon, també quan entren altres gremis. Si ho prefereix, li lliurem l’obra clau en mà."]
+   "Treballem des de Tordera al Maresme, la Selva i l’àrea de Barcelona i Girona: Tordera, Blanes, Lloret de Mar, Malgrat de Mar, Palafolls, Pineda de Mar, Calella, Mataró, Girona i Barcelona. Si la seva població no és a la llista, pregunti’ns."]
 ];
 
 /* --- Servicios en los datos para Google ----------------------------------- */
@@ -97,6 +85,8 @@ const DESCRIPCION = "Empresa de reformes i construcció de Tordera: reformes int
 
 /* --- Textos de la página, de arriba abajo --------------------------------- */
 const TEXTOS = [
+  // Pie: páginas de servicio (va primero: más abajo se traduce «Servicios»)
+  ["    <nav class=\"foot__serv\" aria-label=\"Servicios\">\n      <a href=\"/obra-nueva/\">Obra nueva</a>\n      <a href=\"/reformas-integrales/\">Reformas integrales</a>\n      <a href=\"/pladur/\">Pladur y techos</a>\n      <a href=\"/suelos-albanileria/\">Suelos y albañilería</a>\n    </nav>\n", "    <nav class=\"foot__serv\" aria-label=\"Serveis\">\n      <a href=\"/ca/obra-nova/\">Obra nova</a>\n      <a href=\"/ca/reformes-integrals/\">Reformes integrals</a>\n      <a href=\"/ca/pladur/\">Pladur i sostres</a>\n      <a href=\"/ca/paviments-paleteria/\">Paviments i paleteria</a>\n    </nav>\n"],
   // Pantalla de carga, cabecera y menú
   ['aria-label="Cargando"', 'aria-label="Carregant"'],
   [">Saltar al contenido</a>", ">Salta al contingut</a>"],
@@ -177,7 +167,7 @@ const TEXTOS = [
   ['aria-label="Servicio siguiente"', 'aria-label="Servei següent"'],
   ['aria-label="Servicios"', 'aria-label="Serveis"'],
   ['alt="Planta diáfana con tabiquería y falso techo de pladur terminados"', 'alt="Planta diàfana amb envans i fals sostre de pladur acabats"'],
-  [">Reformas integrales</h3>", ">Reformes integrals</h3>"],
+  ['><a href="/reformas-integrales/">Reformas integrales</a></h3>', '><a href="/ca/reformes-integrals/">Reformes integrals</a></h3>'],
   ["<p>Nueva distribución, instalaciones con boletín y acabados. Le entregamos la vivienda limpia y lista para entrar a vivir.</p>",
    "<p>Nova distribució, instal·lacions amb butlletí i acabats. Li lliurem l’habitatge net i a punt per entrar-hi a viure.</p>"],
   [">Pedir presupuesto</a>", ">Demani pressupost</a>"],
@@ -201,12 +191,12 @@ const TEXTOS = [
   ["<p>Alisado, plastecido y pintura, con ayuda para elegir el color y todo lo demás protegido.</p>",
    "<p>Allisat, emmassillat i pintura, amb ajuda per triar el color i la resta de la casa protegida.</p>"],
   ['alt="Porche exterior solado con gres imitación piedra"', 'alt="Porxo exterior pavimentat amb gres imitació pedra"'],
-  [">Suelos y albañilería</h3>", ">Paviments i paleteria</h3>"],
+  ['><a href="/suelos-albanileria/">Suelos y albañilería</a></h3>', '><a href="/ca/paviments-paleteria/">Paviments i paleteria</a></h3>'],
   ["<p>Solados, terrazas, humedades y reparaciones que conviene hacer bien y de una sola vez.</p>",
    "<p>Paviments, terrasses, humitats i reparacions que convé fer bé i d’una sola vegada.</p>"],
   ['data-prefill="Albañilería"', 'data-prefill="Paleteria"'],
-  [">También hacemos la <strong>instalación de luz, agua y gas con boletín certificado</strong>, <strong>pladur y techos</strong>, <strong>aire acondicionado</strong>, <strong>movimiento de tierras</strong>, paletería, bajantes, armarios a medida, aislamiento acústico y pequeñas reparaciones. Si lo prefiere, entregamos la obra <strong>llave en mano</strong>.</p>",
-   ">També fem la <strong>instal·lació de llum, aigua i gas amb butlletí certificat</strong>, <strong>pladur i sostres</strong>, <strong>aire condicionat</strong>, <strong>moviment de terres</strong>, paleteria, baixants, armaris a mida, aïllament acústic i petites reparacions. Si ho prefereix, lliurem l’obra <strong>clau en mà</strong>.</p>"],
+  [">También hacemos la <strong>instalación de luz, agua y gas con boletín certificado</strong>, <strong><a href=\"/pladur/\">pladur y techos</a></strong>, <strong>aire acondicionado</strong>, <strong>movimiento de tierras</strong>, paletería, bajantes, armarios a medida, aislamiento acústico y pequeñas reparaciones. Si lo prefiere, entregamos la obra <strong>llave en mano</strong>.</p>",
+   ">També fem la <strong>instal·lació de llum, aigua i gas amb butlletí certificat</strong>, <strong><a href=\"/ca/pladur/\">pladur i sostres</a></strong>, <strong>aire condicionat</strong>, <strong>moviment de terres</strong>, paleteria, baixants, armaris a mida, aïllament acústic i petites reparacions. Si ho prefereix, lliurem l’obra <strong>clau en mà</strong>.</p>"],
 
   // Obras
   [">Obras</p>", ">Obres</p>"],
