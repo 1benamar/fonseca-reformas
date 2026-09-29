@@ -27,6 +27,33 @@ if (strlen($ajustes['clave_panel']) < 20 || !hash_equals($ajustes['clave_panel']
     exit;
 }
 
+// Correo de avisos: guardar el buzón o mandar una prueba
+$aviso = null;
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' && origen_propio()) {
+    $accion = isset($_POST['accion']) ? (string) $_POST['accion'] : '';
+    if ($accion === 'buzon') {
+        $cuentaNueva = strtolower(trim(isset($_POST['cuenta']) ? (string) $_POST['cuenta'] : ''));
+        $claveNueva = isset($_POST['clave']) ? (string) $_POST['clave'] : '';
+        if (!filter_var($cuentaNueva, FILTER_VALIDATE_EMAIL) || $claveNueva === '') {
+            $aviso = ['mal', 'Escriba la cuenta completa y la contraseña de aplicación.'];
+        } elseif (correo_guardar_buzon($cuentaNueva, $claveNueva)) {
+            $aviso = ['bien', 'Cuenta guardada. Ahora pulse «Enviar correo de prueba» para comprobar que llega.'];
+        } else {
+            $aviso = ['mal', 'No se pudo guardar: la carpeta de datos no deja escribir.'];
+        }
+    } elseif ($accion === 'prueba') {
+        $salio = correo_enviar('Prueba de los avisos de la web', "Este es un correo de prueba enviado desde el panel de reformasfonseca.com.\r\n\r\nSi lo está leyendo en la bandeja de entrada, los avisos del formulario le llegan bien.");
+        if ($salio && $GLOBALS['correo_error'] === '') {
+            $aviso = ['bien', 'Correo de prueba enviado a ' . $ajustes['correo_destino'] . (correo_buzon() ? ' por el buzón del dominio' : ' con el correo básico del servidor, que puede acabar en spam o no llegar') . '. Mire la bandeja de entrada.'];
+        } elseif ($salio) {
+            $aviso = ['mal', 'El buzón falló (' . $GLOBALS['correo_error'] . '). Se ha enviado con el correo básico del servidor, que puede no llegar.'];
+        } else {
+            $aviso = ['mal', 'No se pudo enviar. ' . $GLOBALS['correo_error']];
+        }
+    }
+}
+$buzon = correo_buzon();
+
 $dias = leer_json('contador.json');
 $solicitudes = array_reverse(leer_json('solicitudes.json'));
 $claves = ['visita_es', 'visita_ca', 'llamada', 'whatsapp', 'formulario'];
@@ -117,6 +144,16 @@ function cifra($numero, $texto, $detalle)
   .pp-nota { margin-top: 1rem; padding: 1rem 1.2rem; border-left: 2px solid var(--marca); background: var(--paper); font-size: .92rem; }
   .pp-nota p { margin-top: .35rem; }
   .pp-nota p:first-child { margin-top: 0; }
+  .pp-form { display: grid; gap: 1rem; max-width: 30rem; margin-top: 1.4rem; }
+  .pp-form label { display: grid; gap: .4rem; }
+  .pp-form span { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .pp-form input { padding: .75rem .9rem; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line-2); }
+  .pp-form input:focus { outline: 2px solid var(--marca); outline-offset: 1px; }
+  .pp-form .btn { justify-self: start; }
+  .pp-msg { padding: .9rem 1.1rem; border-left: 2px solid; }
+  .pp-msg--bien { border-color: #3fb27f; color: var(--ink); }
+  .pp-msg--mal { border-color: var(--error); color: var(--error); }
+  .pp .more { background-color: transparent; border: 0; cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body class="legal">
@@ -188,6 +225,24 @@ function cifra($numero, $texto, $detalle)
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
+
+  <h2 id="correo">Correo de avisos</h2>
+  <?php if ($aviso): ?><p class="pp-msg pp-msg--<?= e($aviso[0]) ?>"><?= e($aviso[1]) ?></p><?php endif; ?>
+  <div class="pp-nota">
+    <p><strong>Cuenta que envía los avisos:</strong> <?= $buzon ? e($buzon['cuenta']) . ' — configurada' : '<span class="pp-aviso">sin configurar: los avisos salen con el correo básico del servidor y Gmail puede rechazarlos</span>' ?>.</p>
+    <p>Lo más sencillo: la propia cuenta de Gmail de Jesús, con una <strong>contraseña de aplicación</strong> (se crea en myaccount.google.com/apppasswords; hace falta tener activada la verificación en dos pasos). No es la contraseña normal de Gmail. También sirve un buzón del dominio creado en Hostinger, con su contraseña.</p>
+    <p>La contraseña se guarda en el servidor, fuera de la web, y no se vuelve a mostrar.</p>
+  </div>
+  <form class="pp-form" method="post" action="?k=<?= e($clave) ?>#correo" autocomplete="off">
+    <input type="hidden" name="accion" value="buzon">
+    <label><span>Cuenta de correo</span><input type="email" name="cuenta" value="<?= e($buzon ? $buzon['cuenta'] : $ajustes['correo_destino']) ?>" required></label>
+    <label><span>Contraseña de aplicación</span><input type="password" name="clave" required autocomplete="new-password"></label>
+    <button class="btn btn--slate" type="submit"><span>Guardar cuenta</span></button>
+  </form>
+  <form method="post" action="?k=<?= e($clave) ?>#correo" style="margin-top:1.2rem">
+    <input type="hidden" name="accion" value="prueba">
+    <button class="more" type="submit">Enviar correo de prueba a <?= e($ajustes['correo_destino']) ?></button>
+  </form>
 
   <h2>Estado</h2>
   <div class="pp-nota">

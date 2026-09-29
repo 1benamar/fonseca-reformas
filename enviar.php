@@ -117,10 +117,6 @@ function terminar($ok, $error = '', $codigo = 200)
 /** Manda la solicitud al correo de Jesús. Devuelve si el servidor la aceptó. */
 function enviar_correo(array $s, array $ajustes)
 {
-    if (!function_exists('mail')) {
-        return false;
-    }
-
     // Enlace para contestar por WhatsApp, si el teléfono lo permite.
     $cifras = (string) preg_replace('/\D+/', '', $s['telefono']);
     $wa = '';
@@ -150,44 +146,10 @@ function enviar_correo(array $s, array $ajustes)
     $lineas[] = 'Recibida el ' . date('d/m/Y', $s['t']) . ' a las ' . date('H:i', $s['t']) . '.';
     $lineas[] = '';
     $lineas[] = '--';
-    $lineas[] = 'Este correo lo envía el formulario de reformasfonseca.com. Para contestar, llame o escriba al cliente: si responde a este correo, no le llegará.';
+    $lineas[] = 'Este correo lo envía el formulario de reformasfonseca.com. Para contestar, llame o escriba al cliente: si responde a este correo, al cliente no le llega.';
 
     $asunto = 'Solicitud de visita: ' . $s['nombre'] . ($s['poblacion'] !== '' ? ' (' . $s['poblacion'] . ')' : '');
-    $remitente = $ajustes['correo_remitente'];
-    $cabeceras = implode("\r\n", [
-        'From: "Web Reformas F.S Fonseca" <' . $remitente . '>',
-        'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=UTF-8',
-        'Content-Transfer-Encoding: base64',
-        'X-Mailer: reformasfonseca.com',
-    ]);
-    // El cuerpo va en base64: así ninguna línea del mensaje, por larga que
-    // sea, rompe el envío, y las tildes llegan bien.
-    $cuerpo = chunk_split(base64_encode(implode("\r\n", $lineas)), 76, "\n");
-
-    return (bool) @mail($ajustes['correo_destino'], asunto_codificado($asunto), $cuerpo, $cabeceras);
-}
-
-/** Asunto con tildes, partido en trozos cortos como pide la norma del correo. */
-function asunto_codificado($asunto)
-{
-    $letras = preg_split('//u', $asunto, -1, PREG_SPLIT_NO_EMPTY);
-    if (!$letras) {
-        return 'Solicitud de visita';
-    }
-    $trozos = [];
-    $actual = '';
-    foreach ($letras as $l) {
-        if (strlen($actual . $l) > 42) {
-            $trozos[] = $actual;
-            $actual = '';
-        }
-        $actual .= $l;
-    }
-    $trozos[] = $actual;
-    return implode(' ', array_map(function ($t) {
-        return '=?UTF-8?B?' . base64_encode($t) . '?=';
-    }, $trozos));
+    return correo_enviar($asunto, implode("\r\n", $lineas));
 }
 
 /** Página de respuesta para quien envía el formulario sin JavaScript. */
