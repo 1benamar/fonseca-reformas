@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reformasfonseca.com/sitemap.xml
