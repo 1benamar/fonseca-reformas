@@ -1820,3 +1820,17 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 .banda::after {
   background: linear-gradient(0deg, rgba(10,17,25,.9) 0%, rgba(10,17,25,.5) 42%, rgba(10,17,25,.1) 100%);
 }
+
+/* El vídeo de la galería se comporta como las fotos: el pie solo aparece
+   al pasar el ratón (en pantallas táctiles se ven todos) y la imagen se
+   acerca un poco, igual que el resto. */
+.gal__it--video { overflow: hidden; }
+.gal__it--video video { transition: transform .9s var(--ease-out); }
+.gal__it--video .gal__pie { opacity: 0; transform: translateY(6px); }
+@media (hover: hover) and (pointer: fine) {
+  .gal__it--video:hover video { transform: scale(1.06); }
+  .gal__it--video:hover .gal__pie { opacity: 1; transform: none; }
+}
+@media (hover: none) {
+  .gal__it--video .gal__pie { opacity: 1; transform: none; }
+}
