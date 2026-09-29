@@ -298,6 +298,7 @@ const TEXTOS = [
   ["<dt>Teléfono</dt>", "<dt>Telèfon</dt>"],
   [">Escribir por WhatsApp</a>", ">Escriure per WhatsApp</a>"],
   ["<dt>Horario</dt>", "<dt>Horari</dt>"],
+  ["<dt>Correo</dt>", "<dt>Correu</dt>"],
   ["<dd>Lunes a viernes, de 9:00 a 19:30</dd>", "<dd>De dilluns a divendres, de 9:00 a 19:30</dd>"],
   [">Trabajamos habitualmente en</p>", ">Treballem habitualment a</p>"],
 

@@ -1733,3 +1733,6 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
   .sub__fig .plate img { animation: none; }
   .fases__list::after { transition: none; transform: scaleY(1); }
 }
+
+/* El correo es largo: en pantallas estrechas parte de línea en vez de salirse */
+[data-contact="mail"] { overflow-wrap: anywhere; }
