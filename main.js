@@ -658,6 +658,41 @@
     }, true);
   }
 
+  /* ---------------------------------------------------------------------------
+     Botón «Copiar» del correo: copia la dirección y avisa un momento
+  --------------------------------------------------------------------------- */
+  function initCopiar() {
+    $$("[data-copiar]").forEach(function (b) {
+      var texto = b.textContent;
+      b.addEventListener("click", function () {
+        var valor = b.getAttribute("data-copiar");
+        var hecho = function () {
+          b.textContent = b.getAttribute("data-hecho") || texto;
+          b.classList.add("is-hecho");
+          setTimeout(function () { b.textContent = texto; b.classList.remove("is-hecho"); }, 2000);
+        };
+        // Se copia en el mismo clic (el método clásico no espera a nada) y
+        // también con el moderno por si el clásico no está; el aviso sale ya.
+        copiarAntiguo(valor);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(valor).catch(function () {});
+        }
+        hecho();
+      });
+    });
+    function copiarAntiguo(valor) {
+      var t = document.createElement("textarea");
+      t.value = valor;
+      t.setAttribute("readonly", "");
+      t.style.position = "fixed";
+      t.style.opacity = "0";
+      document.body.appendChild(t);
+      t.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      t.remove();
+    }
+  }
+
   function initYear() {
     $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
   }
@@ -677,6 +712,7 @@
     safe(initPrefill, "prefill");
     safe(initForm, "form");
     safe(initYear, "year");
+    safe(initCopiar, "copiar");
     safe(initContar, "contar");
   }
 

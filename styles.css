@@ -1736,3 +1736,15 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 
 /* El correo es largo: en pantallas estrechas parte de línea en vez de salirse */
 [data-contact="mail"] { overflow-wrap: anywhere; }
+
+/* Botón para copiar el correo: por si quien visita no tiene programa de
+   correo en el ordenador y el enlace no abre nada. */
+.copiar {
+  display: inline-block; margin-left: .5rem; padding: .35rem .6rem;
+  font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-2); border: 1px solid var(--line-2);
+  transition: color .2s ease, border-color .2s ease, transform .16s var(--ease-out);
+}
+.copiar:active { transform: scale(.97); }
+.copiar.is-hecho { color: var(--marca); border-color: var(--marca); }
+@media (hover: hover) and (pointer: fine) { .copiar:hover { color: var(--ink); border-color: var(--ink-2); } }

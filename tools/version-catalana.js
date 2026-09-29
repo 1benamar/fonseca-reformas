@@ -299,6 +299,7 @@ const TEXTOS = [
   [">Escribir por WhatsApp</a>", ">Escriure per WhatsApp</a>"],
   ["<dt>Horario</dt>", "<dt>Horari</dt>"],
   ["<dt>Correo</dt>", "<dt>Correu</dt>"],
+  ['data-hecho="Copiado" aria-label="Copiar el correo"', 'data-hecho="Copiat" aria-label="Copiar el correu"'],
   ["<dd>Lunes a viernes, de 9:00 a 19:30</dd>", "<dd>De dilluns a divendres, de 9:00 a 19:30</dd>"],
   [">Trabajamos habitualmente en</p>", ">Treballem habitualment a</p>"],
 
