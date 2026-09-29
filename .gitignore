@@ -23,3 +23,6 @@ inc/ajustes.php
 
 # Registro local de lo que ya está publicado (lo usa tools/preparar-subida.js)
 tools/.publicado.json
+
+# Carpeta de trabajo de la rama "web" (tools/publicar-git.js)
+.web/
