@@ -1784,3 +1784,39 @@ mark.falta { background: #e08a6f; color: #111a24; padding: 0 .3em; font-weight: 
 }
 @media (min-width: 720px) { .car--rejilla { grid-template-columns: repeat(2, 1fr); grid-auto-columns: auto; } }
 @media (min-width: 960px) { .car--rejilla { grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; } }
+
+/* --- 21. Secciones con fotografía: todo centrado -------------------
+   Servicios, obras, antes y después y la banda de las páginas de
+   servicio. Encabezado centrado sobre las fotos, textos breves y
+   centrados bajo cada una. El antetítulo lleva raya a los dos lados
+   para que quede equilibrado en el eje. */
+.svc__head { justify-content: center; text-align: center; }
+.svc__head > div { margin-inline: auto; }
+.svc__head .lede, .obras__lede { margin-inline: auto; }
+.svc__head .kicker, .obras .kicker, .antes .kicker { justify-content: center; }
+.svc__head .kicker::after, .obras .kicker::after, .antes .kicker::after {
+  content: ""; flex: none; width: 1.8rem; height: 1px; background: currentColor; transform-origin: right;
+}
+.svc__head .kicker.is-in::after, .obras .kicker.is-in::after, .antes .kicker.is-in::after { animation: drawX .8s .1s var(--ease-out) backwards; }
+.svc__head [data-reveal="kicker"]:not(.is-in), .obras [data-reveal="kicker"]:not(.is-in), .antes [data-reveal="kicker"]:not(.is-in) { transform: translateY(6px); }
+.obras__t { margin-inline: auto; }
+.obras .wrap > .kicker, .obras .wrap > .h2, .obras .wrap > .lede,
+.antes .wrap > .kicker, .antes .wrap > .h2, .antes .wrap > .lede { text-align: center; }
+
+.scard { text-align: center; }
+.scard p { max-width: 34ch; margin-inline: auto; }
+.scard .more { align-self: center; }
+.scard__img::after { transform-origin: center; }
+@media (hover: hover) and (pointer: fine) {
+  .scard:hover .scard__img::after { transform-origin: center; }
+}
+.svc__also { margin-inline: auto; text-align: center; }
+
+.cmp figcaption { margin-inline: auto; text-align: center; }
+.gal__pie { text-align: center; }
+
+.banda__in { text-align: center; }
+.banda__t { margin-inline: auto; }
+.banda::after {
+  background: linear-gradient(0deg, rgba(10,17,25,.9) 0%, rgba(10,17,25,.5) 42%, rgba(10,17,25,.1) 100%);
+}
