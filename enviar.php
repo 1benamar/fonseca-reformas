@@ -43,6 +43,18 @@ if ($nombre === '' || strlen($cifras) < 9 || strlen($cifras) > 15 || !$acepta) {
     terminar(false, 'datos', 422);
 }
 
+// Publicidad de agencias (SEO, posicionamiento, diseño web): se contesta que
+// todo fue bien, no se avisa a Jesús y se guarda una copia aparte para poder
+// revisar que no se haya descartado a un cliente.
+if (es_publicidad($nombre . ' ' . $poblacion . ' ' . $tipo . ' ' . $mensaje)) {
+    actualizar_json('descartadas.json', function ($lista) use ($nombre, $telefono, $mensaje) {
+        $lista = is_array($lista) ? $lista : [];
+        $lista[] = ['t' => time(), 'nombre' => $nombre, 'telefono' => $telefono, 'mensaje' => function_exists('mb_substr') ? mb_substr($mensaje, 0, 400, 'UTF-8') : substr($mensaje, 0, 400)];
+        return [array_slice($lista, -50), 'descartada'];
+    });
+    terminar(true);
+}
+
 $ajustes = ajustes();
 $ahora = time();
 $solicitud = [
@@ -103,6 +115,18 @@ terminar(false, 'envio', 502);
 /* ---------------------------------------------------------------------------
    Funciones
 --------------------------------------------------------------------------- */
+
+/** Detecta mensajes de agencias que ofrecen SEO, posicionamiento o webs:
+ *  piden "Google", "SEO" o "ranking" junto a un enlace, o usan frases típicas
+ *  de venta en inglés. Un cliente de reformas no suele escribir nada de eso. */
+function es_publicidad($t)
+{
+    $t = function_exists('mb_strtolower') ? mb_strtolower($t, 'UTF-8') : strtolower($t);
+    $enlace = preg_match('~https?://|www\.|\b[a-z0-9-]+\.(com|net|pro|org|io|co|info|biz|online|xyz)\b~u', $t) === 1;
+    $oferta = preg_match('~\bseo\b|search index|first page|1st page|top google|google.{0,30}(ranking|rankings|search results)|backlink|web ?design|guest post|link ?building|posicionamiento web|primera p[aá]gina de google|dise[ñn]o de p[aá]ginas? web~u', $t) === 1;
+    $ingles = preg_match('~\b(your website|our team|i can help|we can help|would you have some time|best regards|digital marketing|marketing agency)\b~u', $t) === 1;
+    return ($enlace && $oferta) || $ingles || $oferta;
+}
 
 /** Contesta y termina: JSON para el script, página sencilla sin JavaScript. */
 function terminar($ok, $error = '', $codigo = 200)
