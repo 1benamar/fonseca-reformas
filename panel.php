@@ -56,6 +56,7 @@ $buzon = correo_buzon();
 
 $dias = leer_json('contador.json');
 $solicitudes = array_reverse(leer_json('solicitudes.json'));
+$descartadas = array_reverse(leer_json('descartadas.json'));
 $claves = ['visita_es', 'visita_ca', 'llamada', 'whatsapp', 'formulario'];
 
 /** Suma de cada contador desde una fecha (AAAA-MM-DD) hasta hoy. */
@@ -141,6 +142,9 @@ function cifra($numero, $texto, $detalle)
   .pp-sol dd { color: var(--ink); overflow-wrap: anywhere; }
   .pp-sol a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
   .pp-aviso { color: var(--error); }
+  .pp-desc { margin-top: 1rem; }
+  .pp-desc summary { cursor: pointer; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+  .pp-desc .pp-sol { opacity: .85; }
   .pp-nota { margin-top: 1rem; padding: 1rem 1.2rem; border-left: 2px solid var(--marca); background: var(--paper); font-size: .92rem; }
   .pp-nota p { margin-top: .35rem; }
   .pp-nota p:first-child { margin-top: 0; }
@@ -224,6 +228,35 @@ function cifra($numero, $texto, $detalle)
         </article>
       <?php endforeach; ?>
     </div>
+  <?php endif; ?>
+
+  <h2>Descartadas como publicidad</h2>
+  <?php if (!$descartadas): ?>
+    <p>Ninguna por ahora.</p>
+  <?php else: ?>
+    <p class="pp-sub">El formulario aparta aquí los mensajes de agencias de SEO, webs y marketing: no se mandan por correo. Échele un vistazo de vez en cuando: si alguno fuera de un cliente, tiene su teléfono para llamarle.</p>
+    <details class="pp-desc">
+      <summary><?= count($descartadas) ?> descartada<?= count($descartadas) === 1 ? '' : 's' ?>: ver</summary>
+      <div class="pp-sol">
+        <?php foreach (array_slice($descartadas, 0, 100) as $s):
+            if (!is_array($s)) continue;
+            $cifras = (string) preg_replace('/\D+/', '', isset($s['telefono']) ? $s['telefono'] : '');
+            $tel = strlen($cifras) === 9 ? '+34' . $cifras : '+' . ltrim($cifras, '0');
+        ?>
+          <article>
+            <p class="cuando"><?= e(date('d/m/Y, H:i', isset($s['t']) ? (int) $s['t'] : 0)) ?><?= !empty($s['motivos']) ? ' · ' . e(implode(', ', (array) $s['motivos'])) : '' ?></p>
+            <h3><?= e(isset($s['nombre']) ? $s['nombre'] : '') ?></h3>
+            <dl>
+              <dt>Teléfono</dt>
+              <dd><a href="tel:<?= e($tel) ?>"><?= e(isset($s['telefono']) ? $s['telefono'] : '') ?></a></dd>
+              <?php if (!empty($s['poblacion'])): ?><dt>Población</dt><dd><?= e($s['poblacion']) ?></dd><?php endif; ?>
+              <?php if (!empty($s['tipo'])): ?><dt>Obra</dt><dd><?= e($s['tipo']) ?></dd><?php endif; ?>
+              <?php if (!empty($s['mensaje'])): ?><dt>Mensaje</dt><dd><?= nl2br(e($s['mensaje'])) ?></dd><?php endif; ?>
+            </dl>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    </details>
   <?php endif; ?>
 
   <h2 id="correo">Correo de avisos</h2>

@@ -46,12 +46,23 @@ if ($nombre === '' || strlen($cifras) < 9 || strlen($cifras) > 15 || !$acepta) {
 // Publicidad de agencias (SEO, posicionamiento, diseño web): se contesta que
 // todo fue bien, no se avisa a Jesús y se guarda una copia aparte para poder
 // revisar que no se haya descartado a un cliente.
-if (es_publicidad($nombre . ' ' . $poblacion . ' ' . $tipo . ' ' . $mensaje)) {
-    actualizar_json('descartadas.json', function ($lista) use ($nombre, $telefono, $mensaje) {
+$motivos = motivos_publicidad($nombre, $cifras, $telefono, $poblacion . ' ' . $tipo . ' ' . $mensaje);
+if ($motivos) {
+    actualizar_json('descartadas.json', function ($lista) use ($nombre, $telefono, $poblacion, $tipo, $mensaje, $motivos, $ca) {
         $lista = is_array($lista) ? $lista : [];
-        $lista[] = ['t' => time(), 'nombre' => $nombre, 'telefono' => $telefono, 'mensaje' => function_exists('mb_substr') ? mb_substr($mensaje, 0, 400, 'UTF-8') : substr($mensaje, 0, 400)];
-        return [array_slice($lista, -50), 'descartada'];
+        $lista[] = [
+            't'         => time(),
+            'nombre'    => $nombre,
+            'telefono'  => $telefono,
+            'poblacion' => $poblacion,
+            'tipo'      => $tipo,
+            'mensaje'   => $mensaje,
+            'idioma'    => $ca ? 'ca' : 'es',
+            'motivos'   => $motivos,
+        ];
+        return [array_slice($lista, -100), 'descartada'];
     });
+    contar('descartada');
     terminar(true);
 }
 
@@ -116,16 +127,54 @@ terminar(false, 'envio', 502);
    Funciones
 --------------------------------------------------------------------------- */
 
-/** Detecta mensajes de agencias que ofrecen SEO, posicionamiento o webs:
- *  piden "Google", "SEO" o "ranking" junto a un enlace, o usan frases típicas
- *  de venta en inglés. Un cliente de reformas no suele escribir nada de eso. */
-function es_publicidad($t)
+/** Decide si una solicitud es publicidad (agencias de SEO, webs, marketing,
+ *  préstamos, criptomonedas...). Suma puntos por señales y descarta a partir
+ *  de 3. Ninguna señal suave basta sola: un cliente extranjero que escriba en
+ *  inglés o pegue un enlace a una foto no se descarta. Devuelve la lista de
+ *  motivos (vacía si la solicitud es buena), que queda guardada en el panel. */
+function motivos_publicidad($nombre, $cifras, $telefono, $texto)
 {
-    $t = function_exists('mb_strtolower') ? mb_strtolower($t, 'UTF-8') : strtolower($t);
-    $enlace = preg_match('~https?://|www\.|\b[a-z0-9-]+\.(com|net|pro|org|io|co|info|biz|online|xyz)\b~u', $t) === 1;
-    $oferta = preg_match('~\bseo\b|search index|first page|1st page|top google|google.{0,30}(ranking|rankings|search results)|backlink|web ?design|guest post|link ?building|posicionamiento web|primera p[aá]gina de google|dise[ñn]o de p[aá]ginas? web~u', $t) === 1;
-    $ingles = preg_match('~\b(your website|our team|i can help|we can help|would you have some time|best regards|digital marketing|marketing agency)\b~u', $t) === 1;
-    return ($enlace && $oferta) || $ingles || $oferta;
+    $t = function_exists('mb_strtolower') ? mb_strtolower($texto, 'UTF-8') : strtolower($texto);
+    $puntos = 0;
+    $motivos = [];
+    $suma = function ($n, $motivo) use (&$puntos, &$motivos) {
+        $puntos += $n;
+        $motivos[] = $motivo;
+    };
+
+    // Ofrece posicionamiento, webs o marketing: lo que vende una agencia
+    if (preg_match('~\bseo\b|search ?index|search engine|first page|1st page|page one of google|top (of )?google|google.{0,30}(ranking|rankings|search results|visibility)|backlinks?|link ?building|guest post|web ?design|website (design|redesign|development)|redesign your|digital marketing|marketing (agency|services)|lead generation|more leads|more traffic|organic traffic|social media (marketing|management)|posicionamiento|primera p[aá]gina de google|dise[ñn]o (de p[aá]ginas? )?web|redes sociales|campa[ñn]as? de (google|publicidad)|продвижени|раскрутк~u', $t)) {
+        $suma(3, 'ofrece SEO, webs o marketing');
+    }
+    // Otros negocios que llegan por formularios: préstamos, cripto, apuestas
+    if (preg_match('~\b(crypto|bitcoin|forex|casino|betting|loan|loans|viagra|cbd)\b|pr[eé]stamo r[aá]pido|cr[eé]dito r[aá]pido~u', $t)) {
+        $suma(3, 'préstamos, cripto o apuestas');
+    }
+    // Frases de venta en frío en inglés. Un cliente que escribe en inglés
+    // habla de su casa, no de "our team" ni de "ROI".
+    if (preg_match('~\b(i can help you|we can help you|our team|our services|we specialize|we offer|free (audit|consultation|quote for your website)|would you (have|be) (some time|interested)|schedule a (call|meeting)|\broi\b|take (things|your business) to the next level|boost your|grow your business)\b~u', $t)) {
+        $suma(2, 'frases de venta en frío');
+    }
+    // Enlaces: dos o más, o uno al propio dominio (las agencias lo citan)
+    $enlaces = preg_match_all('~https?://|www\.|\b[a-z0-9-]+\.(com|net|pro|org|io|co|info|biz|online|xyz|site|top|agency)\b~u', $t);
+    if (strpos($t, 'reformasfonseca.com') !== false) {
+        $suma(2, 'menciona el propio dominio de la web');
+    } elseif ($enlaces >= 2) {
+        $suma(2, 'varios enlaces');
+    } elseif ($enlaces === 1) {
+        $suma(1, 'un enlace');
+    }
+    // Teléfono de 9 cifras sin prefijo que no es español (6, 7, 8 o 9)
+    $con_prefijo = strpos(ltrim($telefono), '+') === 0 || strpos($cifras, '00') === 0;
+    if (!$con_prefijo && strlen($cifras) === 9 && strpos('6789', $cifras[0]) === false) {
+        $suma(1, 'teléfono que no es español');
+    }
+    // Escritura que no es latina (cirílico, chino, árabe...)
+    if (preg_match('~[\x{0400}-\x{04FF}\x{4E00}-\x{9FFF}\x{0600}-\x{06FF}]~u', $texto . $nombre)) {
+        $suma(2, 'alfabeto no latino');
+    }
+
+    return $puntos >= 3 ? $motivos : [];
 }
 
 /** Contesta y termina: JSON para el script, página sencilla sin JavaScript. */
