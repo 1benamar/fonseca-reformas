@@ -49,15 +49,15 @@ if (hecho) return;
 hecho = true;
 splash.classList.add("is-done");
 root.classList.add("is-revealed");
-setTimeout(function () { if (splash.parentNode) splash.remove(); }, 900);
+setTimeout(function () { if (splash.parentNode) splash.remove(); }, 700);
 }
 function cuandoToque() {
-var espera = Math.max(0, 600 - (Date.now() - inicio));
+var espera = Math.max(0, 350 - (Date.now() - inicio));
 setTimeout(retirar, espera);
 }
 if (document.readyState === "complete") cuandoToque();
 else window.addEventListener("load", cuandoToque, { once: true });
-setTimeout(retirar, 1500);
+setTimeout(retirar, 900);
 }
 function initContact() {
 var c = data.contact;
