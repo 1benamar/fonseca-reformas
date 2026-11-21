@@ -109,4 +109,20 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/paviments-paleteria/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/suelos-albanileria/"/>
   </url>
+  <url>
+    <loc>https://reformasfonseca.com/pintura/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/pintura/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/pintura/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/pintura/"/>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/s-pintura-obra.jpg</image:loc></image:image>
+    <image:image><image:loc>https://reformasfonseca.com/assets/img/o-pintura-84.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://reformasfonseca.com/ca/pintura/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://reformasfonseca.com/pintura/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://reformasfonseca.com/ca/pintura/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://reformasfonseca.com/pintura/"/>
+  </url>
 </urlset>
