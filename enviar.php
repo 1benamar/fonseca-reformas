@@ -143,7 +143,7 @@ function motivos_publicidad($nombre, $cifras, $telefono, $texto)
     };
 
     // Ofrece posicionamiento, webs o marketing: lo que vende una agencia
-    if (preg_match('~\bseo\b|search ?index|search engine|first page|1st page|page one of google|top (of )?google|google.{0,30}(ranking|rankings|search results|visibility)|backlinks?|link ?building|guest post|web ?design|website (design|redesign|development)|redesign your|digital marketing|marketing (agency|services)|lead generation|more leads|more traffic|organic traffic|social media (marketing|management)|posicionamiento|primera p[aá]gina de google|dise[ñn]o (de p[aá]ginas? )?web|redes sociales|campa[ñn]as? de (google|publicidad)|продвижени|раскрутк~u', $t)) {
+    if (preg_match('~\bseo\b|search ?index|search engine|first page|1st page|page one of google|top (of )?google|google.{0,30}(ranking|rankings|search results|visibility)|backlinks?|link ?building|guest post|web ?design|website (design|redesign|development)|redesign your|digital marketing|marketing (agency|services)|lead generation|more leads|more traffic|organic traffic|social media (marketing|management)|posicionamiento|primera p[aá]gina de google|dise[ñn]o (de p[aá]ginas? )?web|redes sociales|campa[ñn]as? de (google|publicidad)|page (2|two) of google|ai (tools|search|assistants?|recommendations?)|chatgpt|answer engines?|publicar una noticia|art[ií]culos? patrocinados?|nota de prensa|aparecer en (la prensa|peri[oó]dicos|medios)|продвижени|раскрутк~u', $t)) {
         $suma(3, 'ofrece SEO, webs o marketing');
     }
     // Otros negocios que llegan por formularios: préstamos, cripto, apuestas
@@ -168,6 +168,13 @@ function motivos_publicidad($nombre, $cifras, $telefono, $texto)
     $con_prefijo = strpos(ltrim($telefono), '+') === 0 || strpos($cifras, '00') === 0;
     if (!$con_prefijo && strlen($cifras) === 9 && strpos('6789', $cifras[0]) === false) {
         $suma(1, 'teléfono que no es español');
+    }
+    // Texto escrito al azar por robots: cinco consonantes seguidas
+    // ("gfihudwgfyeh"), letras pegadas a números ("nertgr998380") o cifras
+    // en el nombre. Ninguna palabra en castellano o catalán hace eso.
+    $sin_enlaces = (string) preg_replace('~https?://\S+|www\.\S+~u', ' ', $t); // "https" ya son cinco consonantes
+    if (preg_match('~[bcdfghjklmnpqrstvwxyz]{5,}|[a-z]{3,}\d{4,}|\d{4,}[a-z]{3,}~u', $sin_enlaces) || preg_match('~\d{3,}~', $nombre)) {
+        $suma(3, 'texto escrito al azar');
     }
     // Escritura que no es latina (cirílico, chino, árabe...)
     if (preg_match('~[\x{0400}-\x{04FF}\x{4E00}-\x{9FFF}\x{0600}-\x{06FF}]~u', $texto . $nombre)) {
